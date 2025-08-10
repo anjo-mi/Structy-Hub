@@ -1,0 +1,75 @@
+const connectedComponentsCount = (graph) => {
+  let count = 0;
+  const v = new Set();
+  for (const node in graph){
+    if (v.has(+node)) continue;
+    const stack = [node];
+    while (stack.length){
+      const curr = stack.pop();
+      for (const n of graph[curr]){
+        if (!v.has(n)) stack.push(n);
+        v.add(n);
+      }
+    }
+    count++;
+  }
+  return count;
+};
+
+console.log(connectedComponentsCount({
+  1: [2],
+  2: [1,8],
+  6: [7],
+  9: [8],
+  7: [6, 8],
+  8: [9, 7, 2]
+}),1);
+
+// console.log(connectedComponentsCount({
+//   0: [4,7],
+//   1: [],
+//   2: [],
+//   3: [6],
+//   4: [0],
+//   6: [3],
+//   7: [0],
+//   8: []
+// }),5);
+/*
+p
+graph as an adjacency list (nodes: edges to other nodes)
+r
+number -> how many islands exist in the graph
+e
+empty graph (return 0), nodes pointing to no other nodes (+1 to count)
+p
+let count = 0;
+let visited = new Set();
+for (const node in graph){
+if (visited.has(node)) continue;
+visited.add(node);
+let hasSeenEls = false;
+for (const el of graph[node]){
+if (visited.has(el)) hasSeenEls = true;
+visited.add(el);
+count++
+}
+}
+return count;
+*/
+
+// console.log(connectedComponentsCount({
+//   3: [],
+//   4: [6],
+//   6: [4, 5, 7, 8],
+//   8: [6],
+//   7: [6],
+//   5: [6],
+//   1: [2],
+//   2: [1]
+// }), 3);
+
+
+module.exports = {
+  connectedComponentsCount,
+};
