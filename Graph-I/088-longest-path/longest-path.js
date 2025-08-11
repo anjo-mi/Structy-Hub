@@ -16,39 +16,7 @@ const longestPath = (graph) => {
   return Math.max(...Object.values(dists));
 };
 /*
-create an object to store graph properties and their distance from the end
-loop thru the node in the graph
 
-** MAKE A SEPARATE FUNCTION THAT CALLS ITSELF
-if (theres not a length for graph of current node) distance[current] = 0;
-forEach element of the node's property value:
-call this function on it
-const max = valuesArray.max
-distances[currNode] = max + 1
-
-loop thru the distances to find the maximum value?
-
-
-p
-graph, directed, no cycles -> adjacency list (object, values [other properties])
-r
-Number -> longest path to get from any one node to any other node
-e
-empty graph (return null or 0),
-many or very long paths (keep it efficient),
-equal longest paths (return either's length)
-p
-create an object to store graph properties and their distance from the end
-loop thru the node in the graph
-
-** MAKE A SEPARATE FUNCTION THAT CALLS ITSELF
-if (theres not a length for graph of current node) distance[current] = 0;
-forEach element of the node's property value:
-call this function on it
-const max = valuesArray.max
-distances[currNode] = max + 1
-
-loop thru the distances to find the maximum value?
 */
 const graph = {
   a: ['c', 'b'],
