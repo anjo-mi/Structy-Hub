@@ -6,21 +6,22 @@ class Node {
 }
 
 const longestStreak = (head) => {
-  if (!head) return 0;
-  let count = 0;
-  let maxCount = 0;
-  let prevEl = null;
-  while(head){
-    if (prevEl === head.val){
-      count++;
+  let curr = head,
+      temp = null,
+      strk = 0,
+      mxst = 0;
+  while (curr){
+    if (curr.val === temp){
+      strk++;
+      if (strk > mxst) mxst = strk;
     }else{
-      count = 1;
-      prevEl = head.val;
+      strk = 1;
+      temp = curr.val;
     }
-    if (count > maxCount) maxCount = count;
-    head = head.next;
+    curr = curr.next;
   }
-  return maxCount;
+  if (strk > mxst) mxst = strk;
+  return mxst;
 };
 const a = new Node(9);
 const b = new Node(9);
