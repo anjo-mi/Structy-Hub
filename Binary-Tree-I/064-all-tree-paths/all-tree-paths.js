@@ -7,26 +7,26 @@ class Node {
 }
 
 const allTreePaths = r => {
-  if (!r) return [];
-  const paths = [];
-  const queue = [{node: r, path: [r.val]}];
-  while (queue.length){
-    const {node, path} = queue.shift();
-    if (!node.right && !node.left) paths.push(path);
-    if (node.left) queue.push({
-      node: node.left,
-      path: [...path, node.left.val]
-    });
-    if (node.right) queue.push({
-      node: node.right,
-      path: [...path, node.right.val]
-    });
-  }
-  return paths;
+  const rev = _allTreePaths(r);
+  rev.forEach(p => p.reverse());
+  return rev;
 }
 
 const _allTreePaths = r =>{
-  
+  if (!r) return [];
+  if (!r.right && !r.left) return [[r.val]];
+  const paths = [];
+  const left = _allTreePaths(r.left);
+  const right = _allTreePaths(r.right);
+  for (const p of left){
+    p.push(r.val);
+    paths.push(p);
+  }
+  for (const p of right){
+    p.push(r.val);
+    paths.push(p);
+  }
+  return paths;
 }
 
 
