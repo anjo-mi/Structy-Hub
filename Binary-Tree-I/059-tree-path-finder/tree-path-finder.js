@@ -10,12 +10,14 @@ const pathFinder = (root, target) => {
   if (!root) return null;
   const path = [root.val];
   if (root.val === target) return path;
-
+  
   const left = pathFinder(root.left,target);
   const right = pathFinder(root.right,target);
-
-  return left  ? path.concat(left) : 
-         right ? path.concat(right) : null;
+  
+  if (left) return path.concat(left);
+  if (right) return path.concat(right);
+  
+  return null;
 };
 
 const a = new Node("a");
