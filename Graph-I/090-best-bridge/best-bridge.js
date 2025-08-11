@@ -1,49 +1,47 @@
 const loc = (r,c) => r + ',' + c;
 const coords = (l) => l.split(',').map(Number);
+const inBounds = (r,c,grid) => r >= 0 &&
+                               c >= 0 &&
+                               r < grid.length &&
+                               c < grid[r].length;
 
-const getConnections = (r,c,grid, v = new Set()) =>{
-  if (r < 0 ||
-      c < 0 ||
-      r >= grid.length ||
-      c >= grid[r].length ||
-      grid[r][c] !== 'L' ||
-      v.has(loc(r,c))) return null;
-  v.add(loc(r,c));
-  getConnections(r-1,c,grid,v);
-  getConnections(r+1,c,grid,v);
-  getConnections(r,c-1,grid,v);
-  getConnections(r,c+1,grid,v);
-  return v;
+const getConnections = (r,c,grid,isle = new Set()) => {
+  if (isle.has(loc(r,c)) ||
+      !inBounds(r,c,grid) ||
+      grid[r][c] !== 'L') return null;
+  isle.add(loc(r,c));
+  getConnections(r-1,c,grid,isle);
+  getConnections(r+1,c,grid,isle);
+  getConnections(r,c-1,grid,isle);
+  getConnections(r,c+1,grid,isle);
+  return isle;
 }
 
-const findBridge = (r, c, grid, set) => {
-  const l = loc(r,c);
+const findBridge = (l,grid,set,v = new Set()) => {
   const queue = [{l, dist: -1}];
-  const v = new Set();
   while (queue.length){
-    const curr = queue.shift();
-    const {l,dist} = curr;
-    if (v.has(l)) continue;
-    v.add(l);
-    if (set.has(l)) return dist;
+    const {l,dist} = queue.shift();
     const [r,c] = coords(l);
-    if (r-1 >= 0) queue.push({
-      l: loc(r-1,c),
-      dist: dist+ 1,
-    })
-    if (r+1 < grid.length) queue.push({
+    if (v.has(l) ||
+        !inBounds(r,c,grid)) continue;
+    if (set.has(l)) return dist;
+    v.add(l);
+    queue.push({
       l: loc(r+1,c),
-      dist: dist+ 1,
+      dist: dist + 1
     })
-    if (c-1 >= 0) queue.push({
-      l: loc(r,c-1),
-      dist: dist+ 1,
+    queue.push({
+      l: loc(r-1,c),
+      dist: dist + 1
     })
-    if (c+1 < grid[r].length) queue.push({
+    queue.push({
       l: loc(r,c+1),
-      dist: dist+ 1,
+      dist: dist + 1
     })
-    
+    queue.push({
+      l: loc(r,c-1),
+      dist: dist + 1
+    })
   }
 }
 
@@ -51,22 +49,20 @@ const bestBridge = (grid) => {
   const islands = [];
   for (let r = 0 ; r < grid.length ; r++){
     for (let c = 0 ; c < grid[r].length ; c++){
-      if (grid[r][c] === 'L'){
-        if ( islands.some( set => set.has( loc(r,c) ) ) ) continue;
+      if (grid[r][c] === 'L' && !islands.some(isle => isle.has(loc(r,c)))){
         const isle = getConnections(r,c,grid);
+        console.log(isle);
         islands.push(isle);
       }
     }
   }
   const [a,b] = islands;
-  const bridges = [];
+  let min = Infinity;
   for (const loc of a){
-    const [r,c] = coords(loc);
-    bridges.push(
-      findBridge(r,c,grid,b)
-    )
+    const bridge = findBridge(loc, grid, b);
+    if (bridge < min) min = bridge;
   }
-  return Math.min(...bridges);
+  return min;
 };
 /*
 
