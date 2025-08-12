@@ -11,7 +11,7 @@ const removeNode = (head, target) => {
   let curr = head,
       prev = null;
   while (curr){
-    if (curr.val === target){
+    if (curr.val == target){
       prev.next = curr.next;
       return head;
     }
