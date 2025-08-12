@@ -7,8 +7,8 @@ class Node {
 }
 
 const treeLevels = (root) => {
-  if (!root) return [];
   const levels = [];
+  if (!root) return levels;
   let stack = [root];
   while (stack.length){
     const level = stack.map(el => el.val);
