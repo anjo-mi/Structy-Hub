@@ -6,14 +6,11 @@ class Node {
   }
 }
 
-const howHigh = (root, depth = 0) => {
+const howHigh = (root,ht = 0) => {
   if (!root) return -1;
-  if (!root.left && !root.right) return depth;
-  depth++;
-  return Math.max(
-    howHigh(root.left,depth),
-    howHigh(root.right,depth)
-  );
+  if (!root.left && !root.right) return ht;
+  ht++;
+  return Math.max(howHigh(root.left,ht), howHigh(root.right,ht));
 };
 /*
 */
