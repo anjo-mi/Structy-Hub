@@ -1,26 +1,26 @@
-const getSems = (cls, curriculum, sems) => {
-  if (cls in sems) return sems[cls];
-  if (!curriculum[cls].length) sems[cls] = 1;
+const getTimes = (cls,graph,dists) =>{
+  if (cls in dists) return dists[cls];
+  if (!graph[cls].length) dists[cls] = 1;
   else{
-    const times = curriculum[cls].map(pr => getSems(pr,curriculum,sems));
-    sems[cls] = Math.max(...times) + 1;
+    const times = graph[cls].map(c => getTimes(c,graph,dists));
+    dists[cls] = Math.max(...times) + 1;
   }
-  return sems[cls];
+  return dists[cls];
 }
 
 const semestersRequired = (numCourses, prereqs) => {
   if (!prereqs.length) return 1;
-  const curriculum = {};
+  const graph = {};
   for (const [a,b] of prereqs){
-    if (!curriculum[a]) curriculum[a] = [];
-    if (!curriculum[b]) curriculum[b] = [];
-    curriculum[b].push(a);
+    if (!graph[a]) graph[a] = [];
+    if (!graph[b]) graph[b] = [];
+    graph[b].push(a);
   }
-  const sems = {};
-  for (const cls in curriculum){
-    getSems(cls, curriculum, sems);
+  const dists = {};
+  for (const cls in graph){
+    getTimes(cls,graph,dists);
   }
-  return Math.max(...Object.values(sems));
+  return Math.max(...Object.values(dists));
 };
 
 
