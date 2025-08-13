@@ -1,23 +1,8 @@
-// const fb = (n) => {
-//   const vals = {};
-//   const f = (n) => {
-//     if (n in vals) return vals[n];
-//     if (n <= 1) return n;
-//     vals[n] = f(n-1) + f(n-2);
-//     return vals[n];
-//   }
-//   return f;
-// }
-
-const fib = (n) => {
-  const vals = {};
-  const f = (n) => {
-    if (n in vals) return vals[n];
-    if (n <= 1) return n;
-    vals[n] = f(n-1) + f(n-2);
-    return vals[n];
-  }
-  return f(n);
+const fib = (n, vals = {}) => {
+  if (n in vals) return vals[n];
+  if (n < 2) vals[n] = n;
+  else {vals[n] = fib(n-1,vals) + fib(n-2,vals);}
+  return vals[n];
 }
 
 
