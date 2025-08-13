@@ -11,9 +11,9 @@ const insertNode = (head, val, i) => {
     n.next = head;
     return n;
   }
-  let curr = head;
-  let prev = null;
-  while (curr && i){
+  let curr = head,
+      prev = null;
+  while (i && curr){
     prev = curr;
     curr = curr.next;
     i--;
