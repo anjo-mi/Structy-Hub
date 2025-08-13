@@ -7,8 +7,8 @@ class Node {
 
 const reverseList = (head) => {
   if (!head) return null;
-  let curr = head;
-  let prev = null;
+  let curr = head,
+      prev = null;
   while (curr){
     const next = curr.next;
     curr.next = prev;
