@@ -5,28 +5,26 @@ const inBounds = (r,c,grid) => r >= 0 &&
                                c < grid[r].length;
 
 const getConnections = (r,c,grid,v, isle = new Set()) => {
-  if (!inBounds(r,c,grid)) return null;
-  if (isle.has(loc(r,c))) return null;
-  if (grid[r][c] !== 'L') return null;
-  
-  isle.add(loc(r,c));
+  if (!inBounds(r,c,grid) ||
+      grid[r][c] !== 'L' || 
+      v.has(loc(r,c))) return isle;
   v.add(loc(r,c));
-  getConnections(r-1,c,grid,v,isle);
+  isle.add(loc(r,c));
   getConnections(r+1,c,grid,v,isle);
-  getConnections(r,c-1,grid,v,isle);
+  getConnections(r-1,c,grid,v,isle);
   getConnections(r,c+1,grid,v,isle);
-  console.log({isle})
+  getConnections(r,c-1,grid,v,isle);
   return isle;
 }
 
 const minimumIsland = (grid) => {
-  let min = Infinity;
   const v = new Set();
+  let min = Infinity;
   for (let r = 0 ; r < grid.length ; r++){
     for (let c = 0 ; c < grid[r].length ; c++){
-      if (grid[r][c] === 'L' && !v.has(loc(r,c))){
+      if (grid[r][c] === 'L'){
         const isle = getConnections(r,c,grid,v);
-        if (isle.size < min) min = isle.size;
+        if (isle.size && isle.size < min) min = isle.size;
       }
     }
   }
