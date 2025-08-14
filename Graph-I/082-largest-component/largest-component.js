@@ -9,9 +9,8 @@ const largestComponent = (graph) => {
       const curr = stack.pop();
       if (comp.has(curr)) continue;
       comp.add(curr);
-      for (const n of graph[curr]) if (!comp.has(n)) {
+      for (const n of graph[curr]){
         stack.push(n);
-        v.add(n)
       }
     }
     if (comp.size > l) l = comp.size;
