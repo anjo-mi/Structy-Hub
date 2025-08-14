@@ -6,8 +6,7 @@ class Node {
 }
 
 const zipperLists = (h1, h2) => {
-  const head = h1;
-  let curr = head;
+  let curr = h1;
   let c1 = curr.next;
   let c2 = h2;
   let count = 0;
@@ -23,7 +22,7 @@ const zipperLists = (h1, h2) => {
     count++;
   }
   if (c1 || c2) curr.next = c1 || c2;
-  return head;
+  return h1;
 };
 const a = new Node("a");
 const b = new Node("b");
