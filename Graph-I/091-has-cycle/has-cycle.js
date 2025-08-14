@@ -7,7 +7,7 @@ const hasCycle = (graph) => {
       v.add(curr);
       for (const n of graph[curr]){
         if (v.has(n)) return true;
-        queue.push(n);
+        queue.push(n)
       }
     }
   }
