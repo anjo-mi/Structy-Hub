@@ -6,17 +6,16 @@ const shortestPath = (edges, na, nb) => {
     graph[a].push(b);
     graph[b].push(a);
   }
-  const v = new Set();
   const queue = [{n: na, dist: 0}];
+  const v = new Set();
   while (queue.length){
     const {n, dist} = queue.shift();
     if (v.has(n)) continue;
     v.add(n);
     if (n === nb) return dist;
-    for (const node of graph[n]) if (!v.has(node)) queue.push({
-      n: node,
-      dist: dist + 1
-    })
+    for (const node of graph[n]){
+      if (!v.has(node)) queue.push({n: node, dist: dist + 1});
+    }
   }
   return -1;
 };
