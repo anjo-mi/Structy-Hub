@@ -4,25 +4,23 @@ const inBounds = (r,c,grid) => r >= 0 &&
                                c >= 0 &&
                                r < grid.length &&
                                c < grid[r].length;
-const ds = [ [1,0] , [0,1] , [-1,0] , [0,-1] ];
 
 const closestCarrot = (grid, sr, sc) => {
-  const l = loc(sr,sc);
-  const queue = [{l, dist: 0}];
   const v = new Set();
+  const queue = [{l: loc(sr,sc), dist: 0}];
   while (queue.length){
     const {l,dist} = queue.shift();
-    const [r,c] = coords(l);
-    if (v.has(l) || grid[r][c] === 'X') continue;
+    if (v.has(l)) continue;
     v.add(l);
+    const [r,c] = coords(l);
+    if (!inBounds(r,c,grid) || grid[r][c] === 'X') continue;
     if (grid[r][c] === 'C') return dist;
-    for (const d of ds){
-      const [dr,dc] = d;
-      if (inBounds(r+dr,c+dc,grid)) queue.push({
-        l: loc(r+dr,c+dc),
-        dist: dist + 1,
-      })
-    }
+    queue.push(
+      {l: loc(r+1,c), dist: dist + 1},
+      {l: loc(r-1,c), dist: dist + 1},
+      {l: loc(r,c+1), dist: dist + 1},
+      {l: loc(r,c-1), dist: dist + 1}
+    )
   }
   return -1;
 };
