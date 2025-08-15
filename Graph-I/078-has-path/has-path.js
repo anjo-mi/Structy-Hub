@@ -1,14 +1,12 @@
 const hasPath = (graph, src, dst) => {
-  const stack = [src];
   const v = new Set();
+  const stack = [src];
   while (stack.length){
     const curr = stack.pop();
-    if (curr === dst) return true;
     if (v.has(curr)) continue;
     v.add(curr);
-    for (const n of graph[curr]){
-      if (!v.has(n)) stack.push(n);
-    }
+    if (curr === dst) return true;
+    for (const n of graph[curr]) if (!v.has(n)) stack.push(n);
   }
   return false;
 };
