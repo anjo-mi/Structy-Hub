@@ -1,8 +1,8 @@
-const fib = (n, vals = {}) => {
-  if (n in vals) return vals[n];
-  if (n < 2) vals[n] = n;
-  else {vals[n] = fib(n-1,vals) + fib(n-2,vals);}
-  return vals[n];
+const fib = (n, cache = {}) => {
+  if (n <= 1) return n;
+  if (n in cache) return cache[n]
+  cache[n] = fib(n-1,cache) + fib(n-2,cache);
+  return cache[n];
 }
 
 
