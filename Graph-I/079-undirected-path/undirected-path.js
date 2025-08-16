@@ -6,14 +6,15 @@ const undirectedPath = (edges, src, dst) => {
     graph[a].push(b);
     graph[b].push(a);
   }
-  const stack = [src];
+
   const v = new Set();
+  const stack = [src];
   while (stack.length){
     const curr = stack.pop();
     if (v.has(curr)) continue;
     v.add(curr);
     if (curr === dst) return true;
-    for (const n of graph[curr]) if (!v.has(n)) stack.push(n);
+    for (const n of graph[curr]) stack.push(n);
   }
   return false;
 };
