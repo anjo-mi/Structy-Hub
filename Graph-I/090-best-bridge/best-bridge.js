@@ -5,17 +5,31 @@ const inBounds = (r,c,grid) => r >= 0 &&
                                r < grid.length &&
                                c < grid[r].length;
 
-const getConnections = (r,c,grid,isle= new Set()) => {
+const getConnections = (r,c,grid,isle=new Set()) =>{
   if (!inBounds(r,c,grid) ||
       grid[r][c] !== 'L' ||
-      isle.has(loc(r,c))) return isle;
-  isle.add(loc(r,c));
-
+      isle.has(loc(r,c))) return null;
+  isle.add(loc(r,c))
   getConnections(r-1,c,grid,isle);
   getConnections(r+1,c,grid,isle);
   getConnections(r,c-1,grid,isle);
   getConnections(r,c+1,grid,isle);
   return isle;
+}
+
+const findBridge = (r,c,grid,b,v=new Set()) => {
+  const queue = [{l: loc(r,c), dist: -1}];
+  while (queue.length){
+    const {l,dist} = queue.shift();
+    if (v.has(l)) continue;
+    v.add(l);
+    if (b.has(l)) return dist;
+    const [r,c] = coords(l)
+    if (inBounds(r+1,c,grid)) queue.push({l: loc(r+1,c), dist: dist + 1})
+    if (inBounds(r-1,c,grid)) queue.push({l: loc(r-1,c), dist: dist + 1})
+    if (inBounds(r,c+1,grid)) queue.push({l: loc(r,c+1), dist: dist + 1})
+    if (inBounds(r,c-1,grid)) queue.push({l: loc(r,c-1), dist: dist + 1})
+  }
 }
 
 const bestBridge = (grid) => {
@@ -25,46 +39,19 @@ const bestBridge = (grid) => {
       if (grid[r][c] === 'L' && !islands.some(isle => isle.has(loc(r,c)))){
         const isle = getConnections(r,c,grid);
         islands.push(isle);
-        console.log(isle);
       }
     }
   }
   const [a,b] = islands;
   let br = Infinity;
   for (const l of a){
-    const bridge = findBridge(l,grid,b);
+    const [r,c] = coords(l)
+    const bridge = findBridge(r,c,grid,b);
     if (bridge < br) br = bridge;
   }
   return br;
 };
 
-const findBridge = (l,grid,b,v=new Set()) => {
-  const queue = [{l,dist:-1}];
-  while (queue.length){
-    const {l,dist} = queue.shift();
-    if(v.has(l)) continue;
-    v.add(l);
-    if (b.has(l)) return dist;
-    const [r,c] = coords(l);
-    if (inBounds(r+1,c,grid) && !v.has(loc(r+1,c))) queue.push({
-      l: loc(r+1,c),
-      dist: dist + 1
-    })
-    if (inBounds(r-1,c,grid) && !v.has(loc(r-1,c))) queue.push({
-      l: loc(r-1,c),
-      dist: dist + 1
-    })
-    if (inBounds(r,c+1,grid) && !v.has(loc(r,c+1))) queue.push({
-      l: loc(r,c+1),
-      dist: dist + 1
-    })
-    if (inBounds(r,c-1,grid) && !v.has(loc(r,c-1))) queue.push({
-      l: loc(r,c-1),
-      dist: dist + 1
-    })
-  }
-  return null;
-}
 /*
 
 */
