@@ -1,40 +1,19 @@
-const tri = (n) => {
-  const storage = {};
-  const t = (n) => {
-    if (n <= 1) return 0;
-    if (n === 2) return 1;
-    if (n in storage) return storage[n];
-    storage[n] = t(n-1) + t(n-2) + t(n-3);
-    return storage[n];
+const tribonacci = (n,memo = {}) => {
+  if (n in memo) return memo[n];
+  if (n <= 1) {
+    memo[n] = 0;
+    return memo[n];
   }
-  return t(n);
+  if (n === 2) {
+    memo[n] = 1;
+    return memo[n];
+  }
+  memo[n] = tribonacci(n-1,memo) + tribonacci(n-2,memo) + tribonacci(n-3,memo);
+  return memo[n];
 }
-const tribonacci = tri;
 
 /*
-create a separate function to eventually set trib to
-in that function create an object to store results
-return function(param)
-if param in object return object[param]
-otherwise obj[param] = function(n-1) + f(n-2) + f(n-3)
-return obj[param]
-outer function returns the call
-trib gets set equal to outer function
-p
-Number (positive)
-r
-Number (representing the three previous nums' calc's sum)
-e
-negative numbers, large numbers causing stack overflow
-p
-create a separate function to eventually set trib to
-in that function create an object to store results
-return function(param)
-if param in object return object[param]
-otherwise obj[param] = function(n-1) + f(n-2) + f(n-3)
-return obj[param]
-outer function returns the call
-trib gets set equal to outer function
+
 */
 
 console.log(tribonacci(37), 1132436852);
