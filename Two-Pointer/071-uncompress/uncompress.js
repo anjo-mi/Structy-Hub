@@ -1,15 +1,19 @@
 const uncompress = (s) => {
-  const arabic = new Set('0123456789');
   let i = 0,
       j = 0,
-      st = '';
-  while (j < s.length){
-    while (arabic.has(s[j]) && j < s.length) j++;
-    st += s[j].repeat(+s.slice(i,j));
+      str = '',
+      arabic = new Set('0123456789');
+  while (i < s.length){
+    while (i < s.length && !arabic.has(s[i])) i++;
+    while (j < s.length && arabic.has(s[j])) j++;
+    console.log({i,j})
+    const length = +s.slice(i,j);
+    str += s[j].repeat(length);
+    console.log({i,j,s}, s.slice(i,j))
     j++;
-    i=j;
+    i = j;
   }
-  return st;
+  return str;
 };
 /*
 
