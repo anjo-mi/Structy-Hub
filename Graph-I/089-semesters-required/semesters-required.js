@@ -1,9 +1,9 @@
-const getTimes = (cls,graph,dists) =>{
+const getDists = (cls,graph,dists) => {
   if (cls in dists) return dists[cls];
   if (!graph[cls].length) dists[cls] = 1;
   else{
-    const times = graph[cls].map(c => getTimes(c,graph,dists));
-    dists[cls] = Math.max(...times) + 1;
+    const ds = graph[cls].map(c => getDists(c,graph,dists));
+    dists[cls] = Math.max(...ds) + 1;
   }
   return dists[cls];
 }
@@ -18,7 +18,7 @@ const semestersRequired = (numCourses, prereqs) => {
   }
   const dists = {};
   for (const cls in graph){
-    getTimes(cls,graph,dists);
+    getDists(cls, graph, dists)
   }
   return Math.max(...Object.values(dists));
 };
@@ -56,6 +56,9 @@ const prereqs = [
   [5, 6],
 ];
 console.log(semestersRequired(numCourse, prereqs), 5);
+const umCourses = 12;
+const rereqs = [];
+semestersRequired(umCourses, rereqs);
 module.exports = {
   semestersRequired,
 };
