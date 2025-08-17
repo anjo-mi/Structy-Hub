@@ -8,10 +8,10 @@ class Node {
 const removeNode = (head, target) => {
   if (!head) return null;
   if (head.val === target) return head.next;
-  let curr = head,
-      prev = null;
+  let prev = null,
+      curr = head;
   while (curr){
-    if (curr.val == target){
+    if (curr.val === target){
       prev.next = curr.next;
       return head;
     }
