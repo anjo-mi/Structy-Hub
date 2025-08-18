@@ -13,7 +13,7 @@ const insertNode = (head, val, i) => {
   }
   let curr = head,
       prev = null;
-  while (i && curr){
+  while (curr && i){
     prev = curr;
     curr = curr.next;
     i--;
