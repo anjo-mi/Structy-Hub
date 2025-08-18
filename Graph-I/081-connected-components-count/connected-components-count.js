@@ -1,15 +1,16 @@
 const connectedComponentsCount = (graph) => {
-  const v = new Set();
   let count = 0;
+  const v = new Set();
   for (const node in graph){
     if (v.has(+node)) continue;
     v.add(+node);
     const stack = [node];
     while (stack.length){
       const curr = stack.pop();
+      v.add(+curr);
       for (const n of graph[curr]){
-        if (!v.has(n)) stack.push(n)
-        v.add(n);
+        if (v.has(n)) continue;
+        stack.push(n);
       }
     }
     count++;
