@@ -7,15 +7,12 @@ class Node {
 }
 const bottomRightValue = (root) => {
   if (!root) return null;
-  const queue = [root];
   let c = null;
+  const queue = [root];
   while (queue.length){
     const curr = queue.shift();
-    c = curr.val;
-    if (curr.left) queue.push(curr.left);
-    if (curr.right) queue.push(curr.right);
+    
   }
-  return c;
 };
 /*
 
