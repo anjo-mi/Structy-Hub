@@ -1,13 +1,13 @@
 const hasCycle = (graph) => {
   for (const node in graph){
     const v = new Set();
-    const queue = [node];
-    while (queue.length){
-      const curr = queue.shift();
+    const stack = [node];
+    while (stack.length){
+      const curr = stack.shift();
       v.add(curr);
       for (const n of graph[curr]){
         if (v.has(n)) return true;
-        queue.push(n);
+        stack.push(n);
       }
     }
   }
