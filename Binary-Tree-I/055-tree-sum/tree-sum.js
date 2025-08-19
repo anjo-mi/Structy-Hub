@@ -8,15 +8,15 @@ class Node {
 
 const treeSum = (root) => {
   if (!root) return 0;
-  let t = 0;
+  let total = 0;
   const stack = [root];
   while (stack.length){
     const curr = stack.pop();
+    total += curr.val;
     if (curr.right) stack.push(curr.right);
     if (curr.left) stack.push(curr.left);
-    t += curr.val;
   }
-  return t;
+  return total;
 };
 
 /*
