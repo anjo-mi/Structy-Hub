@@ -3,17 +3,18 @@ const largestComponent = (graph) => {
   const v = new Set();
   for (const node in graph){
     if (v.has(node)) continue;
-    const comp = new Set();
+    v.add(node);
+    const isle = new Set();
     const stack = [node];
     while (stack.length){
       const curr = stack.pop();
-      if (comp.has(curr)) continue;
-      comp.add(curr);
+      if (isle.has(curr)) continue;
+      isle.add(curr);
       for (const n of graph[curr]){
-        stack.push(n);
+        if (!isle.has(n)) stack.push(n);
       }
     }
-    if (comp.size > l) l = comp.size;
+    if (isle.size > l) l = isle.size;
   }
   return l;
 };
