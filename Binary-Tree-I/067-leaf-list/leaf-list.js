@@ -7,8 +7,8 @@ class Node {
 }
 
 const leafList = (root) => {
-  if (!root) return [];
   const leaves = [];
+  if (!root) return leaves;
   const stack = [root];
   while (stack.length){
     const curr = stack.pop();
