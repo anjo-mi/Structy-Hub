@@ -5,11 +5,11 @@ const inBounds = (r,c,grid) => r >= 0 &&
                                r < grid.length &&
                                c < grid[r].length;
 
-const getConnections = (r,c,grid,isle=new Set()) =>{
-  if (!inBounds(r,c,grid) ||
-      grid[r][c] !== 'L' ||
-      isle.has(loc(r,c))) return null;
-  isle.add(loc(r,c))
+const getConnections = (r,c,grid,isle=new Set()) => {
+  if (!inBounds(r,c,grid) || 
+      isle.has(loc(r,c)) || 
+      grid[r][c] !== 'L') return isle;
+  isle.add(loc(r,c));
   getConnections(r-1,c,grid,isle);
   getConnections(r+1,c,grid,isle);
   getConnections(r,c-1,grid,isle);
@@ -17,18 +17,27 @@ const getConnections = (r,c,grid,isle=new Set()) =>{
   return isle;
 }
 
-const findBridge = (r,c,grid,b,v=new Set()) => {
-  const queue = [{l: loc(r,c), dist: -1}];
+const findBridge = (l,grid,set) => {
+  const queue = [{l, dist: -1}];
+  const v = new Set();
   while (queue.length){
     const {l,dist} = queue.shift();
-    if (v.has(l)) continue;
+    const [r,c] = coords(l);
+    if (set.has(l)) return dist;
+    if (!inBounds(r,c,grid) || v.has(l)) continue;
     v.add(l);
-    if (b.has(l)) return dist;
-    const [r,c] = coords(l)
-    if (inBounds(r+1,c,grid)) queue.push({l: loc(r+1,c), dist: dist + 1})
-    if (inBounds(r-1,c,grid)) queue.push({l: loc(r-1,c), dist: dist + 1})
-    if (inBounds(r,c+1,grid)) queue.push({l: loc(r,c+1), dist: dist + 1})
-    if (inBounds(r,c-1,grid)) queue.push({l: loc(r,c-1), dist: dist + 1})
+    queue.push({
+      l: loc(r+1,c), dist: dist + 1
+    })
+    queue.push({
+      l: loc(r-1,c), dist: dist + 1
+    })
+    queue.push({
+      l: loc(r,c-1), dist: dist + 1
+    })
+    queue.push({
+      l: loc(r,c+1), dist: dist + 1
+    })
   }
 }
 
@@ -43,13 +52,12 @@ const bestBridge = (grid) => {
     }
   }
   const [a,b] = islands;
-  let br = Infinity;
+  let best = Infinity;
   for (const l of a){
-    const [r,c] = coords(l)
-    const bridge = findBridge(r,c,grid,b);
-    if (bridge < br) br = bridge;
+    const br = findBridge(l,grid,b);
+    if (br < best) best = br;
   }
-  return br;
+  return best;
 };
 
 /*
