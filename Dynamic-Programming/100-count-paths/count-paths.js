@@ -6,8 +6,8 @@ const inBounds = (r,c,grid) => grid[r]?.[c] === 'O';
 
 const countPaths = (grid, r = 0, c = 0, memo = {}) => {
   if (!inBounds(r,c,grid)) return 0;
+  if (r === grid.length - 1 && c === grid[r].length - 1) return 1;
   const loc = l(r,c);
-  if (r === grid.length - 1 && c === grid[r].length - 1) memo[loc] = 1;
   if (loc in memo) return memo[loc];
 
   memo[loc] = countPaths(grid,r+1,c,memo) + countPaths(grid,r,c+1,memo);
