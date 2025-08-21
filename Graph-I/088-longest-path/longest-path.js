@@ -1,17 +1,15 @@
 const getDists = (node,graph,dists) => {
-  if (node in dists) return dists[node];
   if (!graph[node].length) dists[node] = 0;
-  else{
-    const ds = graph[node].map(n => getDists(n,graph,dists));
-    dists[node] = Math.max(...ds) + 1;
-  }
+  if (node in dists) return dists[node];
+  const ds = graph[node].map(n => getDists(n,graph,dists));
+  dists[node] = Math.max(...ds) + 1;
   return dists[node];
 }
 
 const longestPath = (graph) => {
   const dists = {};
   for (const node in graph){
-    getDists(node,graph,dists);
+    getDists(node,graph,dists)
   }
   return Math.max(...Object.values(dists));
 };
@@ -57,7 +55,7 @@ const grap = {
   y: ['z'],
   z: []
 };
-// console.log(longestPath(grap), 25)
+console.log(longestPath(grap), 25)
 
 module.exports = {
   longestPath,
