@@ -7,18 +7,15 @@ class Node {
 }
 
 const allTreePaths = r => {
-  const rev = _allTreePaths(r);
-  return rev.map(p => p.reverse());
+  return _allTreePaths(r).map(p => p.reverse());
 }
 
 const _allTreePaths = r =>{
   if (!r) return [];
+  if (!r.left && !r.right) return [[r.val]];
   const paths = [];
-  if (!r.right && !r.left) return [[r.val]];
-
   const left = _allTreePaths(r.left);
   const right = _allTreePaths(r.right);
-
   for (const p of left){
     p.push(r.val);
     paths.push(p);
