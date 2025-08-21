@@ -10,24 +10,10 @@ const countPaths = (grid, r = 0, c = 0, memo = {}) => {
   const loc = l(r,c);
   if (loc in memo) return memo[loc];
 
-  memo[loc] = countPaths(grid,r+1,c,memo) + countPaths(grid,r,c+1,memo);
-  return memo[loc];
+  return memo[loc] = countPaths(grid,r+1,c,memo) + countPaths(grid,r,c+1,memo);
+  // return memo[loc];
 };
 /*
-pseudo
-add a memo object to parameters
-make an inBounds function for (r,c,grid)
-make a location function for r and c
-if (r === grid.length && c === grid[r].length) memo[location] = 1
-if location in memo return memo[location]
-memo[location] = countPaths(grid, r+1, c+1, memo)
-return memo[location]
-p
-2d grid of Strings 'X' and 'O'
-r
-Number -> total number of different paths from top-left to bottom-right
-e
-blocked by x's, return 0
 
 */
 const grid = [
