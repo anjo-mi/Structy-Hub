@@ -1,21 +1,20 @@
 const connectedComponentsCount = (graph) => {
-  let count = 0;
-  const v = new Set();
+  const islands = [];
   for (const node in graph){
-    if (v.has(+node)) continue;
-    v.add(+node);
-    const stack = [node];
-    while (stack.length){
-      const curr = stack.pop();
-      v.add(+curr);
+    const isle = new Set();
+    if (islands.some(i => i.has(+node))) continue;
+    const queue = [node];
+    while (queue.length){
+      const curr = queue.shift();
+      if (isle.has(+curr)) continue;
+      isle.add(+curr);
       for (const n of graph[curr]){
-        if (v.has(n)) continue;
-        stack.push(n);
+        if (!isle.has(n)) queue.push(n);
       }
     }
-    count++;
+    islands.push(isle);
   }
-  return count;
+  return islands.length;
 };
 
 console.log(connectedComponentsCount({
