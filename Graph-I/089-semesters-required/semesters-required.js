@@ -1,26 +1,24 @@
-const getDists = (cls,graph,dists) => {
-  if (cls in dists) return dists[cls];
-  if (!graph[cls].length) dists[cls] = 1;
-  else{
-    const ds = graph[cls].map(c => getDists(c,graph,dists));
-    dists[cls] = Math.max(...ds) + 1;
-  }
-  return dists[cls];
+const getMinReqClasses = (cls,crlm,allClassPreReqs) => {
+  if (!crlm[cls].length) allClassPreReqs[cls] = 1;
+  if (cls in allClassPreReqs) return allClassPreReqs[cls];
+  const allPreReqTimes = crlm[cls].map(cl => getMinReqClasses(cl,crlm,allClassPreReqs));
+  allClassPreReqs[cls] = Math.max(...allPreReqTimes) + 1;
+  return allClassPreReqs[cls];
 }
 
 const semestersRequired = (numCourses, prereqs) => {
   if (!prereqs.length) return 1;
-  const graph = {};
+  const crlm = {};
   for (const [a,b] of prereqs){
-    if (!graph[a]) graph[a] = [];
-    if (!graph[b]) graph[b] = [];
-    graph[b].push(a);
+    if (!crlm[a]) crlm[a] = [];
+    if (!crlm[b]) crlm[b] = [];
+    crlm[b].push(a);
   }
-  const dists = {};
-  for (const cls in graph){
-    getDists(cls, graph, dists)
+  const allClassPreReqs = {};
+  for (const cls in crlm){
+    getMinReqClasses(cls,crlm,allClassPreReqs);
   }
-  return Math.max(...Object.values(dists));
+  return Math.max(...Object.values(allClassPreReqs));
 };
 
 
