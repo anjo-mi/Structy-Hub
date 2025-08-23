@@ -7,7 +7,7 @@ class Node {
 
 const insertNode = (head, val, i) => {
   const n = new Node(val);
-  if (!i){
+  if (!i) {
     n.next = head;
     return n;
   }
@@ -18,8 +18,8 @@ const insertNode = (head, val, i) => {
     curr = curr.next;
     i--;
   }
-  n.next = curr;
   prev.next = n;
+  n.next = curr;
   return head;
 };
 const a = new Node("a");
