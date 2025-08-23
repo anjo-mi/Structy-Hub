@@ -1,32 +1,31 @@
 const loc = (r,c) => r + ',' + c;
 const inBounds = (r,c,grid) => r >= 0 &&
                                c >= 0 &&
-                               r < grid.length &&
-                               c < grid[r].length;
+                               grid[r]?.[c];
 
-const getConnections = (r,c,grid,isle = new Set())=>{
-  if (!inBounds(r,c,grid) || 
-      grid[r][c] !== 'L' || 
-      isle.has(loc(r,c))) return null;
+const getConnections = (r,c,grid,isle = new Set()) =>{
+  if (!inBounds(r,c,grid) || isle.has(loc(r,c)) || grid[r][c] !== 'L') return isle;
   isle.add(loc(r,c));
+  
   getConnections(r-1,c,grid,isle);
   getConnections(r+1,c,grid,isle);
   getConnections(r,c-1,grid,isle);
   getConnections(r,c+1,grid,isle);
+
   return isle;
 }
 
 const minimumIsland = (grid) => {
-  let min = Infinity;
-  for (let r = 0 ; r < grid.length ; r++){
+  const islands = [];
+  for (let r = 0; r < grid.length ; r++){
     for (let c = 0 ; c < grid[r].length ; c++){
-      if (grid[r][c] === 'L'){
-        const isle = getConnections(r,c,grid);
-        if (isle.size < min) min = isle.size;
+      if (!islands.some(i => i.has(loc(r,c)))){
+        const isle  = getConnections(r,c,grid);
+        if (isle.size) islands.push(isle);
       }
     }
   }
-  return min;
+  return Math.min(...islands.map(isle => isle.size));
 };
 /*
 
