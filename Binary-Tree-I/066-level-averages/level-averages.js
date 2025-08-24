@@ -7,18 +7,18 @@ class Node {
 }
 
 const levelAverages = (root) => {
-  if (!root) return [];
   const avgs = [];
-  let stack = [root];
-  while (stack.length){
-    const avg = stack.reduce((a,el) => a + el.val, 0) / stack.length;
+  if (!root) return avgs;
+  let q = [root];
+  while (q.length){
+    const avg = q.reduce((a,n) => a + n.val, 0) / q.length;
     avgs.push(avg);
     const next = [];
-    for (const n of stack){
+    for (const n of q){
       if (n.left) next.push(n.left);
       if (n.right) next.push(n.right);
     }
-    stack = next;
+    q = next;
   }
   return avgs;
 };
