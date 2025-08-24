@@ -1,31 +1,38 @@
 const largestComponent = (graph) => {
-  let l = 0;
-  const v = new Set();
+  const islands = [];
   for (const node in graph){
-    if (v.has(node)) continue;
-    v.add(node);
+    if (islands.some(isle => isle.has(node))) continue;
     const isle = new Set();
-    const stack = [node];
-    while (stack.length){
-      const curr = stack.pop();
+    const q = [node];
+    while (q.length){
+      const curr = q.shift();
       if (isle.has(curr)) continue;
       isle.add(curr);
       for (const n of graph[curr]){
-        if (!isle.has(n)) stack.push(n);
+        if (!isle.has(n)) q.push(n);
       }
     }
-    if (isle.size > l) l = isle.size;
+    islands.push(isle);
   }
-  return l;
+  return islands.length ? Math.max(...islands.map(isle => isle.size)): 0;
 };
+// console.log(largestComponent({
+//   1: ['2'],
+//   2: ['1','8'],
+//   6: ['7'],
+//   9: ['8'],
+//   7: ['6', '8'],
+//   8: ['9', '7', '2']
+// }), 6);
 console.log(largestComponent({
-  1: ['2'],
-  2: ['1','8'],
-  6: ['7'],
-  9: ['8'],
-  7: ['6', '8'],
-  8: ['9', '7', '2']
-}), 6);
+  0: ['8', '1', '5'],
+  1: ['0'],
+  5: ['0', '8'],
+  8: ['0', '5'],
+  2: ['3', '4'],
+  3: ['2', '4'],
+  4: ['3', '2']
+}),4);
 /*
 p
 adjacency list representing graph
