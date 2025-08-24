@@ -1,44 +1,34 @@
 const loc = (r,c) => r + ',' + c;
 const coords = (l) => l.split(',').map(Number);
-const inBounds = (r,c,grid) => r >= 0 &&
-                               c >= 0 &&
-                               r < grid.length &&
-                               c < grid[r].length;
+const inBounds = (r,c,grid) => grid[r]?.[c];
 
-const getConnections = (r,c,grid,isle=new Set()) => {
-  if (!inBounds(r,c,grid) || 
-      isle.has(loc(r,c)) || 
-      grid[r][c] !== 'L') return isle;
+
+const getConnections = (r,c,grid,isle = new Set())=>{
+  if (!inBounds(r,c,grid) ||
+      grid[r][c] !== 'L' ||
+      isle.has(loc(r,c))) return isle;
   isle.add(loc(r,c));
-  getConnections(r-1,c,grid,isle);
   getConnections(r+1,c,grid,isle);
-  getConnections(r,c-1,grid,isle);
+  getConnections(r-1,c,grid,isle);
   getConnections(r,c+1,grid,isle);
+  getConnections(r,c-1,grid,isle);
   return isle;
 }
 
-const findBridge = (l,grid,set) => {
-  const queue = [{l, dist: -1}];
-  const v = new Set();
-  while (queue.length){
-    const {l,dist} = queue.shift();
+const findBridge = (l,grid,b,bridge = new Set()) => {
+  const q = [{l,dist:-1}];
+  while (q.length){
+    const {l, dist} = q.shift();
+    if (b.has(l)) return dist;
     const [r,c] = coords(l);
-    if (set.has(l)) return dist;
-    if (!inBounds(r,c,grid) || v.has(l)) continue;
-    v.add(l);
-    queue.push({
-      l: loc(r+1,c), dist: dist + 1
-    })
-    queue.push({
-      l: loc(r-1,c), dist: dist + 1
-    })
-    queue.push({
-      l: loc(r,c-1), dist: dist + 1
-    })
-    queue.push({
-      l: loc(r,c+1), dist: dist + 1
-    })
+    if (bridge.has(l) || !inBounds(r,c,grid)) continue;
+    bridge.add(l);
+    if (inBounds(r+1,c,grid)) q.push({l: loc(r+1,c), dist: dist + 1});
+    if (inBounds(r-1,c,grid)) q.push({l: loc(r-1,c), dist: dist + 1});
+    if (inBounds(r,c+1,grid)) q.push({l: loc(r,c+1), dist: dist + 1});
+    if (inBounds(r,c-1,grid)) q.push({l: loc(r,c-1), dist: dist + 1});
   }
+  return -1;
 }
 
 const bestBridge = (grid) => {
@@ -52,12 +42,12 @@ const bestBridge = (grid) => {
     }
   }
   const [a,b] = islands;
-  let best = Infinity;
+  let smallestBridge = Infinity;
   for (const l of a){
-    const br = findBridge(l,grid,b);
-    if (br < best) best = br;
+    const bridgeDist = findBridge(l,grid,b);
+    if (bridgeDist < smallestBridge) smallestBridge = bridgeDist;
   }
-  return best;
+  return smallestBridge;
 };
 
 /*
