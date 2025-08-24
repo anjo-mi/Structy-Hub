@@ -1,26 +1,20 @@
 const loc = (r,c) => r + ',' + c;
 const coords = (l) => l.split(',').map(Number);
-const inBounds = (r,c,grid) => r >= 0 &&
-                               c >= 0 &&
-                               r < grid.length &&
-                               c < grid[r].length;
+const inBounds = (r,c,grid) => grid[r]?.[c];
 
 const closestCarrot = (grid, sr, sc) => {
-  const queue = [{l: loc(sr,sc), dist: 0}];
+  const q = [{l:loc(sr,sc), dist: 0}];
   const v = new Set();
-  while (queue.length){
-    const {l,dist} = queue.shift();
+  while(q.length){
+    const {l,dist} = q.shift();
     const [r,c] = coords(l);
-    if (v.has(l) ||
-        !inBounds(r,c,grid) ||
-        grid[r][c] === 'X') continue;
-    
+    if (v.has(l) || !inBounds(r,c,grid) || grid[r][c] === 'X') continue;
     v.add(l);
     if (grid[r][c] === 'C') return dist;
-    queue.push({l: loc(r+1,c), dist: dist + 1})
-    queue.push({l: loc(r-1,c), dist: dist + 1})
-    queue.push({l: loc(r,c+1), dist: dist + 1})
-    queue.push({l: loc(r,c-1), dist: dist + 1})
+    q.push({l:loc(r+1,c), dist: dist + 1});
+    q.push({l:loc(r-1,c), dist: dist + 1});
+    q.push({l:loc(r,c+1), dist: dist + 1});
+    q.push({l:loc(r,c-1), dist: dist + 1});
   }
   return -1;
 };
