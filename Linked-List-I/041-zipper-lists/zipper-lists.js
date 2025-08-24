@@ -7,10 +7,10 @@ class Node {
 
 const zipperLists = (h1, h2) => {
   const head = h1;
-  let curr = head;
-  let c1 = curr.next;
-  let c2 = h2;
-  let count = 0;
+  let curr = head,
+      c1 = head.next,
+      c2 = h2,
+      count = 0;
   while (c1 && c2){
     if (count % 2){
       curr.next = c1;
