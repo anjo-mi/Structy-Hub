@@ -10,9 +10,9 @@ const undirectedPath = (edges, src, dst) => {
   const q = [src];
   while (q.length){
     const curr = q.shift();
-    if (curr === dst) return true;
     if (v.has(curr)) continue;
     v.add(curr);
+    if (curr === dst) return true;
     for (const n of graph[curr]) if (!v.has(n)) q.push(n);
   }
   return false;
