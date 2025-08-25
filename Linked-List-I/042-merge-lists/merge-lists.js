@@ -9,12 +9,13 @@ const mergeLists = (h1, h2) => {
   const head = h1.val < h2.val ? h1 : h2;
   let curr = head,
       c1 = curr.next,
-      c2 = head === h1 ? h2 : h1;
+      c2 = curr === h1 ? h2 : h1;
   while (c1 && c2){
     const next = c1.val < c2.val ? c1 : c2;
     curr.next = next;
     if (c1 === next) c1 = c1.next;
     if (c2 === next) c2 = c2.next;
+    curr = curr.next;
   }
   if (c1 || c2) curr.next = c1 || c2;
   return head;
