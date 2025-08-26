@@ -10,13 +10,12 @@ const longestStreak = (head, strk = 0, val = null, l = 0) => {
   if (head.val === val){
     strk++;
     if (strk > l) l = strk;
+    return longestStreak(head.next,strk,val,l);
   }
-  else{
-    val = head.val;
-    strk = 1;
+  val = head.val;
+  strk = 1;
   if (strk > l) l = strk;
-  }
-  return longestStreak(head.next,strk,val,l)
+  return longestStreak(head.next,strk,val,l);
 };
 const a = new Node(9);
 const b = new Node(9);
