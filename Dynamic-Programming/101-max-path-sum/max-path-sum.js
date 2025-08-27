@@ -1,7 +1,7 @@
 const maxPathSum = (grid,r=0,c=0,memo={}) => {
-  if (!grid[r]?.[c]) return null;
   const loc = r + ',' + c;
-  if (r === grid.length && c === grid[r].length) memo[loc] = grid[r][c];
+  if (!grid[r]?.[c]) memo[loc] = -Infinity;
+  if (r === grid.length - 1 && c === grid[r].length - 1) memo[loc] = grid[r][c];
   if (loc in memo) return memo[loc];
   memo[loc] = Math.max(
     maxPathSum(grid,r+1,c,memo),
@@ -10,24 +10,7 @@ const maxPathSum = (grid,r=0,c=0,memo={}) => {
   return memo[loc];
 };
 /*
-p
-2d array of numbers in the form of grid
-will prolly add:
-  memo
-  row
-  column
-r
-number -> maximum total from top left to bottom right
-e
-negatives?
-uneven row lengths?
-p
-if (!grid[r]?.[c]) return null;
-const loc = r + ',' + c;
-if (r === grid.length && c = grid[r].length) memo[loc] = grid[r][c];
-if (loc in memo) return memo[loc];
-memo[loc] = Math.max(maxPathSum(grid,r+1,c,memo),maxPathSum(grid,r,c+1,memo)) + 1;
-return memo[loc];
+
 */
 
 
