@@ -1,9 +1,9 @@
-const getMinReqClasses = (cls,crlm,allClassPreReqs) => {
-  if (!crlm[cls].length) allClassPreReqs[cls] = 1;
-  if (cls in allClassPreReqs) return allClassPreReqs[cls];
-  const allPreReqTimes = crlm[cls].map(cl => getMinReqClasses(cl,crlm,allClassPreReqs));
-  allClassPreReqs[cls] = Math.max(...allPreReqTimes) + 1;
-  return allClassPreReqs[cls];
+const getTimes = (cls,crlm,times) => {
+  if (!crlm[cls].length) times[cls] = 1;
+  if (cls in times) return times[cls];
+  const ts = crlm[cls].map(cl => getTimes(cl,crlm,times));
+  times[cls] = Math.max(...ts) + 1;
+  return times[cls];
 }
 
 const semestersRequired = (numCourses, prereqs) => {
@@ -14,11 +14,11 @@ const semestersRequired = (numCourses, prereqs) => {
     if (!crlm[b]) crlm[b] = [];
     crlm[b].push(a);
   }
-  const allClassPreReqs = {};
+  const times = {};
   for (const cls in crlm){
-    getMinReqClasses(cls,crlm,allClassPreReqs);
+    getTimes(cls,crlm,times);
   }
-  return Math.max(...Object.values(allClassPreReqs));
+  return Math.max(...Object.values(times));
 };
 
 
