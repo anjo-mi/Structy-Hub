@@ -9,16 +9,16 @@ class Node {
 const treeLevels = (root) => {
   const levels = [];
   if (!root) return levels;
-  let stack = [root];
-  while (stack.length){
-    const level = stack.map(el => el.val);
+  let q = [root];
+  while (q.length){
+    const level = q.map(n => n.val);
     levels.push(level);
     const next = [];
-    for (const node of stack){
-      if (node.left) next.push(node.left);
-      if (node.right) next.push(node.right);
+    for (const n of q){
+      if (n.left) next.push(n.left);
+      if (n.right) next.push(n.right);
     }
-    stack = next;
+    q = next;
   }
   return levels;
 };
