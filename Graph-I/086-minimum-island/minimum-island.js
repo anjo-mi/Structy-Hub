@@ -1,27 +1,23 @@
 const loc = (r,c) => r + ',' + c;
-const inBounds = (r,c,grid) => r >= 0 &&
-                               c >= 0 &&
-                               grid[r]?.[c];
+const inBounds = (r,c,grid) => grid[r]?.[c];
 
-const getConnections = (r,c,grid,isle = new Set()) =>{
+const getConnections = (r,c,grid,isle = new Set()) => {
   if (!inBounds(r,c,grid) || isle.has(loc(r,c)) || grid[r][c] !== 'L') return isle;
   isle.add(loc(r,c));
-  
-  getConnections(r-1,c,grid,isle);
   getConnections(r+1,c,grid,isle);
-  getConnections(r,c-1,grid,isle);
+  getConnections(r-1,c,grid,isle);
   getConnections(r,c+1,grid,isle);
-
+  getConnections(r,c-1,grid,isle);
   return isle;
 }
 
 const minimumIsland = (grid) => {
   const islands = [];
-  for (let r = 0; r < grid.length ; r++){
+  for (let r = 0 ; r < grid.length ; r++){
     for (let c = 0 ; c < grid[r].length ; c++){
-      if (!islands.some(i => i.has(loc(r,c)))){
-        const isle  = getConnections(r,c,grid);
-        if (isle.size) islands.push(isle);
+      if (grid[r][c] === 'L' && !islands.some(isle => isle.has(loc(r,c)))){
+        const isle = getConnections(r,c,grid);
+        islands.push(isle);
       }
     }
   }
