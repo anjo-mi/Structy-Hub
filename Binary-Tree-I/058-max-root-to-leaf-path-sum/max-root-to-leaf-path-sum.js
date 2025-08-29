@@ -9,12 +9,12 @@ class Node {
 const maxPathSum = (root) => {
   if (!root) return null;
   const total = root.val;
-  if (!root.left && !root.right) return total;
+  if (!root.right && !root.left) return total;
   const left = maxPathSum(root.left);
   const right = maxPathSum(root.right);
   if (!root.right) return total + left;
   if (!root.left) return total + right;
-  return total + Math.max(left,right);
+  return Math.max(left,right) + total;
 };
 /*
 
