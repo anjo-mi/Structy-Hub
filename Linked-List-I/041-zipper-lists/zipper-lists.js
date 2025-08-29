@@ -8,7 +8,7 @@ class Node {
 const zipperLists = (h1, h2) => {
   const head = h1;
   let curr = head,
-      c1 = head.next,
+      c1 = curr.next,
       c2 = h2,
       count = 0;
   while (c1 && c2){
@@ -22,7 +22,6 @@ const zipperLists = (h1, h2) => {
     curr = curr.next;
     count++;
   }
-  if (c1 || c2) curr.next = c1 || c2;
   return head;
 };
 const a = new Node("a");
