@@ -3,9 +3,9 @@ const coords = (l) => l.split(',').map(Number);
 const inBounds = (r,c,grid) => grid[r]?.[c];
 
 const closestCarrot = (grid, sr, sc) => {
-  const q = [{l:loc(sr,sc), dist: 0}];
+  const q = [{l:loc(sr,sc), dist:0}];
   const v = new Set();
-  while(q.length){
+  while (q.length){
     const {l,dist} = q.shift();
     const [r,c] = coords(l);
     if (v.has(l) || !inBounds(r,c,grid) || grid[r][c] === 'X') continue;
