@@ -8,13 +8,11 @@ const largestComponent = (graph) => {
       const curr = q.shift();
       if (isle.has(curr)) continue;
       isle.add(curr);
-      for (const n of graph[curr]){
-        if (!isle.has(n)) q.push(n);
-      }
+      for (const n of graph[curr]) if (!isle.has(n)) q.push(n);
     }
     islands.push(isle);
   }
-  return islands.length ? Math.max(...islands.map(isle => isle.size)): 0;
+  return Math.max(...islands.map(isle => isle.size));
 };
 // console.log(largestComponent({
 //   1: ['2'],
