@@ -5,7 +5,7 @@ function fiveSort(nums){
     while (nums[j] === 5 && i < j) j--;
     while (nums[i] !== 5 && i < j) i++;
     if (nums[i] === 5 && nums[j] !== 5){
-      [nums[i],nums[j]] = [nums[j],nums[i]];
+      [nums[i] , nums[j]] = [nums[j] , nums[i]]
       i++;
       j--;
     }
