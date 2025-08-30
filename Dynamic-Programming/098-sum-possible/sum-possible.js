@@ -1,12 +1,9 @@
 const sumPossible = (amt, nums, memo = {}) => {
-  if (!amt) memo[amt] = true;
-  if (amt < 0) memo[amt] = false;
+  if (amt === 0) memo[amt] = true;
+  if (amt <   0) memo[amt] = false;
   if (amt in memo) return memo[amt];
-  if (nums.some(num => sumPossible(amt - num, nums, memo))){
-    memo[amt] = true;
-    return memo[amt];
-  }
-  memo[amt] = false;
+  if (nums.some(num => sumPossible(amt - num, nums, memo))) memo[amt] = true;
+  else memo[amt] = false;
   return memo[amt];
 };
 /*
