@@ -1,12 +1,12 @@
 const hasPath = (graph, src, dst) => {
+  const q = [src];
   const v = new Set();
-  const stack = [src];
-  while (stack.length){
-    const curr = stack.pop();
-    if (curr === dst) return true;
+  while (q.length){
+    const curr = q .shift();
     if (v.has(curr)) continue;
     v.add(curr);
-    for (const node of graph[curr]) if (!v.has(node)) stack.push(node);
+    if (curr === dst) return true;
+    for (const node of graph[curr]) if (!v.has(node)) q.push(node);
   }
   return false;
 };
