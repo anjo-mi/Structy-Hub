@@ -8,7 +8,7 @@ class Node {
 const getNodeValue = (head, i) => {
   if (!head) return null;
   if (!i) return head.val;
-  return getNodeValue(head.next,--i);
+  return getNodeValue(head,next,--i);
 };
 const node1 = new Node("banana");
 const node2 = new Node("mango");
