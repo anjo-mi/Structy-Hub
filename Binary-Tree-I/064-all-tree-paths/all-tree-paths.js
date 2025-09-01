@@ -8,7 +8,7 @@ class Node {
 
 const allTreePaths = r => {
   const rev = _allTreePaths(r);
-  return rev.map(p => p.reverse());
+  return rev.map(path => path.reverse());
 }
 
 const _allTreePaths = r =>{
