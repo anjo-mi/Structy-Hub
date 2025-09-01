@@ -7,12 +7,12 @@ class Node {
 }
 
 const treeLevels = (root) => {
-  const levels = [];
-  if (!root) return levels;
+  const ls = [];
+  if (!root) return ls;
   let q = [root];
   while (q.length){
-    const level = q.map(n => n.val);
-    levels.push(level);
+    const l = q.map(n => n.val);
+    ls.push(l);
     const next = [];
     for (const n of q){
       if (n.left) next.push(n.left);
@@ -20,7 +20,7 @@ const treeLevels = (root) => {
     }
     q = next;
   }
-  return levels;
+  return ls;
 };
 /*
 
