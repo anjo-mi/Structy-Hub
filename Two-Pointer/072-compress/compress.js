@@ -1,7 +1,7 @@
 const compress = (s) => {
-  let i  = 0,
-      j  = 0,
-      st = '';
+  let i = 0,
+      j = 0,
+     st = '';
   while (j < s.length){
     while (s[i] === s[j]) j++;
     const sub = s.slice(i,j);
