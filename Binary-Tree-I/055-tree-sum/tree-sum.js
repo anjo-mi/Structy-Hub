@@ -7,14 +7,14 @@ class Node {
 }
 
 const treeSum = (root) => {
-  if (!root) return 0;
   let total = 0;
-  const stack = [root];
-  while (stack.length){
-    const curr = stack.pop();
-    total += curr.val;
-    if (curr.right) stack.push(curr.right);
-    if (curr.left) stack.push(curr.left);
+  if (!root) return total;
+  const s = [root];
+  while (s.length){
+    const c = s.pop();
+    total += c.val;
+    if (c.left) s.push(c.left);
+    if (c.right) s.push(c.right);
   }
   return total;
 };
