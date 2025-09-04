@@ -12,7 +12,7 @@ const leafList = (root) => {
   const s = [root];
   while (s.length){
     const curr = s.pop();
-    if (!curr.right && !curr.left) leaves.push(curr.val);
+    if (!curr.left && !curr.right) leaves.push(curr.val);
     if (curr.right) s.push(curr.right);
     if (curr.left) s.push(curr.left);
   }
