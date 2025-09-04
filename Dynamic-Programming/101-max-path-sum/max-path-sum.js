@@ -1,13 +1,15 @@
-const maxPathSum = (grid,r=0,c=0,memo={}) => {
-  const loc = r + ',' + c;
-  if (!grid[r]?.[c]) memo[loc] = -Infinity;
-  if (r === grid.length - 1 && c === grid[r].length - 1) memo[loc] = grid[r][c];
-  if (loc in memo) return memo[loc];
-  memo[loc] = Math.max(
-    maxPathSum(grid,r+1,c,memo),
-    maxPathSum(grid,r,c+1,memo)
-  ) + grid[r][c];
-  return memo[loc];
+const inBounds = (r,c,grid) => grid[r]?.[c];
+
+const maxPathSum = (grid,r=0,c=0, memo = {}) => {
+  const l = r + ',' + c;
+  if (!inBounds(r,c,grid)) memo[l] = -Infinity;
+  if (r === grid.length - 1 && c === grid[r].length - 1) memo[l] = grid[r][c];
+  if (l in memo) return memo[l];
+  memo[l] = grid[r][c] + Math.max(
+    maxPathSum(grid,r,c+1,memo),
+    maxPathSum(grid,r+1,c,memo)
+  );
+  return memo[l];
 };
 /*
 
