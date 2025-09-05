@@ -7,6 +7,8 @@ class Node {
 
 const linkedListFind = (head, target) => {
   if (!head) return false;
+  if (head.val === target) return true;
+  return linkedListFind(head.next,target);
 };
 
 
