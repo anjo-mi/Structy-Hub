@@ -7,13 +7,12 @@ class Node {
 
 const longestStreak = (head, strk = 0, val = null, l = 0) => {
   if (!head) return l;
-  if (head.val === val){
-    strk++;
-    if (strk > l) l = strk;
-    return longestStreak(head.next,strk,val,l);
-  }
-  val = head.val;
-  strk = 1;
+  
+  if (head.val !== val){
+    val = head.val;
+    strk = 1;
+  }else strk++;
+  
   if (strk > l) l = strk;
   return longestStreak(head.next,strk,val,l);
 };
