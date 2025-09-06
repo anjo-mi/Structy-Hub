@@ -6,9 +6,10 @@ class Node {
 }
 
 const removeNode = (head, target) => {
+  if (!head) return null;
+  if (head.val === target) return head.next;
   let curr = head,
       prev = null;
-  if (head.val === target) return head.next;
   while (curr){
     if (curr.val === target){
       prev.next = curr.next;
