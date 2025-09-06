@@ -7,25 +7,26 @@ class Node {
 }
 
 const allTreePaths = r => {
-  const rev = _allTreePaths(r);
-  return rev.map(path => path.reverse());
+  if (!r) return null;
+  const paths = [];
+  const s = [{node: r, path: [r.val]}];
+  while (s.length){
+    const {node, path} = s.pop();
+    if (!node.left && !node.right) paths.push(path);
+    if (node.right) s.push({
+      node: node.right,
+      path: [...path, node.right.val]
+    })
+    if (node.left) s.push({
+      node: node.left,
+      path: [...path, node.left.val]
+    })
+  }
+  return paths;
 }
 
 const _allTreePaths = r =>{
-  const paths = [];
-  if (!r) return paths;
-  if (!r.right && !r.left) return [[r.val]];
-  const left = _allTreePaths(r.left);
-  const right = _allTreePaths(r.right);
-  for (const p of left){
-    p.push(r.val);
-    paths.push(p);
-  }
-  for (const p of right){
-    p.push(r.val);
-    paths.push(p);
-  }
-  return paths;
+  
 }
 
 
