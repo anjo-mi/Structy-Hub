@@ -1,9 +1,11 @@
-const getTimes = (cls,crlm,times) => {
-  if (!crlm[cls].length) times[cls] = 1;
-  if (cls in times) return times[cls];
-  const ts = crlm[cls].map(cl => getTimes(cl,crlm,times));
-  times[cls] = Math.max(...ts) + 1;
-  return times[cls];
+const getSemesters = (cls,crlm,sems) => {
+  if (!crlm[cls].length) sems[cls] = 1;
+  if (cls in sems) return sems[cls];
+
+  const allSems = crlm[cls].map(cl => getSemesters(cl,crlm,sems));
+  sems[cls] = Math.max(...allSems) + 1;
+
+  return sems[cls];
 }
 
 const semestersRequired = (numCourses, prereqs) => {
@@ -14,11 +16,11 @@ const semestersRequired = (numCourses, prereqs) => {
     if (!crlm[b]) crlm[b] = [];
     crlm[b].push(a);
   }
-  const times = {};
+  const sems = {};
   for (const cls in crlm){
-    getTimes(cls,crlm,times);
+    getSemesters(cls,crlm,sems);
   }
-  return Math.max(...Object.values(times));
+  return Math.max(...Object.values(sems));
 };
 
 
