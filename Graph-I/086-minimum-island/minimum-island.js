@@ -1,16 +1,15 @@
 const loc = (r,c) => r + ',' + c;
 const inBounds = (r,c,grid) => grid[r]?.[c];
 
-const getConnections = (r,c,grid,isle = new Set()) => {
-  if (!inBounds(r,c,grid) ||
-      isle.has(loc(r,c)) ||
-      grid[r][c] !== 'L') return isle;
+const getConnections = (r,c,grid, isle = new Set()) => {
+  if (!inBounds(r,c,grid) || 
+      isle.has(loc(r,c))  || 
+      grid[r][c] !== 'L' ) return isle;
   isle.add(loc(r,c));
   getConnections(r+1,c,grid,isle);
   getConnections(r-1,c,grid,isle);
-  getConnections(r,c+1,grid,isle);
   getConnections(r,c-1,grid,isle);
-
+  getConnections(r,c+1,grid,isle);
   return isle;
 }
 
