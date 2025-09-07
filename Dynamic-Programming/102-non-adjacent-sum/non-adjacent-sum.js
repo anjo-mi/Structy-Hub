@@ -1,15 +1,23 @@
 const nonAdjacentSum = (nums, i = 0, memo = {}) => {
-  if (i >= nums.length) return 0;
+  if (i === nums.length - 1) memo[i] = nums[i];
+  if (i >=  nums.length) memo[i] = 0;
   if (i in memo) return memo[i];
-
-  const w = nums[i] + nonAdjacentSum(nums,i+2,memo);
-  const wo = nonAdjacentSum(nums,i+1,memo);
+  const num = nums[i];
+  const w  = nonAdjacentSum(nums, i + 2, memo) + nums[i];
+  const wo = nonAdjacentSum(nums, i + 1, memo);
 
   memo[i] = Math.max(w,wo);
   return memo[i];
 };
 
 /*
+p
+
+r
+
+e
+
+p
 
 */
 
