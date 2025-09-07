@@ -7,6 +7,7 @@ class Node {
 
 const insertNode = (head, val, i) => {
   const n = new Node(val);
+  if (!head) return null;
   if (!i){
     n.next = head;
     return n;
