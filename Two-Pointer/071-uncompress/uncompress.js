@@ -4,9 +4,9 @@ const uncompress = (s) => {
       j = 0,
       st = '';
   while (j < s.length){
-    while (arab.has(s[j])) j++;
-    const sub = s.slice(i,j);
-    st += s[j].repeat(+sub);
+    while (arab.has(s[j]) && j < s.length) j++;
+    const num = +s.slice(i,j);
+    st += s[j].repeat(num);
     j++;
     i = j;
   }
