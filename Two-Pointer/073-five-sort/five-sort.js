@@ -4,9 +4,11 @@ function fiveSort(nums){
   while (i < j){
     while (nums[j] === 5 && i < j) j--;
     while (nums[i] !== 5 && i < j) i++;
-    if (nums[i] === 5 && nums[j] !== 5) [ nums[i] , nums[j] ] = [ nums[j] , nums[i] ];
-    i++;
-    j--;
+    if (nums[i] !== nums[j]){
+      [ nums[i] , nums[j] ] = [ nums[j] , nums[i] ];
+      i++;
+      j--;
+    }
   }
   return nums;
 }
