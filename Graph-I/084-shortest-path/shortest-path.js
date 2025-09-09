@@ -7,15 +7,13 @@ const shortestPath = (edges, na, nb) => {
     graph[b].push(a);
   }
   const v = new Set();
-  const q = [{n:na,dist:0}];
+  const q = [{n:na, dist:0}];
   while (q.length){
     const {n,dist} = q.shift();
+    if (n === nb) return dist;
     if (v.has(n)) continue;
     v.add(n);
-    if (n === nb) return dist;
-    for (const node of graph[n]){
-      if (!v.has(node)) q.push({n:node, dist: dist+1});
-    }
+    for (const node of graph[n]) if (!v.has(node)) q.push({n:node, dist: dist+1});
   }
   return -1;
 };
