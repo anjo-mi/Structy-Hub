@@ -1,14 +1,14 @@
 const connectedComponentsCount = (graph) => {
   const islands = [];
   for (const node in graph){
-    if ( islands.some(isle => isle.has(+node)) ) continue;
+    if (islands.some(isle => isle.has(+node))) continue;
     const isle = new Set();
-    const q = [node];
-    while (q.length){
-      const curr = q.shift();
+    const s = [node];
+    while (s.length){
+      const curr = s.pop();
       if (isle.has(+curr)) continue;
       isle.add(+curr);
-      for (const n of graph[curr]) if (!isle.has(n)) q.push(n);
+      for (const n of graph[curr]) if (!isle.has(n)) s.push(n);
     }
     islands.push(isle);
   }
@@ -24,16 +24,16 @@ console.log(connectedComponentsCount({
   8: [9, 7, 2]
 }),1);
 
-// console.log(connectedComponentsCount({
-//   0: [4,7],
-//   1: [],
-//   2: [],
-//   3: [6],
-//   4: [0],
-//   6: [3],
-//   7: [0],
-//   8: []
-// }),5);
+console.log(connectedComponentsCount({
+  0: [4,7],
+  1: [],
+  2: [],
+  3: [6],
+  4: [0],
+  6: [3],
+  7: [0],
+  8: []
+}),5);
 /*
 p
 graph as an adjacency list (nodes: edges to other nodes)
