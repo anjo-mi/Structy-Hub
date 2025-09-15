@@ -1,14 +1,13 @@
-const arrayStepper = (nums, i = 0 , memo = {}) => {
-  if (i >= nums.length - 1) return true;
-  if (nums[i] === 0) return false;
+const arrayStepper = (nums, i = 0, memo = {}) => {
+  if (i === nums.length - 1) return true;
+  if (i >=  nums.length) return false;
   if (i in memo) return memo[i];
-  
-  const num = nums[i];
-  const steps = [];
-  
-  for (let i = 1 ; i <= num ; i++) steps.push(i);
 
-  memo[i] = steps.some(step => arrayStepper(nums, i + step, memo));
+  const steps = [];
+  const num = nums[i];
+  for (let step = 1 ; step <= num ; step++) steps.push(step);
+
+  memo[i] = steps.some(step => arrayStepper(nums,i + step,memo));
 
   return memo[i];
 };
