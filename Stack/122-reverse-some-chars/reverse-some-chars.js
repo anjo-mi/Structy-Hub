@@ -1,17 +1,20 @@
 const reverseSomeChars = (str, chars) => {
   chars = new Set(chars);
-  const comeback = '{COMEBACKFORME!!!!}';
   const stack = [];
-  let removedCharStr = str.split('').map(c => {
-    if (chars.has(c)){
-      stack.push(c);
-      return comeback;
-    }else return c;
-  }).join('');
-  while (stack.length) removedCharStr = removedCharStr.replace(comeback,stack.pop())
-  return removedCharStr;
+  for (const c of str) if (chars.has(c)) stack.push(c);
+  let replacement = '';
+  for (const c of str){
+    if(chars.has(c)) replacement += stack.pop();
+    else replacement += c;
+  }
+  return replacement;
 };
 /*
+OPTIMIZE: dont map
+  just iterate thru and add matches to stack
+  second time you iterate, replace matches with stack.pop()
+  return orig?
+
 make a set from chars
 make an empty stack = [];
 map thru split string, any char that is in the set, gets replaced by something that we can retrieve
