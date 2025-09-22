@@ -10,10 +10,10 @@ const bottomRightValue = (root) => {
   if (!root) return c;
   const q = [root];
   while (q.length){
-    const curr = q.shift();
-    c = curr.val;
+    const curr= q.shift();
     if (curr.left) q.push(curr.left);
     if (curr.right) q.push(curr.right);
+    c = curr.val;
   }
   return c;
 };
