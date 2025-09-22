@@ -1,12 +1,11 @@
-const validCompound = (compound, elements, i = 0, memo = {}) => {
-  elements = elements.map(elm => elm.toLowerCase());
-  if (i in memo) return memo[i];
+const validCompound = (compound, elements, i = 0 , memo = {}) => {
+  elements = elements.map(el => el.toLowerCase());
   if (i === compound.length) return true;
-  if (i > compound.lenght) return false;
+  if (i >   compound.length) return false;
+  if (i in memo) return memo[i];
 
   const rem = compound.slice(i);
-  memo[i] = elements.some(elm => rem.startsWith(elm) && validCompound(compound,elements,i + elm.length, memo))
-
+  memo[i] = elements.some(elm => rem.startsWith(elm) && validCompound(compound, elements, i + elm.length, memo));
   return memo[i];
 };
 console.log(validCompound("neco", [
