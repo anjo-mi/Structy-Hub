@@ -7,16 +7,16 @@ class Node {
 }
 
 const treeSum = (root) => {
-  let total = 0;
-  if (!root) return total;
+  let c = 0;
+  if (!root) return c;
   const q = [root];
   while (q.length){
     const curr = q.shift();
-    total += curr.val;
+    c += curr.val;
     if (curr.left) q.push(curr.left);
     if (curr.right) q.push(curr.right);
   }
-  return total;
+  return c;
 };
 
 /*
