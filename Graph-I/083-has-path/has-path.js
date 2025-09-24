@@ -1,5 +1,5 @@
 const hasPath = (graph, src, dst) => {
-  const v =  new Set();
+  const v = new Set();
   const q = [src];
   while (q.length){
     const curr = q.shift();
