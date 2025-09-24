@@ -7,8 +7,8 @@ const undirectedPath = (edges, src, dst) => {
     graph[b].push(a);
   }
 
+  const q = [src]
   const v = new Set();
-  const q = [src];
   while (q.length){
     const curr = q.shift();
     if (v.has(curr)) continue;
