@@ -3,7 +3,7 @@ const sumPossible = (amt, nums, memo = {}) => {
   if (amt < 0) return false;
   if (amt in memo) return memo[amt];
 
-  memo[amt] = nums.some(n => sumPossible(amt-n,nums,memo));
+  memo[amt] = nums.some(num => sumPossible(amt-num,nums,memo));
   return memo[amt];
 };
 /*
