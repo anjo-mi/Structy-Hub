@@ -1,12 +1,9 @@
-const getSems = (cls,crlm,sems) =>{
-  if (!crlm[cls].length) sems[cls] = 1;
+const getSems = (cls,crlm,sems) => {
+  if (!crlm[cls].length) return 1;
   if (cls in sems) return sems[cls];
 
-  const times = crlm[cls].map(cl => getSems(cl,crlm,sems));
-
-  sems[cls] = Math.max(...times) + 1;
-
-  return sems[cls];
+  const times = crlm[cls].map(cl => getSems(cl,crlm,sems) + 1);
+  return sems[cls] = Math.max(...times);
 }
 
 const semestersRequired = (numCourses, prereqs) => {
