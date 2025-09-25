@@ -9,8 +9,10 @@ class Node {
 const howHigh = (root,depth = 0) => {
   if (!root) return -1;
   if (!root.right && !root.left) return depth;
-
-  return Math.max(howHigh(root.left, depth + 1), howHigh(root.right, depth + 1));
+  return Math.max(
+    howHigh(root.left,depth+1),
+    howHigh(root.right,depth+1)
+  )
 };
 /*
 */
