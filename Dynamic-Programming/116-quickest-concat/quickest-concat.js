@@ -3,15 +3,16 @@ const quickestConcat = (s, words, i = 0, depth = 0, memo = {}) => {
   if (i  >  s.length) return Infinity;
   if (i in memo) return memo[i];
 
-  let min = Infinity;
   const rem = s.slice(i);
+  let min = Infinity;
   for (const word of words){
     if (rem.startsWith(word)){
-      min = Math.min(min, quickestConcat(s,words,i+word.length, depth+1, memo) + 1);
+      const poss = quickestConcat(s,words,i+word.length,depth+1,memo) + 1;
+      if (poss < min) min = poss;
     }
   }
   memo[i] = min;
-  return !isFinite(memo[i]) && !depth ? -1 : memo[i];
+  return !isFinite(min) && !depth ? -1 : min;
 };
 
 console.log(quickestConcat('simchacindy', ['sim', 'simcha', 'acindy']), -1);
