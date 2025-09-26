@@ -6,12 +6,12 @@ class Node {
 }
 
 const insertNode = (head, val, i) => {
+  if (!head) return null;
   const n = new Node(val);
-  if (!head || !i){
+  if (!i){
     n.next = head;
     return n;
   }
-
   let curr = head,
       prev = null;
   while (curr && i){
