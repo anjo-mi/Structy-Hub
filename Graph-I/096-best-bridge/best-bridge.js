@@ -2,33 +2,34 @@ const loc = (r,c) => r + ',' + c;
 const coords = (l) => l.split(',').map(Number);
 const inBounds = (r,c,grid) => grid[r]?.[c];
 
-const getConnections = (r,c,grid,isle = new Set()) => {
+const getConnections = (r,c,grid, isle = new Set()) => {
   if (!inBounds(r,c,grid) ||
-      grid[r][c] !== 'L' ||
-      isle.has(loc(r,c))) return isle;
+       grid[r][c] !== 'L' || 
+       isle.has(loc(r,c))) return isle;
   isle.add(loc(r,c));
-  getConnections(r-1,c,grid,isle);
+
   getConnections(r+1,c,grid,isle);
-  getConnections(r,c-1,grid,isle);
+  getConnections(r-1,c,grid,isle);
   getConnections(r,c+1,grid,isle);
+  getConnections(r,c-1,grid,isle);
 
   return isle;
 }
 
-const findBridge = (l,grid,b,v = new Set()) => {
-  const q = [{n:l, dist: -1}];
+const findBridge = (l,grid,b,v=new Set()) => {
+  const q = [{l,dist: -1}];
   while (q.length){
-    const {n,dist} = q.shift();
-    const [r,c] = coords(n);
-    if (v.has(n) || !inBounds(r,c,grid)) continue;
-    v.add(n);
-    if (b.has(n)) return dist;
-    q.push({n:loc(r-1,c), dist: dist + 1});
-    q.push({n:loc(r+1,c), dist: dist + 1});
-    q.push({n:loc(r,c-1), dist: dist + 1});
-    q.push({n:loc(r,c+1), dist: dist + 1});
+    const {l,dist} = q.shift();
+    const [r,c] = coords(l);
+    if (!inBounds(r,c,grid) || v.has(l)) continue;
+    v.add(l);
+    if (b.has(l)) return dist;
+    q.push({l:loc(r-1,c), dist:dist+1});
+    q.push({l:loc(r+1,c), dist:dist+1});
+    q.push({l:loc(r,c-1), dist:dist+1});
+    q.push({l:loc(r,c+1), dist:dist+1});
   }
-  return -1;
+  return Infinity;
 }
 
 const bestBridge = (grid) => {
@@ -41,6 +42,7 @@ const bestBridge = (grid) => {
       }
     }
   }
+
   const [a,b] = islands;
   let best = Infinity;
   for (const l of a){
@@ -72,7 +74,7 @@ const gri = [
   ["W", "W", "W", "W", "W", "W", "L", "L"],
   ["W", "W", "W", "W", "W", "W", "W", "L"],
 ];
-// console.log(bestBridge(gri),8);
+console.log(bestBridge(gri),8);
 
 module.exports = {
   bestBridge,
