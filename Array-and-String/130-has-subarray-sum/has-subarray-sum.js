@@ -1,8 +1,11 @@
-const hasSubarraySum = (nums, sum, i = 0, j = nums.length) => {
+const hasSubarraySum = (nums, sum, i = 0, j = nums.length, memo = {}) => {
+  const k = i + ';' + j;
   if (i === j) return nums[i] === sum;
   if (i  >  j) return false;
-  if (nums.slice(i,j).reduce((a,el) => a + el, 0) === sum) return true;
-  return hasSubarraySum(nums,sum,i+1,j) || hasSubarraySum(nums,sum,i,j-1);
+  if (k in memo) return memo[k];
+  if (nums.slice(i,j).reduce((a,el) => a + el, 0) === sum) memo[k] = true;
+  else memo[k] = hasSubarraySum(nums,sum,i+1,j) || hasSubarraySum(nums,sum,i,j-1);
+  return memo[k];
 };
 /*
 count from each side
