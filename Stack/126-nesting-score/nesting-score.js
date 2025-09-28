@@ -1,13 +1,11 @@
 const nestingScore = (str) => {
   const stack = [0];
-  for(const char of str){
+  for (const char of str){
     if (char === '[') stack.push(0);
     if (char === ']'){
       const curr = stack.pop();
-      if (!curr) stack[stack.length-1]++;
-      else{
-        stack[stack.length-1] += curr*2;
-      }
+      if (curr) stack[stack.length-1] += curr*2;
+      else stack[stack.length-1]++;
     }
   }
   return stack.pop();
