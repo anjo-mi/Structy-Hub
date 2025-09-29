@@ -1,14 +1,13 @@
 const shortestPath = (edges, na, nb) => {
-  const graph = {};
-  for ( const [a,b] of edges){
+  const graph = {}
+  for (const [a,b] of edges){
     if (!graph[a]) graph[a] = [];
     if (!graph[b]) graph[b] = [];
     graph[a].push(b);
     graph[b].push(a);
   }
-
   const v = new Set();
-  const q = [{n:na,dist:0}];
+  const q = [{n:na, dist:0}];
   while (q.length){
     const {n,dist} = q.shift();
     if (v.has(n)) continue;
