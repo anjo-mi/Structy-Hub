@@ -1,11 +1,11 @@
 const hasPath = (graph, src, dst) => {
-  const v = new Set();
   const q = [src];
+  const v =  new Set();
   while (q.length){
     const curr = q.shift();
-    if (v.has(curr)) continue;
-    v.add(curr);
     if (curr === dst) return true;
+    if(v.has(curr)) continue;
+    v.add(curr);
     for (const n of graph[curr]) q.push(n);
   }
   return false;
