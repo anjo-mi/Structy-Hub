@@ -9,12 +9,12 @@ class Node {
 const leafList = (root) => {
   const leaves = [];
   if (!root) return leaves;
-  const s = [root];
-  while (s.length){
-    const curr = s.pop();
-    if (!curr.right && !curr.left) leaves.push(curr.val);
-    if (curr.right) s.push(curr.right);
-    if (curr.left) s.push(curr.left);
+  const q = [root];
+  while (q.length){
+    const curr = q.pop();
+    if (!curr.left && !curr.right) leaves.push(curr.val);
+    if (curr.right) q.push(curr.right);
+    if (curr.left) q.push(curr.left);
   }
   return leaves;
 };
