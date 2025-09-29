@@ -5,13 +5,13 @@ const decompressBraces = (s) => {
     if (s[i] === '{') stack.push(i);
     if (s[i] === '}'){
       const start = stack.pop();
-      const gettingReplaced = s.slice(start, i+1);
-      const exp = gettingReplaced.slice(1,-1);
-      let numInd = start - 1;
-      while (arab.has(s[numInd-1])) numInd--;
-      const num = +s.slice(numInd,start)
-      s = s.replace(s.slice(numInd, i+1),exp.repeat(num));
-      i = s.lastIndexOf(exp + exp.length);
+      const exp = s.slice(start+1, i);
+      const replaced = s.slice(start-1,i+1);
+      let numInd = start;
+      while (arab.has(s[numInd - 1])) numInd--;
+      const num = +s.slice(numInd,start);
+      s = s.replace(replaced,exp.repeat(num));
+      i = s.lastIndexOf(exp);
     }
   }
   return s;
