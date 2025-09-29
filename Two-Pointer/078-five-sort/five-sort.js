@@ -2,10 +2,10 @@ function fiveSort(nums){
   let i = 0,
       j = nums.length - 1;
   while (i < j){
-    while (nums[j] === 5 && i < j) j--;
+    while (nums[j] === 5) j--;
     while (nums[i] !== 5 && i < j) i++;
-    if (nums[i] === 5 && nums[j] !== 5) {
-      [nums[i],nums[j]] = [nums[j],nums[i]];
+    if (nums[i] === 5 && nums[j] !== 5){
+      [nums[i], nums[j]] = [nums[j], nums[i]];
       i++;
       j--;
     }
