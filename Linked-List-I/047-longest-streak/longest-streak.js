@@ -5,14 +5,16 @@ class Node {
   }
 }
 
-const longestStreak = (head,stk=0,l=0,val=null) => {
+const longestStreak = (head,st=0,l=0,val=null) => {
   if (!head) return l;
   if (head.val !== val){
     val = head.val;
-    stk = 1;
-  }else stk++;
-  l = Math.max(stk,l);
-  return longestStreak(head.next,stk,l,val);
+    st = 1;
+  }else{
+    st++;
+  }
+  if (st > l) l = st;
+  return longestStreak(head.next,st,l,val);
 };
 const a = new Node(9);
 const b = new Node(9);
