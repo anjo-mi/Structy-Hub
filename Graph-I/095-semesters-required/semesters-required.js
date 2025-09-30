@@ -1,9 +1,10 @@
 const getSems = (cls,crlm,sems) => {
-  if (!crlm[cls].length) return 1;
   if (cls in sems) return sems[cls];
+  if (!crlm[cls].length) return 1;
 
-  const times = crlm[cls].map(cl => getSems(cl,crlm,sems) + 1);
-  return sems[cls] = Math.max(...times);
+  const semsReqed = crlm[cls].map(cl => getSems(cl,crlm,sems) + 1);
+  sems[cls] = Math.max(...semsReqed);
+  return sems[cls];
 }
 
 const semestersRequired = (numCourses, prereqs) => {
@@ -21,20 +22,6 @@ const semestersRequired = (numCourses, prereqs) => {
   return Math.max(...Object.values(sems));
 };
 
-
-
-
-/*
-p
-Number -> total num of courses, prereqs as 2d array of tuples [Numbers]
-r
-Number, total times you have to traverse array,
-can only complete second item, after first item is completed
-e
-SAFE TO ASSUME: all courses can be completed
-p
-make graph, store distances
-*/
 
 const numCourses = 6;
 const prereq = [
