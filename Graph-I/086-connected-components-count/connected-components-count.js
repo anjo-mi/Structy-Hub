@@ -2,9 +2,9 @@ const connectedComponentsCount = (graph) => {
   const islands = [];
   for (const node in graph){
     if (islands.some(isle => isle.has(+node))) continue;
-    const q = [node];
     const isle = new Set();
-    while (q.length){
+    const q = [node];
+    while(q.length){
       const curr = q.shift();
       if (isle.has(+curr)) continue;
       isle.add(+curr);
