@@ -17,7 +17,7 @@ const getConnections = (r,c,grid, isle = new Set()) => {
 }
 
 const findBridge = (l,grid,b,v=new Set()) => {
-  const q = [{l,dist: -1}];
+  const q = [{l, dist:-1}];
   while (q.length){
     const {l,dist} = q.shift();
     const [r,c] = coords(l);
