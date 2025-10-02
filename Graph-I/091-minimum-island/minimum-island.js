@@ -3,14 +3,14 @@ const inBounds = (r,c,grid) => grid[r]?.[c];
 
 const getConnections = (r,c,grid,isle = new Set()) => {
   if (!inBounds(r,c,grid) ||
-       grid[r][c] !== 'L' ||
+       grid[r][c] !== "L" ||
        isle.has(loc(r,c))) return isle;
   isle.add(loc(r,c));
 
-  getConnections(r+1,c,grid,isle);
   getConnections(r-1,c,grid,isle);
-  getConnections(r,c+1,grid,isle);
+  getConnections(r+1,c,grid,isle);
   getConnections(r,c-1,grid,isle);
+  getConnections(r,c+1,grid,isle);
 
   return isle;
 }
@@ -18,7 +18,7 @@ const getConnections = (r,c,grid,isle = new Set()) => {
 const minimumIsland = (grid) => {
   const islands = [];
   for (let r = 0 ; r < grid.length ; r++){
-    for (let c = 0 ; c < grid[r].length ; c++){
+    for (let c = 0 ; c < grid.length ; c++){
       if (grid[r][c] === 'L' && !islands.some(isle => isle.has(loc(r,c)))){
         const isle = getConnections(r,c,grid);
         islands.push(isle);
