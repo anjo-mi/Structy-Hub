@@ -1,13 +1,12 @@
 const summingSquares = (n, memo = {}) => {
+  if (!n) return 0;
   if (n in memo) return memo[n];
-  if (n === 0) return 0;
-  if (n  <  0) return Infinity;
 
   const sqs = [];
   for (let i = 1 ; i * i <= n ; i++) sqs.push(i*i);
+
   const poss = sqs.map(sq => summingSquares(n-sq,memo) + 1);
-  memo[n] = Math.min(...poss);
-  return memo[n];
+  return memo[n] = Math.min(...poss);
 };
 
 /*
