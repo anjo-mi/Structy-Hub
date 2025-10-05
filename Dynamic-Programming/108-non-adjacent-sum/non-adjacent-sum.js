@@ -1,6 +1,6 @@
-const nonAdjacentSum = (nums, i = 0, memo = {}) => {
-  if (i in memo) return memo[i];
+const nonAdjacentSum = (nums,i=0,memo={}) => {
   if (i >= nums.length) return 0;
+  if (i in memo) return memo[i];
 
   const w = nums[i] + nonAdjacentSum(nums,i+2,memo);
   const wo = nonAdjacentSum(nums,i+1,memo);
