@@ -13,10 +13,10 @@ const isSubsequence = (s1, s2) => {
 /*
 
 */
+console.log(isSubsequence("unfun", "unfortunate"),true);
 console.log(isSubsequence("bde", "abcdef"), true);
 console.log(isSubsequence("bda", "abcdef"), false);
 console.log(isSubsequence("serr", "super"), false);
-console.log(isSubsequence("unfun", "unfortunate"),true);
 
 module.exports = {
   isSubsequence,
