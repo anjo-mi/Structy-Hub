@@ -4,7 +4,7 @@ const connectedComponentsCount = (graph) => {
     if (islands.some(isle => isle.has(+node))) continue;
     const isle = new Set();
     const q = [node];
-    while(q.length){
+    while (q.length){
       const curr = q.shift();
       if (isle.has(+curr)) continue;
       isle.add(+curr);
