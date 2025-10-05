@@ -1,15 +1,13 @@
 const pairedParentheses = (str) => {
-  const opens  = { '{':'}' , '[':']' , '(':')' };
-  const closes = { '}':'{' , ']':'[' , ')':'(' };
-  const stack = [];
+  const s = [];
   for (const char of str){
-    if (char in opens) stack.push(char);
-    if (char in closes){
-      if (stack[stack.length-1] !== closes[char]) return false;
-      stack.pop();
+    if (char === '(') s.push(char);
+    else if (char ===')'){
+      if (!s.length) return false;
+      s.pop();
     }
   }
-  return !stack.length;
+  return !s.length;
 };
 console.log(pairedParentheses("(david)((abby))"), true);
 console.log(pairedParentheses(""), true);
