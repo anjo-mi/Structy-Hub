@@ -1,13 +1,16 @@
-const quickestConcat = (s, words, i = 0 , depth = 0, memo = {}) => {
+const quickestConcat = (s, words,i = 0, depth = 0, memo = {}) => {
   if (i === s.length) return 0;
   if (i  >  s.length) return Infinity;
   if (i in memo) return memo[i];
 
-  const poss = words.map(w =>{
-    if (s.startsWith(w,i)) return quickestConcat(s,words,i+w.length, depth+1, memo) + 1;
-    else return Infinity;
-  })
-  memo[i] = Math.min(...poss);
+  let min = Infinity;
+  for (const word of words){
+    if (s.startsWith(word,i)){
+      const cats = quickestConcat(s,words,i+word.length,depth+1,memo) + 1;
+      if (cats < min) min = cats;
+    }
+  }
+  memo[i] = min;
   return !isFinite(memo[i]) && !depth ? -1 : memo[i];
 };
 
