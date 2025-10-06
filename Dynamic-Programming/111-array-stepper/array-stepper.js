@@ -1,6 +1,6 @@
 const arrayStepper = (nums, i = 0, memo = {}) => {
   if (i === nums.length - 1) return true;
-  if (i  >= nums.length) return false;
+  if (!nums[i]) return false;
   if (i in memo) return memo[i];
 
   const steps = [];
