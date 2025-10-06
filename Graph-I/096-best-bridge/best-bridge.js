@@ -2,7 +2,7 @@ const loc = (r,c) => r + ',' + c;
 const coords = (l) => l.split(',').map(Number);
 const inBounds = (r,c,grid) => grid[r]?.[c];
 
-const getConnections = (r,c,grid, isle = new Set()) => {
+const getConnections = (r,c,grid,isle = new Set()) => {
   if (!inBounds(r,c,grid) ||
        grid[r][c] !== 'L' || 
        isle.has(loc(r,c))) return isle;
@@ -17,17 +17,17 @@ const getConnections = (r,c,grid, isle = new Set()) => {
 }
 
 const findBridge = (l,grid,b,v=new Set()) => {
-  const q = [{l, dist:-1}];
+  const q = [{l,dist:-1}];
   while (q.length){
     const {l,dist} = q.shift();
     const [r,c] = coords(l);
     if (!inBounds(r,c,grid) || v.has(l)) continue;
     v.add(l);
     if (b.has(l)) return dist;
-    q.push({l:loc(r-1,c), dist:dist+1});
-    q.push({l:loc(r+1,c), dist:dist+1});
-    q.push({l:loc(r,c-1), dist:dist+1});
-    q.push({l:loc(r,c+1), dist:dist+1});
+    q.push({l:loc(r+1,c),dist:dist+1});
+    q.push({l:loc(r-1,c),dist:dist+1});
+    q.push({l:loc(r,c+1),dist:dist+1});
+    q.push({l:loc(r,c-1),dist:dist+1});
   }
   return Infinity;
 }
