@@ -4,7 +4,8 @@ const validCompound = (compound, elements, i = 0, memo = {}) => {
   if (i  >  compound.length) return false;
   if (i in memo) return memo[i];
 
-  memo[i] = elements.some(el => compound.startsWith(el,i) && validCompound(compound,elements,i+el.length,memo));
+  memo[i] = elements.some(el => compound.startsWith(el,i) && validCompound(compound,elements,i + el.length, memo));
+
   return memo[i];
 };
 console.log(validCompound("neco", [
