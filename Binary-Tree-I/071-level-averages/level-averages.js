@@ -11,7 +11,7 @@ const levelAverages = (root) => {
   if (!root) return avgs;
   let q = [root];
   while (q.length){
-    const avg = q.reduce((t,n) => t + n.val,0) / q.length;
+    const avg = q.reduce((a,el) => a + el.val, 0) / q.length;
     avgs.push(avg);
     const next = [];
     for (const n of q){
