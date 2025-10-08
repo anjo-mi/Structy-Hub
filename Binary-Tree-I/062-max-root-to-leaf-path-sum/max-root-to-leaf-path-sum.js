@@ -13,8 +13,8 @@ const maxPathSum = (root) => {
   const left = maxPathSum(root.left);
   const right = maxPathSum(root.right);
 
-  if (!root.left) return total + right;
   if (!root.right) return total + left;
+  if (!root.left) return total + right;
 
   return total + Math.max(left,right);
 };
