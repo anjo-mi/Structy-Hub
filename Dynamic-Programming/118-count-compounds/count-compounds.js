@@ -2,6 +2,7 @@ const countCompounds = (comp, elms, i = 0, memo = {}) => {
   if (i === comp.length) return 1;
   if (i  >  comp.length) return 0;
   if (i in memo) return memo[i];
+
   elms = elms.map(el => el.toLowerCase());
 
   let res = 0;
@@ -10,7 +11,8 @@ const countCompounds = (comp, elms, i = 0, memo = {}) => {
       res += countCompounds(comp,elms,i+elm.length,memo);
     }
   }
-  return memo[i] = res;
+  memo[i] = res;
+  return memo[i];
 };
 
 
