@@ -1,26 +1,24 @@
-const buildBack = (a1,a2) => {
+const mergeBack = (front,back) => {
   let i = 0,
       j = 0;
-  const a3 = [];
-  while (i < a1.length && j < a2.length){
-    const next = Math.min(a1[i] , a2[j]);
-    a3.push(next);
-    if (next === a1[i]) i++;
-    else if (next === a2[j]) j++;
+  const merged = [];
+  while (i < front.length && j < back.length){
+    const next = front[i] <= back[j] ? front[i] : back[j];
+    merged.push(next);
+    if (next === front[i]) i++;
+    else j++;
   }
-  if (i < a1.length) a3.push(...a1.slice(i));
-  if (j < a2.length) a3.push(...a2.slice(j));
-  return a3;
+  if (i < front.length) merged.push(...front.slice(i));
+  if (j < back.length ) merged.push(...back.slice(j));
+  return merged;
 }
 
 const mergeSort = (nums) => {
   if (nums.length <= 1) return nums;
   const mid = Math.floor(nums.length / 2);
-  const front = nums.slice(0,mid);
-  const end = nums.slice(mid);
-  const a1 = mergeSort(front);
-  const a2 = mergeSort(end);
-  return buildBack(a1,a2);
+  const front = mergeSort(nums.slice(0,mid));
+  const back  = mergeSort(nums.slice(mid));
+  return mergeBack(front,back);
 };
 
 const numbers = [10, 4, 42, 5, 8, 100, 5, 6, 12, 40];
