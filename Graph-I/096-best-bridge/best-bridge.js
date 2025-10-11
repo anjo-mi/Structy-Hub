@@ -29,7 +29,7 @@ const findBridge = (l,grid,b,v=new Set()) => {
     q.push({l:loc(r,c+1),dist:dist+1});
     q.push({l:loc(r,c-1),dist:dist+1});
   }
-  return Infinity;
+  return -Infinity;
 }
 
 const bestBridge = (grid) => {
