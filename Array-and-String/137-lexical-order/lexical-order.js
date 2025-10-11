@@ -1,15 +1,17 @@
 const lexicalOrder = (w1, w2, alpha) => {
   const order = {};
   for (let i = 0 ; i < alpha.length ; i++) order[alpha[i]] = i;
-  while (w1.length && w2.length){
-    if (w1[0] === w2[0]){
-      w1 = w1.slice(1);
-      w2 = w2.slice(1);
+  let i = 0,
+      j = 0;
+  while (i < w1.length && j < w2.length){
+    if (w1[i] === w2[j]){
+      i++;
+      j++;
       continue;
     }
-    return order[w1[0]] < order[w2[0]];
+    else return order[w1[i]] < order[w2[j]];
   }
-  return !w1.length;
+  return i >= w1.length;
 };
 /*
 make an order object
