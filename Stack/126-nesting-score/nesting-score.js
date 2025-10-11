@@ -3,8 +3,9 @@ const nestingScore = (str) => {
   for (const char of str){
     if (char === '[') stack.push(0);
     if (char === ']'){
-      const curr = stack.pop();
-      stack[stack.length-1] += curr ? curr * 2 : 1;
+      const c = stack.pop();
+      if (!c) stack[stack.length-1]++;
+      else stack[stack.length-1] += c * 2;
     }
   }
   return stack.pop();
