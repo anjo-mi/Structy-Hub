@@ -1,5 +1,5 @@
 const uncompress = (s) => {
-  const arab = new Set('0123456789');
+  const arab = new Set('123456789');
   let i = 0,
       j = 0,
       st = '';
@@ -8,7 +8,7 @@ const uncompress = (s) => {
     const num = +s.slice(i,j);
     st += s[j].repeat(num);
     j++;
-    i = j;
+    i=j;
   }
   return st;
 };
