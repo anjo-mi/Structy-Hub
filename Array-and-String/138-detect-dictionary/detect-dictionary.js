@@ -1,4 +1,6 @@
-const inOrder = (w1,w2,order) => {
+const inOrder = (w1,w2,alph) => {
+  const order = {};
+  for (let i = 0 ; i < alph.length ; i++) order[alph[i]] = i;
   let i = 0,
       j = 0;
   while (i < w1.length && j < w2.length){
@@ -8,19 +10,14 @@ const inOrder = (w1,w2,order) => {
       continue;
     }
     if (order[w1[i]] < order[w2[j]]) return true;
-    if (order[w1[i]] > order[w2[j]]) return false;
-    i++;
-    j++;
+    else return false;
   }
-  return i >= w1.length;
+  return i === w1.length;
 }
 
 const detectDictionary = (dict, alpha) => {
-  const order = {};
-  for (let i = 0 ; i < alpha.length ; i++) order[alpha[i]] = i;
-
   for (let i = 0 ; i < dict.length - 1 ; i++){
-    if (!inOrder(dict[i],dict[i+1],order)) return false;
+    if (!inOrder(dict[i],dict[i+1],alpha)) return false;
   }
   return true;
 };
