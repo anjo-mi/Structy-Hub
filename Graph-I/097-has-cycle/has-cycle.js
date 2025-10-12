@@ -1,10 +1,10 @@
 const hasCycle = (graph) => {
   for (const node in graph){
-    const v = new Set();
     const q = [node];
+    const v = new Set();
     while (q.length){
       const curr = q.shift();
-      v.add(curr);
+      v.add(curr)
       for (const n of graph[curr]){
         if (v.has(n)) return true;
         q.push(n);
