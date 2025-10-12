@@ -1,16 +1,16 @@
 const loc = (r,c) => r + ',' + c;
 const inBounds = (r,c,grid) => grid[r]?.[c];
 
-const getConnections = (r,c,grid,isle = new Set()) => {
+const getConnections = (r,c,grid,isle= new Set()) => {
   if (!inBounds(r,c,grid) ||
        grid[r][c] !== 'L' ||
        isle.has(loc(r,c))) return isle;
   isle.add(loc(r,c));
 
-  getConnections(r+1,c,grid,isle);
   getConnections(r-1,c,grid,isle);
-  getConnections(r,c+1,grid,isle);
+  getConnections(r+1,c,grid,isle);
   getConnections(r,c-1,grid,isle);
+  getConnections(r,c+1,grid,isle);
 
   return isle;
 }
@@ -25,9 +25,8 @@ const minimumIsland = (grid) => {
       }
     }
   }
-  return islands.length
-          ? Math.min(...islands.map(isle => isle.size))
-          : 0;
+  const min = Math.min(...islands.map(isle => isle.size));
+  return isFinite(min) ? min : 0;
 };
 /*
 
