@@ -1,16 +1,16 @@
 const decompressBraces = (s) => {
   const arab = new Set('123456789');
   const stack = [];
-  for (let i = 0; i < s.length ; i++){
+  for (let i = 0 ; i < s.length ; i++){
     if (s[i] === '{') stack.push(i);
     if (s[i] === '}'){
-      const start = stack.pop();
-      const exp = s.slice(start+1,i);
-      let numIndex = start;
-      while (arab.has(s[numIndex-1])) numIndex--;
-      const num = +s.slice(numIndex,start);
-      const replaced = s.slice(numIndex,i+1);
-      s = s.replace(replaced,exp.repeat(num));
+      const open = stack.pop();
+      const bracks = s.slice(open,i+1);
+      const exp = bracks.slice(1,-1);
+      let numInd = open;
+      while (arab.has(s[numInd - 1])) numInd--;
+      const num = +s.slice(numInd,open);
+      s = s.replace(s.slice(numInd,i+1),exp.repeat(num));
       i = s.lastIndexOf(exp) + exp.length - 1;
     }
   }
