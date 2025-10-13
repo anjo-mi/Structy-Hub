@@ -3,20 +3,20 @@ const coords = (l) => l.split(',').map(Number);
 const inBounds = (r,c,grid) => grid[r]?.[c];
 
 const closestCarrot = (grid, sr, sc) => {
-  const q = [{n:loc(sr,sc),dist:0}];
+  const q = [{l:loc(sr,sc),dist:0}];
   const v = new Set();
   while (q.length){
-    const {n,dist} = q.shift();
-    const [r,c] = coords(n);
+    const {l,dist} = q.shift();
+    const [r,c] = coords(l);
     if (!inBounds(r,c,grid) ||
-         grid[r][c] === 'X' ||
-         v.has(n)) continue;
-    v.add(n);
+         grid[r][c] === 'X' || 
+         v.has(l)) continue;
+    v.add(l);
     if (grid[r][c] === 'C') return dist;
-    q.push({n:loc(r+1,c),dist:dist+1});
-    q.push({n:loc(r-1,c),dist:dist+1});
-    q.push({n:loc(r,c+1),dist:dist+1});
-    q.push({n:loc(r,c-1),dist:dist+1});
+    q.push({l:loc(r+1,c), dist:dist+1});
+    q.push({l:loc(r-1,c), dist:dist+1});
+    q.push({l:loc(r,c+1), dist:dist+1});
+    q.push({l:loc(r,c-1), dist:dist+1});
   }
   return -1;
 };
