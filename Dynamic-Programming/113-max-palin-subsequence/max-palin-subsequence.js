@@ -1,4 +1,4 @@
-const maxPalinSubsequence = (str,i=0,j=str.length-1,memo={}) => {
+const maxPalinSubsequence = (str, i = 0, j = str.length-1, memo = {}) => {
   if (i > j) return 0;
   if (i === j) return 1;
   const k = i + ';' + j;
