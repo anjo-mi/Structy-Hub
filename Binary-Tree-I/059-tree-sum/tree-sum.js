@@ -9,13 +9,12 @@ class Node {
 const treeSum = (root) => {
   let total = 0;
   if (!root) return total;
-
   const s = [root];
   while (s.length){
-    const curr = s.pop();
-    total += curr.val;
-    if (curr.right) s.push(curr.right);
-    if (curr.left) s.push(curr.left);
+    const c = s.pop();
+    total += c.val;
+    if (c.right) s.push(c.right);
+    if (c.left) s.push(c.left);
   }
   return total;
 };
