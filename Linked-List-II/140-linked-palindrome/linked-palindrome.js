@@ -6,28 +6,16 @@ class Node {
 }
 
 const linkedPalindrome = (head) => {
-  const stack = [];
+  if (!head) return true;
+  const s = [];
   let curr = head;
   while (curr){
-    stack.push(curr.val);
+    s.push(curr.val);
     curr = curr.next;
   }
-  const rev = stack.toReversed();
-  return rev.every((el,i) => el === stack[i]);
+  return s.toString() === s.reverse().toString();
 };
-/*
-create a stack [];
-iterate thru the list, push vals to stack
-compare reversed stack to stack
-p
-head of a linked list (nodes with .val and .next)
-r
-Boolean -> are values palindromical (word?)
-e
-empty list (true)
-no next node (true)
-p
-*/
+
 console.log(linkedPalindrome(null), true);
 const x = new Node(5);
 console.log(linkedPalindrome(x), true);
