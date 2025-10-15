@@ -6,28 +6,15 @@ class Node {
 }
 
 const middleValue = (head) => {
-  const vals = [];
-  let curr = head;
-  while (curr){
-    vals.push(curr.val);
-    curr = curr.next;
+  let s = head,
+      f = head;
+  while (f && f.next){
+    s = s.next;
+    f = f.next.next;
   }
-  const mid = Math.floor(vals.length / 2);
-  return vals[mid];
+  return s.val;
 };
-/*
-make an array
-make a mid thats floor half the length
-return array[mid]
-p
-linked list of nodes (.val, .next || null)
-r
-individual node, center node (or if even, 2nd individual center node)
-e
-empty list (return null);
-even lengthed lists ([1,2,3,4] -> return 3)
-p
-*/
+
 const a = new Node('a');
 const b = new Node('b');
 const c = new Node('c');
