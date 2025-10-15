@@ -1,11 +1,10 @@
 const getDists = (node,graph,dists) => {
-  if (!graph[node].length) dists[node] = 0;
   if (node in dists) return dists[node];
+  if (!graph[node].length) return 0;
 
   const ds = graph[node].map(n => getDists(n,graph,dists) + 1);
 
-  dists[node] = Math.max(...ds);
-  return dists[node];
+  return dists[node] = Math.max(...ds);
 }
 
 const longestPath = (graph) => {
