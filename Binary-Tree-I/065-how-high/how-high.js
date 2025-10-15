@@ -12,7 +12,7 @@ const howHigh = (root,depth = 0) => {
   return Math.max(
     howHigh(root.left,depth+1),
     howHigh(root.right,depth+1)
-  );
+  )
 };
 /*
 */
