@@ -16,20 +16,20 @@ const getConnections = (r,c,grid,isle = new Set()) => {
   return isle;
 }
 
-const findBridge = (l,grid,b,v=new Set()) => {
+const findBridge = (l,grid,b,br = new Set()) => {
   const q = [{l,dist:-1}];
   while (q.length){
     const {l,dist} = q.shift();
     const [r,c] = coords(l);
-    if (!inBounds(r,c,grid) || v.has(l)) continue;
-    v.add(l);
+    if (!inBounds(r,c,grid) || br.has(l)) continue;
+    br.add(l);
     if (b.has(l)) return dist;
-    q.push({l:loc(r+1,c),dist:dist+1});
-    q.push({l:loc(r-1,c),dist:dist+1});
-    q.push({l:loc(r,c+1),dist:dist+1});
-    q.push({l:loc(r,c-1),dist:dist+1});
+    q.push({l:loc(r+1,c),dist:dist+1})
+    q.push({l:loc(r-1,c),dist:dist+1})
+    q.push({l:loc(r,c+1),dist:dist+1})
+    q.push({l:loc(r,c-1),dist:dist+1})
   }
-  return -Infinity;
+  return Infinity;
 }
 
 const bestBridge = (grid) => {
