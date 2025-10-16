@@ -9,7 +9,7 @@ const befittingBrackets = (str) => {
       if (last !== close[char]) return false;
     }
   }
-  return !stack.length;
+  return !stack.length
 };
 
 
