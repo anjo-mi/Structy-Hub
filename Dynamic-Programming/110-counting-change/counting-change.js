@@ -1,14 +1,14 @@
-const countingChange = (amt, coins, i=0, memo = {}) => {
+const countingChange = (amt, coins, i = 0, memo = {}) => {
   if (!amt) return 1;
   if (amt < 0) return 0;
-  const k = amt+';'+i;
+  if (i === coins.length) return 0;
+  const k = amt + ';' + i
   if (k in memo) return memo[k];
 
   let res = 0;
   const coin = coins[i];
-  for (let q = 0 ; q * coin <= amt ; q++){
-    res += countingChange(amt-q*coin,coins,i+1,memo);
-  }
+  for (let q = 0 ; q * coin <= amt ; q++) res += countingChange(amt-q*coin,coins,i+1,memo);
+
   return memo[k] = res;
 };
 console.log(countingChange(24, [3, 5, 7]), 5);
