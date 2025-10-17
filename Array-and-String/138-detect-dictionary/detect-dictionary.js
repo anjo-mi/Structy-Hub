@@ -1,23 +1,20 @@
-const inOrder = (w1,w2,alph) => {
+const lexicalOrder = (w1, w2, alpha) => {
   const order = {};
-  for (let i = 0 ; i < alph.length ; i++) order[alph[i]] = i;
+  for (let i = 0 ; i < alpha.length ; i++) order[alpha[i]] = i;
   let i = 0,
       j = 0;
   while (i < w1.length && j < w2.length){
-    if (w1[i] === w2[j]){
-      i++;
-      j++;
-      continue;
-    }
-    if (order[w1[i]] < order[w2[j]]) return true;
-    else return false;
+    if (order[w1[i]] < order[w2[i]]) return true;
+    if (order[w1[i]] > order[w2[i]]) return false;
+    i++;
+    j++;
   }
   return i === w1.length;
-}
+};
 
 const detectDictionary = (dict, alpha) => {
   for (let i = 0 ; i < dict.length - 1 ; i++){
-    if (!inOrder(dict[i],dict[i+1],alpha)) return false;
+    if (!lexicalOrder(dict[i],dict[i+1],alpha)) return false;
   }
   return true;
 };
