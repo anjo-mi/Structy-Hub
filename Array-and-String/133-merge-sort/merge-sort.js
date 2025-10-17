@@ -1,14 +1,12 @@
-const mergeBack = (front,back) => {
+const mergeBack = (a1,a2) => {
+  a1.reverse();
+  a2.reverse();
   const merged = [];
-  front.reverse();
-  back.reverse();
-  while (front.length && back.length){
-    const f = front[front.length - 1];
-    const b = back[back.length - 1];
-    merged.push( f < b ? front.pop() : back.pop() )
+  while (a1.length && a2.length){
+    merged.push(a1[a1.length-1] < a2[a2.length-1] ? a1.pop() : a2.pop());
   }
-  if (front.length) merged.push(...front.reverse());
-  if (back.length) merged.push(...back.reverse());
+  while (a1.length) merged.push(a1.pop())
+  while (a2.length) merged.push(a2.pop())
   return merged;
 }
 
