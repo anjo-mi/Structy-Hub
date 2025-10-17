@@ -1,11 +1,10 @@
-const validCompound = (compound, elements,i=0,memo = {}) => {
-  elements = elements.map(el => el.toLowerCase());
-  if (i === compound.length) return true;
-  if (i  >  compound.length) return false;
+const validCompound = (cmpd, els, i = 0, memo = {}) => {
+  els = els.map(el => el.toLowerCase());
+  if (i === cmpd.length) return true;
+  if (i  >  cmpd.length) return false;
   if (i in memo) return memo[i];
 
-  memo[i] = elements.some(elm => compound.startsWith(elm,i) && validCompound(compound,elements,i+elm.length,memo));
-  return memo[i];
+  return memo[i] = els.some(el => cmpd.startsWith(el,i) && validCompound(cmpd,els,i+el.length,memo));
 };
 console.log(validCompound("neco", [
   "Ne",
