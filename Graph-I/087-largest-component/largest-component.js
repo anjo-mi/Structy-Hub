@@ -1,7 +1,7 @@
 const largestComponent = (graph) => {
   const islands = [];
   for (const node in graph){
-    if (islands.some(isle => isle.has(node))) continue;
+    if (islands.some(isle=> isle.has(node))) continue;
     const isle = new Set();
     const q = [node];
     while (q.length){
@@ -12,8 +12,7 @@ const largestComponent = (graph) => {
     }
     islands.push(isle);
   }
-  const max = Math.max(...islands.map(isle => isle.size));
-  return isFinite(max) ? max : 0;
+  return islands.length ? Math.max(...islands.map(isle => isle.size)) : 0;
 };
 console.log(largestComponent({
   1: ['2'],
