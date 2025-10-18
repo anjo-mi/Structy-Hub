@@ -5,8 +5,8 @@ const compress = (s) => {
   while (j < s.length){
     while (s[i] === s[j]) j++;
     const sub = s.slice(i,j);
-    st += sub.length === 1 ? sub[0] : sub.length + sub[0];
-    i = j;
+    st += sub.length > 1 ? sub.length + sub[0] : sub[0];
+    i=j;
   }
   return st;
 }
