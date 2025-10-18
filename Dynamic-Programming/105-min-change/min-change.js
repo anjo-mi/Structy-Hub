@@ -1,12 +1,12 @@
-const minChange = (amt,coins,depth=0,memo={}) => {
-  if (amt in memo) return memo[amt];
+const minChange = (amt,coins,i=0,memo={}) => {
   if (!amt) return 0;
   if (amt < 0) return Infinity;
+  if (amt in memo) return memo[amt];
 
-  const poss = coins.map(cn => minChange(amt-cn,coins,depth+1,memo) + 1);
-  const min = Math.min(...poss);
-  memo[amt] = min;
-  return !isFinite(memo[amt]) && !depth ? -1 : memo[amt]
+  const poss = coins.map(cn => minChange(amt-cn,coins,i+1,memo) +1);
+
+  memo[amt] = Math.min(...poss);
+  return !isFinite(memo[amt]) && !i ? -1 : memo[amt];
 };
 /*
 
