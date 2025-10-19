@@ -14,7 +14,7 @@ const undirectedPath = (edges, src, dst) => {
     if (v.has(curr)) continue;
     v.add(curr);
     if (curr === dst) return true;
-    for (const n of graph[curr]) q.push(n);
+    for (const n of graph[curr]) q.push(n)
   }
   return false;
 };
