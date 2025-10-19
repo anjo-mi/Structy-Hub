@@ -1,5 +1,5 @@
-const countCompounds = (comp, elms, i = 0 , memo = {}) => {
-  elms = elms.map(el => el.toLowerCase());
+const countCompounds = (comp, elms,i=0,memo={}) => {
+  elms = elms.map(elm => elm.toLowerCase());
   if (i === comp.length) return 1;
   if (i  >  comp.length) return 0;
   if (i in memo) return memo[i];
