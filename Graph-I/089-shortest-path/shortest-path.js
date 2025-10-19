@@ -6,8 +6,8 @@ const shortestPath = (edges, na, nb) => {
     graph[a].push(b);
     graph[b].push(a);
   }
-  const q = [{n:na,dist:0}];
   const v = new Set();
+  const q = [{n:na, dist:0}];
   while (q.length){
     const {n,dist} = q.shift();
     if (v.has(n)) continue;
