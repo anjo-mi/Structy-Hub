@@ -5,33 +5,21 @@ class Node {
   }
 }
 
-const linkedListCycle = (head,enc=new Set()) => {
+const linkedListCycle = (head,v=new Set()) => {
   if (!head) return false;
-  if (enc.has(head.val)) return true;
-  enc.add(head.val);
-  return linkedListCycle(head.next,enc);
-
-
-  
-  // const v = new Set();
-  // let curr = head;
-  // while (curr) if (v.has(curr)) return true; v.add(curr); curr = curr.next;
-  // return false;
+  if (v.has(head.val)) return true;
+  v.add(head.val);
+  return linkedListCycle(head.next,v);
 };
-/*
-const v = new Set();
-let curr = head;
-while (curr) if (v.has(curr)) return true; v.add(curr); curr = curr.next;
-return false;
-p
-head of linked list of nodes (.val, .next || null)
-r
-Boolean, does the list cycle anywhere
-  - any next point to a previously encountered node
-e
-empty or single (false)
-p
-*/
+// q -> r -> s -> t -> u -> v -> w -> x -> y -> s
+// 12
+//      1    2
+//           1         2
+//                1              2
+//                     1                   2
+//                2         1
+//                          2    1
+//                                    12 // true!!!!!!
 const a = new Node('a');
 const b = new Node('b');
 const c = new Node('c');
