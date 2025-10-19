@@ -7,43 +7,16 @@ class Node {
 
 const undupeSortedLinkedList = (head) => {
   if (!head) return null;
-  let prev = head,
-      curr = head.next;
+  let curr = head.next,
+      prev = head;
   while (curr){
-    if (prev.val === curr.val){
-      prev.next = curr.next;
-      curr = curr.next;
-    }else{
-      prev = curr;
-      curr = curr.next;
-    }
+    if (prev.val === curr.val) prev.next = curr.next;
+    else prev = curr;
+    curr = curr.next;
   }
   return head;
 };
 /*
-let prev = head,
-    curr = prev.next;
-
-while (curr){
-  if (prev.val === curr.val){
-    prev.next = curr.next;
-    curr = curr.next;
-  }else{
-    prev = curr;
-    curr = curr.next;
-  }
-}
-return head
-p
-head of a linked list of nodes (.val, .next || null)
-- SORTED low -> high
-r
-same linked list, values only occurring once
-e
-empty list (return list)
-1 node (return list)
-non consecutive dupes (shouldnt occur, will need new strategy)
-p
 */
 const a = new Node(4);
 const b = new Node(4);
