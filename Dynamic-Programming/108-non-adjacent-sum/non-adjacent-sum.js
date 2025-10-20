@@ -1,8 +1,8 @@
-const nonAdjacentSum = (nums,i=0,memo = {}) => {
-  if (i >= nums.length) return 0;
+const nonAdjacentSum = (nums,i=0,memo={}) => {
   if (i in memo) return memo[i];
+  if (i >= nums.length) return 0;
 
-  const w = nums[i] + nonAdjacentSum(nums,i+2,memo);
+  const w = nonAdjacentSum(nums,i+2,memo) + nums[i];
   const wo = nonAdjacentSum(nums,i+1,memo);
 
   return memo[i] = Math.max(w,wo);
