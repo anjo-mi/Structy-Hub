@@ -1,11 +1,11 @@
 const binarySearch = (nums, targ) => {
   let i = 0,
-      j = nums.length;
-  while (i < j){
-    const mid = Math.floor((i + j) / 2);
+      j = nums.length - 1;
+  while (i <= j){
+    const mid = Math.floor((i+j) / 2);
     if (nums[mid] === targ) return mid;
-    if (nums[mid]  <  targ) i = mid + 1;
-    else j = mid;
+    if (targ < nums[mid]) j = mid - 1;
+    if (targ > nums[mid]) i = mid + 1;
   }
   return -1;
 };
