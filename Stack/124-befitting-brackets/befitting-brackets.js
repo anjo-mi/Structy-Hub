@@ -1,15 +1,13 @@
 const befittingBrackets = (str) => {
-  const opens = {'{':'}','(':')','[':']'};
-  const close = {'}':'{',')':'(',']':'['};
+  const opens = { '{' : '}' , '[' : ']' , '(' : ')' };
+  const close = { '}' : '{' , ']' : '[' , ')' : '(' };
   const stack = [];
+
   for (const char of str){
     if (char in opens) stack.push(char);
-    if (char in close){
-      const last = stack.pop();
-      if (last !== close[char]) return false;
-    }
+    if (char in close) if (stack.pop() !== close[char]) return false;
   }
-  return !stack.length
+  return !stack.length;
 };
 
 
