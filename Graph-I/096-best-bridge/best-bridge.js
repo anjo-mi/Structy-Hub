@@ -3,7 +3,7 @@ const coords = (l) => l.split(',').map(Number);
 const inBounds = (r,c,grid) => grid[r]?.[c];
 
 const getConnections = (r,c,grid,isle = new Set()) => {
-  if (!inBounds(r,c,grid) ||
+  if (!inBounds(r,c,grid) || 
        grid[r][c] !== 'L' || 
        isle.has(loc(r,c))) return isle;
   isle.add(loc(r,c));
@@ -16,18 +16,19 @@ const getConnections = (r,c,grid,isle = new Set()) => {
   return isle;
 }
 
-const findBridge = (l,grid,b,br = new Set()) => {
+const buildBridge = (l,grid,b) => {
   const q = [{l,dist:-1}];
+  const v = new Set();
   while (q.length){
     const {l,dist} = q.shift();
     const [r,c] = coords(l);
-    if (!inBounds(r,c,grid) || br.has(l)) continue;
-    br.add(l);
+    if (!inBounds(r,c,grid) || v.has(l)) continue;
+    v.add(l);
     if (b.has(l)) return dist;
-    q.push({l:loc(r+1,c),dist:dist+1})
-    q.push({l:loc(r-1,c),dist:dist+1})
-    q.push({l:loc(r,c+1),dist:dist+1})
-    q.push({l:loc(r,c-1),dist:dist+1})
+    q.push({l:loc(r+1,c),dist:dist+1});
+    q.push({l:loc(r-1,c),dist:dist+1});
+    q.push({l:loc(r,c+1),dist:dist+1});
+    q.push({l:loc(r,c-1),dist:dist+1});
   }
   return Infinity;
 }
@@ -44,12 +45,12 @@ const bestBridge = (grid) => {
   }
 
   const [a,b] = islands;
-  let best = Infinity;
+  let smallestBridge = Infinity;
   for (const l of a){
-    const br = findBridge(l,grid,b);
-    if (br < best) best = br;
+    const bridge = buildBridge(l,grid,b);
+    if (bridge < smallestBridge) smallestBridge = bridge;
   }
-  return best;
+  return smallestBridge;
 };
 
 /*
