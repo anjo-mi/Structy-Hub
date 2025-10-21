@@ -6,15 +6,15 @@ class Node {
   }
 }
 
-const allTreePaths = r => {
-  const paths = []
-  if (!r) return paths;
-  const s = [{r,path:[r.val]}];
+const allTreePaths = root => {
+  const paths = [];
+  if (!root) return paths;
+  const s=[{node:root, path:[root.val]}];
   while (s.length){
-    const {r,path} = s.pop();
-    if (!r.left && !r.right) paths.push(path);
-    if (r.right) s.push({r:r.right,path:path.concat([r.right.val])});
-    if (r.left) s.push({r:r.left,path:path.concat([r.left.val])});
+    const {node, path} = s.pop();
+    if (!node.left && !node.right) paths.push(path);
+    if (node.right) s.push({node:node.right, path: [...path,node.right.val]});
+    if (node.left) s.push({node:node.left, path: [...path,node.left.val]});
   }
   return paths;
 }
