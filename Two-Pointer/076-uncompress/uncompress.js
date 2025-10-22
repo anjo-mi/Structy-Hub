@@ -1,9 +1,9 @@
 const uncompress = (s) => {
-  const arab = new Set('1234567890');
+  const arab = new Set('0123456789');
   let i = 0,
       j = 0,
       st = '';
-  while (j < s.length){
+  while ( j < s.length ){
     while (arab.has(s[j])) j++;
     const num = +s.slice(i,j);
     st += s[j].repeat(num);
