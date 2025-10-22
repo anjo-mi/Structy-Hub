@@ -1,16 +1,23 @@
 const mergeBack = (a1,a2) => {
-  a1.reverse();
-  a2.reverse();
+  let i = 0,
+      j = 0;
   const merged = [];
-  while (a1.length && a2.length){
-    merged.push(a1[a1.length-1] < a2[a2.length-1] ? a1.pop() : a2.pop());
+  while (i < a1.length && j < a2.length){
+    const lesser = a1[i] < a2[j] ? a1[i] : a2[j];
+
+    merged.push(lesser);
+
+    if (a1[i] === lesser) i++;
+    else if (a2[j] === lesser) j++;
   }
-  while (a1.length) merged.push(a1.pop())
-  while (a2.length) merged.push(a2.pop())
+  if (i < a1.length) merged.push(...a1.slice(i));
+  if (j < a2.length) merged.push(...a2.slice(j));
+
   return merged;
 }
 
 const mergeSort = (nums) => {
+
   if (nums.length <= 1) return nums;
   const mid = Math.floor(nums.length / 2);
   const front = mergeSort(nums.slice(0,mid));
