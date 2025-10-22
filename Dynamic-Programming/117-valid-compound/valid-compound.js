@@ -1,4 +1,4 @@
-const validCompound = (cmpd, els, i = 0, memo = {}) => {
+const validCompound = (cmpd, els, i = 0 , memo = {}) => {
   els = els.map(el => el.toLowerCase());
   if (i === cmpd.length) return true;
   if (i  >  cmpd.length) return false;
