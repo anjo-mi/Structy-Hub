@@ -10,8 +10,7 @@ const pathFinder = (root, target) => {
   if (!root) return null;
   const path = [root.val];
   if (root.val === target) return path;
-
-  const left  = pathFinder(root.left,target);
+  const left = pathFinder(root.left,target);
   const right = pathFinder(root.right,target);
 
   if (left) return path.concat(left);
