@@ -22,7 +22,7 @@ const zipperLists = (h1, h2) => {
     curr = curr.next;
     count++;
   }
-  if (c1 || c2) curr.next = c1 || c2;
+  curr.next = c1 || c2;
   return head;
 };
 const a = new Node("a");
