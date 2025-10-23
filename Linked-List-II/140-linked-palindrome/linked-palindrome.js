@@ -7,9 +7,10 @@ class Node {
 
 const linkedPalindrome = (head) => {
   const arr = [];
+  if (!head) return true;
   let curr = head;
-  while (curr){arr.push(curr.val); curr = curr.next;}
-  for (let i = 0, j = arr.length-1 ; i < arr.length && j >= 0 ; i++, j--){
+  while (curr){arr.push(curr.val); curr = curr.next;};
+  for (let i = 0, j = arr.length - 1 ; i <= j ; i++, j--){
     if (arr[i] !== arr[j]) return false;
   }
   return true;
