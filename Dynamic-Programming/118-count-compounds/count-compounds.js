@@ -5,9 +5,10 @@ const countCompounds = (comp, elms,i=0,memo={}) => {
   if (i in memo) return memo[i];
 
   let res = 0;
-  for (const elm of elms) if (comp.startsWith(elm,i)){
+  for (const elm of elms) if (comp.startsWith(elm,i)) {
     res += countCompounds(comp,elms,i+elm.length,memo);
   }
+
   return memo[i] = res;
 };
 
