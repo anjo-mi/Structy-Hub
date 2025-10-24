@@ -1,13 +1,12 @@
 const hasSubarraySum = (nums,sum,i=0,j=nums.length,memo={}) => {
-  if (i > j) return 0;
-  if (i === j) return nums[i] === sum ? 1 : 0;
-  const k = i +';'+j;
+  if (i > j) return false;
+  if (i === j) return nums[i] === sum;
+  const k = i+';'+j;
   if (k in memo) return memo[k];
-  memo[k] = nums.slice(i,j).reduce((a,el) => a + el,0) === sum ? 1 : 0;
-  hasSubarraySum(nums,sum,i+1,j,memo);
-  hasSubarraySum(nums,sum,i,j-1,memo);
-
-  return Object.values(memo).reduce((a,el) => a +el,0) > 0
+  
+  if (nums.slice(i,j).reduce((a,el) => a + el, 0) === sum) memo[k] = true;
+  else memo[k] = hasSubarraySum(nums,sum,i+1,j,memo) || hasSubarraySum(nums,sum,i,j-1,memo);
+  return memo[k];
 };
 
 
