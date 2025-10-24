@@ -11,10 +11,11 @@ const leafList = (root) => {
   if (!root) return leaves;
   const s = [root];
   while (s.length){
-    const curr = s.pop();
-    if (!curr.left && !curr.right) leaves.push(curr.val);
-    if (curr.right) s.push(curr.right);
-    if (curr.left) s.push(curr.left);
+    const c = s.pop();
+    if (!c.right && !c.left) leaves.push(c.val);
+
+    if (c.right) s.push(c.right);
+    if (c.left) s.push(c.left);
   }
   return leaves;
 };
