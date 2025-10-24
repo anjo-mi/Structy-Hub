@@ -1,19 +1,20 @@
 const shortestPath = (edges, na, nb) => {
-  const graph = {};
+  const gr = {}
   for (const [a,b] of edges){
-    if (!graph[a]) graph[a] = [];
-    if (!graph[b]) graph[b] = [];
-    graph[a].push(b);
-    graph[b].push(a);
+    if (!gr[a]) gr[a] = [];
+    if (!gr[b]) gr[b] = [];
+    gr[a].push(b);
+    gr[b].push(a);
   }
+
   const v = new Set();
   const q = [{n:na, dist:0}];
   while (q.length){
     const {n,dist} = q.shift();
+    if (n === nb) return dist;
     if (v.has(n)) continue;
     v.add(n);
-    if (n === nb) return dist;
-    for (const node of graph[n]) q.push({n:node,dist:dist+1});
+    for (const node of gr[n]) q.push({n:node,dist:dist+1});
   }
   return -1;
 };
