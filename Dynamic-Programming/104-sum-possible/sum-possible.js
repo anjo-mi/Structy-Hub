@@ -1,5 +1,5 @@
-const sumPossible = (amt, nums,memo = {}) => {
-  if (amt === 0) return true;
+const sumPossible = (amt, nums, memo = {}) => {
+  if (!amt) return true;
   if (amt < 0) return false;
   if (amt in memo) return memo[amt];
 
