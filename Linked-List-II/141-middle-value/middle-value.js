@@ -7,11 +7,10 @@ class Node {
 
 const middleValue = (head) => {
   if (!head) return null;
-  const arr = [];
+  const vals = [];
   let curr = head;
-  while (curr) {arr.push(curr.val); curr = curr.next}
-  const mid = Math.floor(arr.length / 2);
-  return arr[mid]
+  while (curr){vals.push(curr.val); curr = curr.next;};
+  return vals[Math.floor(vals.length / 2)];
 };
 
 const a = new Node('a');
