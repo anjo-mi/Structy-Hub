@@ -1,12 +1,11 @@
 const isSubsequence = (s1,s2) => {
   let i = 0,
       j = 0;
-  while (j < s2.length){
-    while (s1[i] !== s2[j] && j < s2.length) j++;
+  while (i < s1.length && j < s2.length){
     if (s1[i] === s2[j]){
-      i++
+      i++;
       j++;
-    }
+    }else j++;
   }
   return i >= s1.length;
 };
