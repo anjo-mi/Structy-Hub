@@ -1,12 +1,12 @@
 const nonAdjacentSum = (nums,i=0,memo={}) => {
-  if (i in memo) return memo[i];
   if (i >= nums.length) return 0;
+  if (i in memo) return memo[i];
 
-  const w = nonAdjacentSum(nums,i+2,memo) + nums[i];
+  const w = nums[i] + nonAdjacentSum(nums,i+2,memo);
   const wo = nonAdjacentSum(nums,i+1,memo);
 
   return memo[i] = Math.max(w,wo);
-};
+}
 
 const nums = [2, 4, 5, 12, 6];
 console.log(nonAdjacentSum(nums), 16);
