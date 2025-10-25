@@ -1,10 +1,10 @@
 const pairedParentheses = (str) => {
-  const st = [];
+  const s = [];
   for (const char of str){
-    if (char === '(') st.push(char);
-    if (char === ')') if (!st.pop()) return false;
+    if (char === '(') s.push(char);
+    if (char === ')') if (!s.pop()) return false
   }
-  return !st.length;
+  return !s.length
 };
 console.log(pairedParentheses("(david)((abby))"), true);
 console.log(pairedParentheses(""), true);
