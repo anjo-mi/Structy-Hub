@@ -1,4 +1,4 @@
-const canConcat = (s, words, i = 0, memo = {}) => {
+const canConcat = (s, words,i=0,memo={}) => {
   if (i === s.length) return true;
   if (i  >  s.length) return false;
   if (i in memo) return memo[i];
