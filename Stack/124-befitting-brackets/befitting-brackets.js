@@ -5,7 +5,9 @@ const befittingBrackets = (str) => {
 
   for (const char of str){
     if (char in opens) stack.push(char);
-    if (char in close) if (stack.pop() !== close[char]) return false;
+    if (char in close){
+      if (stack.pop() !== close[char]) return false;
+    }
   }
   return !stack.length;
 };
