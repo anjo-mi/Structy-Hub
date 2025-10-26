@@ -7,20 +7,25 @@ class Node {
 }
 
 const allTreePaths = root => {
-  const paths = [];
-  if (!root) return paths;
-  const s=[{node:root, path:[root.val]}];
-  while (s.length){
-    const {node, path} = s.pop();
-    if (!node.left && !node.right) paths.push(path);
-    if (node.right) s.push({node:node.right, path: [...path,node.right.val]});
-    if (node.left) s.push({node:node.left, path: [...path,node.left.val]});
-  }
-  return paths;
+  return _allTreePaths(root).map(p => p.reverse());
 }
 
 const _allTreePaths = r =>{
-  // do the other way ^^^^^ only next time
+  if (!r) return [];
+  const path = [];
+  if (!r.left && !r.right) return [[r.val]];
+
+  const left = _allTreePaths(r.left);
+  for (const p of left){
+    p.push(r.val);
+    path.push(p)
+  }
+  const right = _allTreePaths(r.right);
+  for (const p of right){
+    p.push(r.val);
+    path.push(p)
+  }
+  return path;
 }
 
 
