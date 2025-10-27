@@ -6,7 +6,6 @@ class Node {
 }
 
 const reverseList = (head) => {
-  if (!head) return null;
   let prev = null,
       curr = head;
   while (curr){
