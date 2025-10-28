@@ -6,12 +6,14 @@ class Node {
 }
 
 const linkedPalindrome = (head) => {
-  const arr = [];
-  if (!head) return true;
+  const vals = [];
   let curr = head;
-  while (curr){arr.push(curr.val); curr = curr.next;};
-  for (let i = 0, j = arr.length - 1 ; i <= j ; i++, j--){
-    if (arr[i] !== arr[j]) return false;
+  while (curr){
+    vals.push(curr.val);
+    curr = curr.next;
+  }
+  for (let i = 0, j = vals.length - 1 ; i < j ; i++, j--){
+    if (vals[i] !== vals[j]) return false;
   }
   return true;
 };
