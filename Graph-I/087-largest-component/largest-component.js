@@ -1,18 +1,18 @@
 const largestComponent = (graph) => {
-  const comps = [];
+  const islands = [];
   for (const node in graph){
-    if (comps.some(comp => comp.has(node))) continue;
-    const comp = new Set();
+    if (islands.some(isle => isle.has(node))) continue;
+    const isle = new Set();
     const q = [node];
     while (q.length){
       const curr = q.shift();
-      if (comp.has(curr)) continue;
-      comp.add(curr);
+      if (isle.has(curr)) continue;
+      isle.add(curr);
       for (const n of graph[curr]) q.push(n);
     }
-    comps.push(comp);
+    islands.push(isle);
   }
-  return comps.length ? Math.max(...comps.map(c => c.size)) : 0;
+  return islands.length ? Math.max(...islands.map(isle => isle.size)) : 0;
 };
 console.log(largestComponent({
   1: ['2'],
