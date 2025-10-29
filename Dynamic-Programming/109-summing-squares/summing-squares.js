@@ -1,14 +1,15 @@
-const summingSquares = (n,d=0,memo={}) => {
+const summingSquares = (n,d=0, memo ={}) => {
   if (!n) return 0;
+  if (n < 0) return Infinity;
   if (n in memo) return memo[n];
 
+  let min = Infinity;
   const sqs = [];
-  for (let i = 1 ; i * i <= n ; i++) sqs.push(i*i);
+  for (let i = 1 ; i**2 <= n ; i++) sqs.push(i**2);
+  const poss = sqs.map(sq => summingSquares(n - sq,d+1,memo) + 1);
 
-  const poss = sqs.map(sq => summingSquares(n-sq,d+1,memo) + 1);
-  const min = Math.min(...poss);
-  memo[n] = min;
-  return !isFinite(min) && !depth ? -1 : min;
+  memo[n] = Math.min(...poss);
+  return !isFinite(memo[n]) && !d ? -1 : memo[n];
 };
 
 /*
