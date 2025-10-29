@@ -1,5 +1,5 @@
 const shortestPath = (edges, na, nb) => {
-  const gr = {}
+  const gr = {};
   for (const [a,b] of edges){
     if (!gr[a]) gr[a] = [];
     if (!gr[b]) gr[b] = [];
@@ -8,12 +8,12 @@ const shortestPath = (edges, na, nb) => {
   }
 
   const v = new Set();
-  const q = [{n:na, dist:0}];
+  const q = [{n:na,dist:0}];
   while (q.length){
     const {n,dist} = q.shift();
-    if (n === nb) return dist;
     if (v.has(n)) continue;
     v.add(n);
+    if (n === nb) return dist;
     for (const node of gr[n]) q.push({n:node,dist:dist+1});
   }
   return -1;
