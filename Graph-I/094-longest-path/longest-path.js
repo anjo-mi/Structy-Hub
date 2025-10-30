@@ -2,16 +2,17 @@ const getDists = (node,graph,dists) => {
   if (node in dists) return dists[node];
   if (!graph[node].length) return 0;
 
-  const allDists = graph[node].map(n => getDists(n,graph,dists) + 1);
-  return dists[node] = Math.max(...allDists);
+  const paths = graph[node].map(n => getDists(n,graph,dists) + 1);
+
+  return dists[node] = Math.max(...paths);
 }
 
 const longestPath = (graph) => {
-  const dists = {};
+  const dists= {};
   for (const node in graph){
     getDists(node,graph,dists);
   }
-  return Object.values(dists).reduce((a,el) => el > a ? el : a, -Infinity);
+  return Math.max(...Object.values(dists));
 };
 /*
 
