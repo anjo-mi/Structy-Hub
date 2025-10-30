@@ -4,7 +4,7 @@ const getSems = (cls,crlm,sems) => {
 
   const allSems = crlm[cls].map(cl => getSems(cl,crlm,sems) + 1);
 
-  return sems[cls] = Math.max(...allSems);
+  return sems[cls] = Math.max(...allSems)
 }
 
 const semestersRequired = (numCourses, prereqs) => {
@@ -20,7 +20,7 @@ const semestersRequired = (numCourses, prereqs) => {
   for (const cls in crlm){
     getSems(cls,crlm,sems);
   }
-  return Math.max(...Object.values(sems))
+  return Math.max(...Object.values(sems));
 };
 
 
