@@ -9,9 +9,9 @@ const createLinkedList = (vals) => {
   if (!vals.length) return null;
   const head = new Node(vals.shift());
   let tail = head;
-  for (const n of vals){
-    tail.next = new Node(n);
-    tail = tail.next
+  while (vals.length){
+    tail.next = new Node(vals.shift());
+    tail = tail.next;
   }
   return head;
 };
