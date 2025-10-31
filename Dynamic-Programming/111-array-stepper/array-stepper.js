@@ -1,5 +1,5 @@
-const arrayStepper = (nums,i=0,memo={}) => {
-  if (i === nums.length-1) return true;
+const arrayStepper = (nums, i = 0, memo = {}) => {
+  if (i === nums.length - 1) return true;
   if (!nums[i]) return false;
   if (i in memo) return memo[i];
 
