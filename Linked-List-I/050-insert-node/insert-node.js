@@ -7,16 +7,19 @@ class Node {
 
 const insertNode = (head, val, i) => {
   const n = new Node(val);
-  if (!i){ n.next = head; return n; }
-  let c = head,
-      p = null;
-  while (c && i){
-    p = c;
-    c = c.next;
+  if (!i || !head){
+    n.next = head;
+    return n;
+  }
+  let prev = null,
+      curr = head;
+  while (curr && i){
+    prev = curr;
+    curr = curr.next;
     i--;
   }
-  p.next = n;
-  n.next = c;
+  prev.next = n;
+  n.next = curr;
   return head;
 };
 const a = new Node("a");
