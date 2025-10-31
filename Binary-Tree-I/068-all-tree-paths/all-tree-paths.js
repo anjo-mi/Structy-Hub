@@ -11,21 +11,20 @@ const allTreePaths = root => {
 }
 
 const _allTreePaths = r =>{
-  if (!r) return [];
-  const path = [];
+  const paths = [];
+  if (!r) return paths;
   if (!r.left && !r.right) return [[r.val]];
-
   const left = _allTreePaths(r.left);
   for (const p of left){
     p.push(r.val);
-    path.push(p)
+    paths.push(p);
   }
   const right = _allTreePaths(r.right);
   for (const p of right){
     p.push(r.val);
-    path.push(p)
+    paths.push(p);
   }
-  return path;
+  return paths;
 }
 
 
