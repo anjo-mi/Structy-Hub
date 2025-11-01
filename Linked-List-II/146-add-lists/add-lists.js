@@ -6,15 +6,15 @@ class Node {
 }
 
 const addLists = (h1, h2) => {
-  let c1 = h1,
-      c2 = h2,
-      carry = 0;
-  let head = null,
-      tail = null;
-  while (c1 || c2){
-    const nextTotal = (c1 ? c1.val : 0) + (c2 ? c2.val : 0) + carry;
-    carry = Math.floor(nextTotal / 10);
-    const n = new Node(nextTotal % 10);
+  let carry = 0,
+      head,
+      tail;
+  while (h1 || h2){
+    const a = h1 ? h1.val : 0;
+    const b = h2 ? h2.val : 0;
+    const dig = (a + b + carry) % 10;
+    carry = Math.floor((a + b + carry) / 10);
+    const n = new Node(dig);
     if (!head){
       head = n;
       tail = n;
@@ -22,10 +22,10 @@ const addLists = (h1, h2) => {
       tail.next = n;
       tail = tail.next;
     }
-    if (c1) c1 = c1.next;
-    if (c2) c2 = c2.next;
+    if (h1) h1 = h1.next;
+    if (h2) h2 = h2.next;
   }
-  if (carry) tail.next = new Node(carry);
+  if (carry) tail.next = new Node(carry)
   return head;
 };
 
