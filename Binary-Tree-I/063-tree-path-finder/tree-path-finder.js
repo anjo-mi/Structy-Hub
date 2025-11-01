@@ -6,13 +6,13 @@ class Node {
   }
 }
 
-const pathFinder = (root, target) => {
-  if (!root) return null;
-  const path = [root.val];
-  if (root.val === target) return path;
+const pathFinder = (r, t) => {
+  if (!r) return null;
+  const path = [r.val];
+  if (r.val===t) return path;
 
-  const left = pathFinder(root.left,target);
-  const right = pathFinder(root.right,target);
+  const left = pathFinder(r.left,t);
+  const right = pathFinder(r.right,t);
 
   if (left) return path.concat(left);
   if (right) return path.concat(right);
