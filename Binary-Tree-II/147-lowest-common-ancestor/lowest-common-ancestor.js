@@ -6,10 +6,11 @@ class Node {
   }
 }
 
-const pathFinder = (r,v) => {
+const pathFinder = (r,v) =>{
   if (!r) return null;
   const path = [r.val];
   if (r.val === v) return path;
+
   const left = pathFinder(r.left,v);
   const right = pathFinder(r.right,v);
 
@@ -22,14 +23,14 @@ const pathFinder = (r,v) => {
 const lowestCommonAncestor = (root, val1, val2) => {
   const pathToOne = pathFinder(root,val1);
   const pathToTwo = pathFinder(root,val2);
-
-  let i = 0;
-  while (pathToOne[i] === pathToTwo[i]) i++;
-  return pathToOne[i-1];
+  let deepest = null;
+  if (!pathToOne || !pathToTwo) return deepest;
+  for (let i = 0 ; i < Math.min(pathToOne.length,pathToTwo.length) ; i++){
+    if (pathToOne[i] === pathToTwo[i]) deepest = pathToOne[i];
+  }
+  return deepest;
 };
-// find the path to each given node (pathFinder function)
-// ^^ make the above return an array
-// while arr1[i] === arr2[i] i++, return arr[i-1];
+
 const a = new Node('a');
 const b = new Node('b');
 const c = new Node('c');
@@ -55,18 +56,7 @@ console.log(lowestCommonAncestor(a, 'f', 'c'), 'c');
 //    / \
 //    g  h
 
-/*
-root of a binary tree, plus two values
-  - tests show both values always being in tree
-    - is there error handling for one / both value(s) not be included
 
-the goal is to return the last value BOTH received:values traverse in order to get to their place in the tree (this includes if the value itself is passed by another)
-
-
-ISSUES:
-duplicate values in trees,
-0 - 1 of the given values are present in tree
-*/
 module.exports = {
   lowestCommonAncestor,
 };
