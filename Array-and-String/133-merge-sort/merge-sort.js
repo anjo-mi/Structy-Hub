@@ -1,25 +1,24 @@
-const mergeBack = (front,back) => {
+const mergeBack = (a1,a2) => {
   let i = 0,
       j = 0;
   const merged = [];
-  
-  while (i < front.length && j < back.length){
-    const min = front[i] < back[j] ? front[i] : back[j];
-    merged.push(min);
-    if (min === front[i]) i++;
+  while (i < a1.length || j < a2.length){
+    const one = i < a1.length ? a1[i] : Infinity;
+    const two = j < a2.length ? a2[j] : Infinity;
+    const low = Math.min(one,two);
+    merged.push(low);
+    if (low === a1[i]) i++;
     else j++;
   }
-  if (i < front.length) merged.push(...front.slice(i));
-  if (j < back.length) merged.push(...back.slice(j));
   return merged;
 }
 
 const mergeSort = (nums) => {
   if (nums.length <= 1) return nums;
   const mid = Math.floor(nums.length / 2);
-  const front = mergeSort(nums.slice(0,mid));
-  const back = mergeSort(nums.slice(mid));
-  return mergeBack(front,back);
+  const left = mergeSort(nums.slice(0,mid));
+  const right = mergeSort(nums.slice(mid));
+  return mergeBack(left,right);
 };
 
 const numbers = [10, 4, 42, 5, 8, 100, 5, 6, 12, 40];
