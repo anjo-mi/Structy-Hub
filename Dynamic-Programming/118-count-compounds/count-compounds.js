@@ -1,12 +1,12 @@
-const countCompounds = (comp, elms,i=0,memo={}) => {
-  elms = elms.map(elm => elm.toLowerCase());
+const countCompounds = (comp, elms, i = 0 , memo = {}) => {
+  elms= elms.map(el => el.toLowerCase());
   if (i === comp.length) return 1;
-  if (i  >  comp.length) return 0;
+  if (i >   comp.length) return 0;
   if (i in memo) return memo[i];
 
   let res = 0;
-  for (const elm of elms) if (comp.startsWith(elm,i)) {
-    res += countCompounds(comp,elms,i+elm.length,memo);
+  for (const el of elms){
+    if (comp.startsWith(el,i)) res += countCompounds(comp,elms,i+el.length,memo);
   }
 
   return memo[i] = res;
