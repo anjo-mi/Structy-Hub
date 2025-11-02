@@ -14,18 +14,21 @@ class Queue {
 
   enqueue(val) {
     const n = new Node(val);
-    if (!this.head) this.head = n;
-    else this.tail.next = n;
-    this.tail = n;
+    if (!this.head){
+      this.head = n;
+      this.tail = n;
+    }else{
+      this.tail.next = n;
+      this.tail = this.tail.next;
+    }
     this.size++;
   }
 
   dequeue() {
-    if (!this.head) return null;
-    const h = this.head;
-    this.head = this.head.next;
     this.size--;
-    return h.val;
+    const res = this.head.val;
+    this.head = this.head.next;
+    return res;
   }
 }
 
