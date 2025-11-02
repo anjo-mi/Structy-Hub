@@ -2,7 +2,7 @@ const loc = (r,c) => r + ',' + c;
 const coords = (l) => l.split(',').map(Number);
 const inBounds = (r,c,grid) => grid[r]?.[c];
 
-const getConnections = (r,c,grid,isle = new Set()) => {
+const getConnections = (r,c,grid,isle=new Set()) => {
   if (!inBounds(r,c,grid) || 
        grid[r][c] !== 'L' || 
        isle.has(loc(r,c))) return isle;
@@ -16,19 +16,18 @@ const getConnections = (r,c,grid,isle = new Set()) => {
   return isle;
 }
 
-const buildBridge = (l,grid,b) => {
-  const q = [{l,dist:-1}];
-  const v = new Set();
+const findBridge = (parcel,grid,b,br = new Set()) => {
+  const q = [{parcel,dist:-1}];
   while (q.length){
-    const {l,dist} = q.shift();
-    const [r,c] = coords(l);
-    if (!inBounds(r,c,grid) || v.has(l)) continue;
-    v.add(l);
-    if (b.has(l)) return dist;
-    q.push({l:loc(r+1,c),dist:dist+1});
-    q.push({l:loc(r-1,c),dist:dist+1});
-    q.push({l:loc(r,c+1),dist:dist+1});
-    q.push({l:loc(r,c-1),dist:dist+1});
+    const {parcel,dist} = q.shift();
+    const [r,c] = coords(parcel);
+    if (!inBounds(r,c,grid) || br.has(parcel)) continue;
+    if (b.has(parcel)) return dist;
+    br.add(parcel);
+    q.push({parcel:loc(r,c+1), dist:dist+1});
+    q.push({parcel:loc(r,c-1), dist:dist+1});
+    q.push({parcel:loc(r+1,c), dist:dist+1});
+    q.push({parcel:loc(r-1,c), dist:dist+1});
   }
   return Infinity;
 }
@@ -38,19 +37,19 @@ const bestBridge = (grid) => {
   for (let r = 0 ; r < grid.length ; r++){
     for (let c = 0 ; c < grid[r].length ; c++){
       if (grid[r][c] === 'L' && !islands.some(isle => isle.has(loc(r,c)))){
-        const isle = getConnections(r,c,grid);
+        isle = getConnections(r,c,grid);
         islands.push(isle);
       }
     }
   }
 
   const [a,b] = islands;
-  let smallestBridge = Infinity;
-  for (const l of a){
-    const bridge = buildBridge(l,grid,b);
-    if (bridge < smallestBridge) smallestBridge = bridge;
+  let best = Infinity;
+  for (const parcel of a){
+    const br = findBridge(parcel,grid,b);
+    if (br < best) best = br;
   }
-  return smallestBridge;
+  return isFinite(best) ? best : -1;
 };
 
 /*
