@@ -8,15 +8,15 @@ const closestCarrot = (grid, sr, sc) => {
   while (q.length){
     const {n,dist} = q.shift();
     const [r,c] = coords(n);
-    if (!inBounds(r,c,grid) || 
-         grid[r][c] === 'X' ||
-         v.has(n)) continue;
+    if (v.has(n) ||
+       !inBounds(r,c,grid) ||
+        grid[r][c] === 'X') continue;
     v.add(n);
     if (grid[r][c] === 'C') return dist;
-    q.push({n:loc(r-1,c),dist:dist+1});
     q.push({n:loc(r+1,c),dist:dist+1});
-    q.push({n:loc(r,c-1),dist:dist+1});
+    q.push({n:loc(r-1,c),dist:dist+1});
     q.push({n:loc(r,c+1),dist:dist+1});
+    q.push({n:loc(r,c-1),dist:dist+1});
   }
   return -1;
 };
