@@ -5,11 +5,16 @@ class Node {
   }
 }
 
-const linkedListCycle = (head,v=new Set()) => {
+const linkedListCycle = (head) => {
   if (!head) return false;
-  if (v.has(head.val)) return true;
-  v.add(head.val);
-  return linkedListCycle(head.next,v);
+  const seen = new Set();
+  let curr = head;
+  while (curr){
+    if (seen.has(curr.val)) return true;
+    seen.add(curr.val);
+    curr = curr.next;
+  }
+  return false;
 };
 // q -> r -> s -> t -> u -> v -> w -> x -> y -> s
 // 12
