@@ -6,13 +6,15 @@ class Node {
 }
 
 const middleValue = (head) => {
-  const arr = [];
+  if (!head) return null;
+  const vals = [];
   let curr = head;
   while (curr){
-    arr.push(curr.val);
+    vals.push(curr.val);
     curr = curr.next;
   }
-  return arr.length ? arr[Math.floor(arr.length / 2)] : null;
+  const mid = Math.floor(vals.length / 2);
+  return vals[mid];
 };
 
 const a = new Node('a');
