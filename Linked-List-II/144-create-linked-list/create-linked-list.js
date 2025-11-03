@@ -6,12 +6,17 @@ class Node {
 }
 
 const createLinkedList = (vals) => {
-  if (!vals.length) return null;
-  const head = new Node(vals.shift());
-  let tail = head;
-  while (vals.length){
-    tail.next = new Node(vals.shift());
-    tail = tail.next;
+  let head = null,
+      tail = null;
+  for (const val of vals){
+    const n = new Node(val);
+    if (!head){
+      head = n;
+      tail = n;
+    }else {
+      tail.next = n;
+      tail = tail.next;
+    }
   }
   return head;
 };
