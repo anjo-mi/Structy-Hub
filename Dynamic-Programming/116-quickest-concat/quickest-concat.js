@@ -1,12 +1,11 @@
-const quickestConcat = (s, words, i = 0 , depth = 0 , memo = {}) => {
+const quickestConcat = (s, words, i = 0, d = 0, memo = {}) => {
   if (i === s.length) return 0;
-  if (i  >  s.length) return Infinity;
+  if (i >   s.length) return Infinity;
   if (i in memo) return memo[i];
 
-  const poss = words.map(w => s.startsWith(w,i) ? quickestConcat(s,words,i+w.length,depth+1,memo) + 1 : Infinity);
-  const min = Math.min(...poss);
-
-  return memo[i] = !isFinite(min) && !depth ? -1 : min;
+  const poss = words.map(w => s.startsWith(w,i) ? quickestConcat(s,words,i+w.length,d+1,memo) + 1 : Infinity);
+  memo[i] = Math.min(...poss);
+  return !isFinite(memo[i]) && !d ? -1 : memo[i];
 };
 
 console.log(quickestConcat('simchacindy', ['sim', 'simcha', 'acindy']), -1);
