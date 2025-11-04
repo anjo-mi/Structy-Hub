@@ -9,22 +9,9 @@ class Node {
 const binarySearchTreeIncludes = (root, target) => {
   if (!root) return false;
   if (root.val === target) return true;
-  if (root.val  >  target) return binarySearchTreeIncludes(root.left,target);
-  if (root.val  <  target) return binarySearchTreeIncludes(root.right,target);
+  if (root.val < target) return binarySearchTreeIncludes(root.right,target);
+  if (root.val > target) return binarySearchTreeIncludes(root.left,target);
 };
-// if (!root) return false;
-// ^^ this may cause an issue as far as returning before value is encountered
-//   - maybe not since it will always target proper branch?
-
-// if (root.val === target) rturn true;
-// if (root.val > target) return fn(root.left)
-// if (root.val < target) return fn(root.right)
-// return false;
-/*
-root of binary search tree (.val && .right >= val .left <= val)
-return Boolean
-
-*/
 const q = new Node(54);
 const r = new Node(42);
 const s = new Node(70);
