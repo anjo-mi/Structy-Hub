@@ -13,13 +13,13 @@ const allTreePaths = root => {
 const _allTreePaths = r =>{
   const paths = [];
   if (!r) return paths;
-  if (!r.left && !r.right) return [[r.val]];
+  if (!r.right && !r.left) return [[r.val]];
   const left = _allTreePaths(r.left);
+  const right = _allTreePaths(r.right);
   for (const p of left){
     p.push(r.val);
     paths.push(p);
   }
-  const right = _allTreePaths(r.right);
   for (const p of right){
     p.push(r.val);
     paths.push(p);
