@@ -9,7 +9,7 @@ const lexicalOrder = (w1, w2, alpha) => {
     i++;
     j++;
   }
-  return i >= w1.length;
+  return i >=w1.length;
 };
 
 
