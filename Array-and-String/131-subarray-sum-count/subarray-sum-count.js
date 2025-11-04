@@ -3,14 +3,14 @@ const subarraySumCount = (nums,targ) => {
   let total = 0;
   for (const num of nums) sums.push(total += num);
 
-  const seen = {};
-  let res = 0;
+  let count = 0;
+  let seen = {};
   for (const sum of sums){
     const comp = sum - targ;
-    if (comp in seen) res += seen[comp];
+    if (comp in seen) count += seen[comp];
     seen[sum] = (seen[sum] || 0) + 1;
   }
-  return res;
+  return count;
 };
 console.log(subarraySumCount([1, 3, 1, 4, 3], 2), 0);
 console.log(subarraySumCount([1, 3, 1, 4, -2, 3], 5), 3);
