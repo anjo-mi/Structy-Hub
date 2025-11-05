@@ -2,14 +2,14 @@ const mergeBack = (a1,a2) => {
   let i = 0,
       j = 0;
   const merged = [];
-  while (i < a1.length || j < a2.length){
-    const one = i < a1.length ? a1[i] : Infinity;
-    const two = j < a2.length ? a2[j] : Infinity;
-    const low = Math.min(one,two);
-    merged.push(low);
-    if (low === a1[i]) i++;
+  while (i < a1.length && j < a2.length){
+    const next = a1[i] < a2[j] ? a1[i] : a2[j];
+    merged.push(next);
+    if (next === a1[i]) i++;
     else j++;
   }
+  if (i < a1.length) merged.push(...a1.slice(i));
+  if (j < a2.length) merged.push(...a2.slice(j));
   return merged;
 }
 
