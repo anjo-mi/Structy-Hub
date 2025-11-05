@@ -9,12 +9,12 @@ const lexicalOrder = (w1, w2, alpha) => {
     i++;
     j++;
   }
-  return i === w1.length;
+  return i >=w1.length;
 };
 
 const detectDictionary = (dict, alpha) => {
   for (let i = 0 ; i < dict.length - 1 ; i++){
-    if (!lexicalOrder(dict[i],dict[i+1], alpha)) return false;
+    if (!lexicalOrder(dict[i],dict[i+1],alpha)) return false;
   }
   return true;
 };
