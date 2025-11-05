@@ -7,14 +7,12 @@ class Node {
 }
 
 const flipTree = (r) => {
-  if (!r) return null
-  const left = r.left
-  const right = r.right
-  r.left = right
-  r.right = left
-  flipTree(r.left)
-  flipTree(r.right)
-  return r
+  if (!r) return null;
+  const left = flipTree(r.left);
+  const right = flipTree(r.right);
+  r.left = right;
+  r.right = left;
+  return r;
 };
 
 
