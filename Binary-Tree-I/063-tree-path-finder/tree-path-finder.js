@@ -8,14 +8,14 @@ class Node {
 
 const pathFinder = (r, t) => {
   if (!r) return null;
-  const path = [r.val];
-  if (r.val===t) return path;
+  const p = [r.val];
+  if (r.val === t) return p;
 
   const left = pathFinder(r.left,t);
   const right = pathFinder(r.right,t);
 
-  if (left) return path.concat(left);
-  if (right) return path.concat(right);
+  if (left) return p.concat(left);
+  if (right) return p.concat(right);
 
   return null;
 };
