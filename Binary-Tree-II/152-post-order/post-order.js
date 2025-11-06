@@ -13,19 +13,7 @@ const postOrder = (r, stack = []) => {
   stack.push(r.val);
   return stack;
 };
-/*
-root of binary tree of nodes (.val + .right || null, .left || null)
-will return an [] of all values
-  - in order: left, right, parent
 
-DFS: create stack as parameter
-if (root.left) call postOrder on root.left (w stack param)
-if (root.right) call postOrder on root.right (w stack param)
-stack.push(root.val) return stack;
-return stack
-
-
-*/
 
 const a = new Node('a');
 const b = new Node('b');
