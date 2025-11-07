@@ -25,10 +25,8 @@ class Queue {
   }
 
   dequeue() {
-    this.size--;
-    const res = this.head.val;
-    this.head = this.head.next;
-    return res;
+    if (!this.head) return null;
+    const val = this.head.val
   }
 }
 
