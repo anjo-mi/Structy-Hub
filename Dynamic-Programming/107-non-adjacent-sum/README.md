@@ -4,6 +4,8 @@ Write a function, _nonAdjacentSum_, that takes in an array of numbers as an argu
 return the maximum sum of non-adjacent elements in the array. There is no limit on how many elements can be taken
 into the sum as long as they are not adjacent.
 
+You can assume that the numbers are nonnegative.
+
 ```plaintext
 For example, given:
 
