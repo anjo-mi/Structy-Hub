@@ -7,16 +7,12 @@ class Node {
 
 const undupeSortedLinkedList = (head) => {
   if (!head) return null;
-  let curr = head,
-      prev = head;
+  let prev = head,
+      curr = head.next;
   while (curr){
-    if (curr.val === prev.val){
-      prev.next = curr.next;
-      curr = curr.next;
-    }else{
-      prev = curr;
-      curr = curr.next;
-    }
+    if (prev.val === curr.val) prev.next = curr.next;
+    else prev = curr;
+    curr = curr.next;
   }
   return head;
 };
