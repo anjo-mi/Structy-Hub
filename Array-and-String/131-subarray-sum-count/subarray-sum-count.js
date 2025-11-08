@@ -7,7 +7,7 @@ const subarraySumCount = (nums,targ) => {
   let count = 0;
   for (const sum of sums){
     const comp = sum - targ;
-    if (comp in seen) count += seen[comp];
+    if (seen[comp]) count += seen[comp];
     seen[sum] = (seen[sum] || 0) + 1;
   }
   return count;
