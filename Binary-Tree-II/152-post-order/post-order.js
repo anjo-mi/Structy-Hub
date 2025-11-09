@@ -6,12 +6,12 @@ class Node {
   }
 }
 
-const postOrder = (r, stack = []) => {
-  if (!r) return [];
-  if (r.left) postOrder(r.left,stack);
-  if (r.right) postOrder(r.right,stack);
-  stack.push(r.val);
-  return stack;
+const postOrder = (r, vals = []) => {
+  if (!r) return vals;
+  postOrder(r.left,vals);
+  postOrder(r.right,vals);
+  vals.push(r.val);
+  return vals;
 };
 
 
