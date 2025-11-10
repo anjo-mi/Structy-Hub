@@ -7,17 +7,16 @@ class Node {
 }
 
 const buildTreeInPost = (inn, post) => {
-  if (!inn.length || !post.length) return null;
-  const r = post.pop();
-  const innDex = inn.indexOf(r);
-  const leftChildNodes = inn.slice(0,innDex);
-  const rightChildNodes = inn.slice(innDex + 1);
-  const leftPost = post.splice(0, leftChildNodes.length);
-  const rightPost = post.splice(0, rightChildNodes.length);
-  const root = new Node(r);
-  root.left = buildTreeInPost(leftChildNodes,leftPost);
-  root.right = buildTreeInPost(rightChildNodes,rightPost);
-  return root;
+  if (!post.length || !inn.length) return null;
+  const parent = new Node(post.pop());
+  const innDex = inn.indexOf(parent.val);
+  const leftInn = inn.slice(0,innDex);
+  const rightInn = inn.slice(innDex + 1);
+  const leftPost = post.slice(0,leftInn.length);
+  const rightPost = post.slice(leftInn.length);
+  parent.left = buildTreeInPost(leftInn,leftPost);
+  parent.right = buildTreeInPost(rightInn,rightPost);
+  return parent;
 };
 console.log(buildTreeInPost(
   [ 'd', 'b', 'e', 'a', 'f', 'c', 'g' ],
@@ -29,23 +28,6 @@ console.log(buildTreeInPost(
 //  / \    / \
 // d   e  f   g
 
-/*
-two arrays representing a tree
-  - in order: left, parent, right
-  - post order: left, right, parent
-
-if the parent is always preceded by its children
-  - last post order element needs to be the root
-    - pop set to root
-    - split the inn order where popped value is
-      - slice post order in Math.floor(length / 2)
-  - find in innOrder
-    - everything to the left is that parent's left children
-    - everything to the right is that parent's right children
-    - take left child nodes, run same function
-    - repeat for right
-    - root. left/right = above
-*/
 module.exports = {
   buildTreeInPost,
 };
