@@ -8,23 +8,23 @@ class Node {
 const addLists = (h1, h2) => {
   let head,
       tail,
-      carry = 0;
+      carry;
   while (h1 || h2){
-    const total = (h1 ? h1.val : 0) + (h2 ? h2.val : 0) + carry;
+    const total = (h1 ? h1.val : 0) + (h2 ? h2.val : 0) + (carry || 0);
     carry = Math.floor(total / 10);
     const dig = total % 10;
     const n = new Node(dig);
     if (!head){
       head = n;
       tail = n;
-    }else{
+    }else {
       tail.next = n;
       tail = tail.next;
     }
     h1 = h1 ? h1.next : h1;
     h2 = h2 ? h2.next : h2;
   }
-  tail.next = carry ? new Node(carry) : null;
+  if (carry) tail.next = new Node(carry);
   return head;
 };
 
