@@ -8,6 +8,7 @@ class Node {
 
 const flipTree = (r) => {
   if (!r) return null;
+  if (!r.left && !r.right) return r;
   const left = flipTree(r.left);
   const right = flipTree(r.right);
   r.left = right;
