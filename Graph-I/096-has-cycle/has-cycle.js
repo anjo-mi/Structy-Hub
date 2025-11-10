@@ -3,9 +3,9 @@ const hasCycle = (graph) => {
     const v = new Set();
     const q = [node];
     while (q.length){
-      const curr = q.shift();
-      v.add(curr);
-      for (const n of graph[curr]){
+      const c = q.shift();
+      v.add(c);
+      for (const n of graph[c]){
         if (v.has(n)) return true;
         q.push(n);
       }
@@ -13,9 +13,7 @@ const hasCycle = (graph) => {
   }
   return false;
 };
-/*
 
-*/
 
 
 console.log(hasCycle({
