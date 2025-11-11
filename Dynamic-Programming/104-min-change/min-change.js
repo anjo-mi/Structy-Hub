@@ -3,9 +3,9 @@ const minChange = (amt,coins,d=0,memo={}) => {
   if (amt < 0) return Infinity;
   if (amt in memo) return memo[amt];
 
-  const poss = coins.map(cn => minChange(amt-cn,coins,d+1,memo) +1);
+  const poss = coins.map(c => minChange(amt-c,coins,d+1,memo) + 1);
   memo[amt] = Math.min(...poss);
-
+  
   return !isFinite(memo[amt]) && !d ? -1 : memo[amt];
 };
 /*
