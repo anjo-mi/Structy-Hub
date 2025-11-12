@@ -6,31 +6,23 @@ class Node {
   }
 }
 
-const getMaxHeights = (r,d = 0) => {
-  if (!r) return d-1;
-  if (!r.right && !r.left) return d;
-  const left = getMaxHeights(r.left,d+1);
-  const right = getMaxHeights(r.right,d+1);
-  return Math.max(left,right);
+const checkBalance = (r) => {
+  if (!r) return 0;
+
+  const left = checkBalance(r.left);
+  if (left === -1) return -1;
+  
+  const right = checkBalance(r.right);
+  if (right === -1) return -1;
+
+  if (Math.abs(right - left) > 1) return -1;
+  else return Math.max(right,left) + 1;
 }
 
 const isTreeBalanced = (r) => {
-  if (!r) return true;
-
-  const s = [[r,0]];
-  while (s.length){
-    const [c,d] = s.pop();
-    const left = c ? getMaxHeights(c.left,d+1) : d;
-    const right = c ? getMaxHeights(c.right, d+1) : d;
-    // console.log({c,left,right})
-    if (Math.abs(left - right) > 1) return false;
-    if (c && c.right) s.push([c.right,d+1]);
-    else if (c && !c.right) s.push([c.right,d]);
-    if (c && c.left) s.push([c.left,d+1]);
-    else if (c && !c.left) s.push([c.left,d]);
-  }
-  return true;
+  return checkBalance(r) > -1;
 };
+
 const s = new Node("s");
 const t = new Node("t");
 const u = new Node("u");
