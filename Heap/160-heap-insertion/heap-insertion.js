@@ -11,31 +11,22 @@ class MinHeap {
     return this.array.length;
   }
 
+  swap(ci,pi){
+    [ this.array[ci] , this.array[pi] ] = [ this.array[pi] , this.array[ci] ];
+  }
+
   insert(val) {
-    let index = this.array.length;
+    let i = this.array.length;
     this.array.push(val);
-    while (index){
-      const parentIndex = Math.floor((i - 1) / 2);
-      if (this.array[parentIndex] > this.array[index]){
-        [ this.array[index] , this.array[parentIndex] ] = [ this.array[parentIndex] , this.array[index] ];
-      }
+    while (i){
+      const parentIndex = Math.floor((i-1) / 2);
+      if (this.array[parentIndex] > this.array[i]) this.swap(i,parentIndex);
       else break;
-      index = parentIndex;
+      i = parentIndex;
     }
   }
 }
-/*
-in all cases, push the new value to the end of the array
-let index = this.array.length - 1;
-while (index){
-  const parentIndex = Math.floor((index - 1) / 2);
-  if this.array[index] < this.array[parentIndex]  
-    [ this.array[index] , this.array[parentIndex] ] = [ this.array[parentIndex] , this.array[index] ];
-  else break;
-  index = parentIndex;
-}
-return ???????
-*/
+
 
 
 const heap = new MinHeap();
