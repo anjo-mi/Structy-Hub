@@ -6,7 +6,7 @@ class Node {
   }
 }
 
-const isBinarySearchTree = (root,h,l) => {
+const isBinarySearchTree = (root, h = null, l = null) => {
   if (!root) return true;
   if (h || h === 0) if (root.val > h) return false;
   if (l || l === 0) if (root.val < l) return false;
