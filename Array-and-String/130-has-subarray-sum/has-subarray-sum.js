@@ -1,7 +1,7 @@
 const hasSubarraySum = (nums,tar) => {
   const sums = [0];
   let total = 0;
-  for (const num of nums) sums.push(total+=num);
+  for (const num of nums) sums.push(total += num);
 
   const seen = new Set();
   for (const sum of sums){
