@@ -1,4 +1,4 @@
-const getSems = (cls,crlm,sems) => {
+const getSems = (cls, crlm, sems) => {
   if (cls in sems) return sems[cls];
   if (!crlm[cls].length) return 1;
 
@@ -10,8 +10,8 @@ const semestersRequired = (numCourses, prereqs) => {
   if (!prereqs.length) return 1;
   const crlm = {};
   for (const [a,b] of prereqs){
-    if (!crlm[a]) crlm[a] = [];
-    if (!crlm[b]) crlm[b] = [];
+    crlm[a] = (crlm[a] || []);
+    crlm[b] = (crlm[b] || []);
     crlm[b].push(a);
   }
 
