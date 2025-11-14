@@ -1,14 +1,14 @@
 const nestingScore = (str) => {
-  const stack = [0];
+  const s = [0];
   for (const char of str){
-    if (char === '[') stack.push(0);
+    if (char === '[') s.push(0);
     if (char === ']'){
-      const c = stack.pop();
-      if (!c) stack[stack.length - 1]++;
-      else stack[stack.length - 1] += (c * 2);
+      const c = s.pop();
+      if (!c) s[s.length - 1]++;
+      else s[s.length-1] += c * 2;
     }
   }
-  return stack.pop();
+  return s.pop();
 };
 
 console.log(nestingScore("[][[][]][[]]"), 7);
