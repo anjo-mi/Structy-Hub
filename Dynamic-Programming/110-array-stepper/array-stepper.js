@@ -1,10 +1,10 @@
 const arrayStepper = (nums, i = 0, memo = {}) => {
-  if (i === nums.length - 1) return true;
+  if (i >= nums.length - 1) return true;
   if (!nums[i]) return false;
   if (i in memo) return memo[i];
 
   const steps = [];
-  for (let st = 1 ; st <= nums[i] ; st++) steps.push(st);
+  for (let s = 1 ; s <= nums[i] ; s++) steps.push(s)
 
   return memo[i] = steps.some(st => arrayStepper(nums,i+st,memo));
 };
