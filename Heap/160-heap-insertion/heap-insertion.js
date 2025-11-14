@@ -11,18 +11,15 @@ class MinHeap {
     return this.array.length;
   }
 
-  swap(ci,pi){
-    [ this.array[ci] , this.array[pi] ] = [ this.array[pi] , this.array[ci] ];
-  }
-
   insert(val) {
-    let i = this.array.length;
     this.array.push(val);
+    let i = this.size() - 1;
     while (i){
-      const parentIndex = Math.floor((i-1) / 2);
-      if (this.array[parentIndex] > this.array[i]) this.swap(i,parentIndex);
-      else break;
-      i = parentIndex;
+      const pi = Math.floor((i-1) / 2);
+      if (this.array[i] < this.array[pi]){
+        [ this.array[i] , this.array[pi] ] = [ this.array[pi] , this.array[i] ];
+      }else break;
+      i = pi;
     }
   }
 }
@@ -53,6 +50,8 @@ console.log({heap});
 //               12      15          29        11
 //             /  \     /  \       /  \       /  \
 //            93  43   35  16    63   37     21  80
+
+
 // [ -501, -6, -500, 12, 15, 29, 11, 93, 43, 35, 16, 63, 37, 21, 80 ]
 
 module.exports = {
