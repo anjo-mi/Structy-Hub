@@ -9,8 +9,9 @@ class Node {
 const binarySearchTreeIncludes = (root, target) => {
   if (!root) return false;
   if (root.val === target) return true;
-  if (root.val < target) return binarySearchTreeIncludes(root.right,target);
-  if (root.val > target) return binarySearchTreeIncludes(root.left,target);
+  return root.val > target
+          ? binarySearchTreeIncludes(root.left,target)
+          : binarySearchTreeIncludes(root.right,target);
 };
 const q = new Node(54);
 const r = new Node(42);
