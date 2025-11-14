@@ -2,7 +2,7 @@ const reverseSomeChars = (str, chars) => {
   const s = [];
   chars = new Set(chars);
   for (const char of str) if (chars.has(char)) s.push(char);
-  return str.split('').map(c => chars.has(c) ? s.pop() : c).join('');
+  return str.split('').map(char => chars.has(char) ? s.pop() : char).join('');
 };
 
 
