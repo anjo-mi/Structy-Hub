@@ -7,17 +7,17 @@ class Node {
 }
 
 const buildTreeInPre = (inn, pre) => {
-  if (!inn.length || !pre.length) return null;
-  const root = pre.shift();
-  const innDex = inn.indexOf(root);
-  const leftInn = inn.slice(0, innDex);
+  if (!inn.length) return null;
+  const r = pre.shift();
+  const innDex = inn.indexOf(r);
+  const leftInn = inn.slice(0,innDex);
   const rightInn = inn.slice(innDex + 1);
   const leftPre = pre.slice(0,leftInn.length);
-  const rightPre = pre.slice(leftInn.length, leftInn.length + rightInn.length);
-  const r = new Node(root);
-  r.left = buildTreeInPre(leftInn,leftPre);
-  r.right = buildTreeInPre(rightInn,rightPre);
-  return r;
+  const rightPre = pre.slice(leftInn.length);
+  const root = new Node(r);
+  root.left = buildTreeInPre(leftInn,leftPre);
+  root.right = buildTreeInPre(rightInn,rightPre);
+  return root;
 };
 
 console.log(buildTreeInPre(
