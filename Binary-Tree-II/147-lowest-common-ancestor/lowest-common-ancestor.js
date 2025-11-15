@@ -10,8 +10,10 @@ const pathFinder = (r, v) => {
   if (!r) return null;
   const path = [r.val];
   if (r.val === v) return path;
+
   const left = pathFinder(r.left,v);
   const right = pathFinder(r.right,v);
+
   if (left) return path.concat(left);
   if (right) return path.concat(right);
 
@@ -19,15 +21,15 @@ const pathFinder = (r, v) => {
 }
 
 const lowestCommonAncestor = (root, val1, val2) => {
-  let deepest = null;
   const p1 = pathFinder(root,val1);
   const p2 = pathFinder(root,val2);
-  while (p1.length && p2.length){
-    const [a,b] = [p1.shift() , p2.shift()];
-    if (a === b) deepest = a;
-    else return deepest;
+  if (!p1 || !p2) return null;
+  let shared = p1[0];
+  for (let i = 0 ; i < Math.min(p1.length, p2.length) ; i++){
+    if (p1[i] !== p2[i]) return shared;
+    shared = p1[i];
   }
-  return deepest;
+  return shared;
 };
 
 const a = new Node('a');
