@@ -34,40 +34,34 @@ class MinHeap {
   }
 
   extractMin() {
-    // console.log(this.array);
-    const root = this.array.shift();
-    const tempRoot = this.array.pop();
-    this.array = [tempRoot].concat(this.array);
-    // console.log(this.array);
+    if (!this.array.length) return null;
+    console.log(this.array, "start")
+    const root = this.array[0];
+    this.array[0] = this.array.pop();
     let i = 0;
     while (i < this.array.length - 1){
-      const rightChildInd = i * 2 + 2;
-      const rightChildVal = rightChildInd >= this.array.length ? Infinity : this.array[rightChildInd];
-      const leftChildInd = i * 2 + 1;
-      const leftChildVal = leftChildInd >= this.array.length ? Infinity : this.array[leftChildInd];
-      if (this.array[i] > rightChildVal|| this.array[i] > leftChildVal){
-        const minInd = Math.min(rightChildVal,leftChildVal) === rightChildVal ? rightChildInd : leftChildInd;
-        this.swap(i,minInd);
-        i = minInd;
+      const leftInd = i * 2 + 1;
+      const rightInd = i * 2 + 2;
+      const leftVal = leftInd < this.array.length 
+                          ? this.array[leftInd]
+                          : Infinity;
+      const rightVal = rightInd < this.array.length
+                          ? this.array[rightInd]
+                          : Infinity;
+      const m = Math.min(leftVal,rightVal);
+      const mi = m === rightVal ? rightInd : leftInd;
+      console.log(this.array)
+      console.log({leftInd,leftVal,rightInd,rightVal,m,mi},this.array[i])
+      if (this.array[i] > m){
+        [ this.array[i], this.array[mi] ] = [ this.array[mi], this.array[i] ]
+        i = mi;
       }else break;
+      console.log(this.array[i], "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxend of loop")
     }
     return root;
   }
 }
-/*
-the build suggests that NO MATTER WHAT, the lowest value will be the first element in EVERY case
-(if !arr.length) return null;
-- shift the array and store that value to be returned
-- pop that array and place that element at the front of the array
-- index = 0 (duh)
-- while index < arr.length - 1 ->
-    - get children (index * 2 + 1)
-    - get children (index * 2 + 2)
-    - if arr[index] < either child, find the min and swap positions
-      - make sift down method that mirrors sift up
-    - if not: break
-return initially shifted value
-*/
+
 
 const heap = new MinHeap();
 heap.insert(12);
