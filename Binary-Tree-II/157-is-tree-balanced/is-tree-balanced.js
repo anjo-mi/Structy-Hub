@@ -11,13 +11,11 @@ const checkBalance = (r) => {
 
   const left = checkBalance(r.left);
   if (left < 0) return -1;
-  
   const right = checkBalance(r.right);
   if (right < 0) return -1;
 
-  if (Math.abs(right-left) > 1) return -1;
-
-  return 1 + Math.max(right,left);
+  if (Math.abs(left - right) > 1) return -1;
+  return 1 + Math.max(left,right);
 }
 
 const isTreeBalanced = (r) => {
