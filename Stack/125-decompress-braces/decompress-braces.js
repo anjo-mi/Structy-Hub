@@ -1,22 +1,19 @@
 const decompressBraces = (s) => {
-  const arab = new Set('0123456789');
-  const st = [];
-  let i = 0;
-  while (i < s.length){
-    if (s[i] === '{') st.push(i);
-    if (s[i] === '}'){
-      const start = st.pop();
-      const bracks = s.slice(start,i+1);
-      const exp = s.slice(start+1,i);
-      let numInd = start;
-      while (arab.has(s[numInd-1])) numInd--;
-      const num = +s.slice(numInd,start);
-      s = s.replace(s.slice(numInd,i+1), exp.repeat(num));
-      i = s.lastIndexOf(exp) + exp.length - 1;
+  const nums = new Set('0123456789');
+  const stack = [];
+  for (const char of s){
+    if (nums.has(char)) stack.push(char)
+    else{
+      if (char === '}'){
+        let seg = '';
+        while (!nums.has(stack[stack.length-1])) seg = stack.pop() + seg;
+        const num = +stack.pop();
+        console.log({stack,num,seg})
+        stack.push(seg.repeat(+num));
+      }else if (char !== '{') stack.push(char);
     }
-    i++;
   }
-  return s;
+  return stack.join('');
 };
 
 console.log(decompressBraces("2{q}3{tu}v"), 'qqtututuv');
