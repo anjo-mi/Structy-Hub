@@ -1,19 +1,21 @@
-const lexicalOrder = (w1, w2, alpha) => {
-  const order = {};
-  for (let i = 0 ; i < alpha.length ; i++) order[alpha[i]] = i;
-  let i = 0,
-      j = 0;
-  while (i < w1.length && j < w2.length){
-    if (order[w1[i]] < order[w2[j]]) return true;
-    if (order[w1[i]] > order[w2[j]]) return false;
-    i++;
-    j++;
+const lexicalOrder = (word1, word2, alphabet) => {
+  const length = Math.max(word1.length, word2.length);
+  for (let i = 0; i < length; i += 1) {
+    const char1 = word1[i];
+    const char2 = word2[i];
+    const value1 = char1 === undefined ? -Infinity: alphabet.indexOf(char1);
+    const value2 = char2 === undefined ? -Infinity: alphabet.indexOf(char2);
+    if (value1 < value2) {
+      return true;
+    } else if (value1 > value2) {
+      return false;
+    }
   }
-  return i >= w1.length;
+  return true;
 };
 
 const detectDictionary = (dict, alpha) => {
-  for (let i = 0 ; i < dict.length  - 1; i++){
+  for (let i = 0 ; i < dict.length -1 ; i++){
     if (!lexicalOrder(dict[i],dict[i+1],alpha)) return false;
   }
   return true;
