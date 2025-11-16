@@ -35,30 +35,22 @@ class MinHeap {
 
   extractMin() {
     if (!this.array.length) return null;
-    console.log(this.array, "start")
-    const root = this.array[0];
-    this.array[0] = this.array.pop();
+    const min = this.array[0];
+    this.array[0] = this.array[this.array.length - 1];
+    this.array.pop();
     let i = 0;
     while (i < this.array.length - 1){
-      const leftInd = i * 2 + 1;
-      const rightInd = i * 2 + 2;
-      const leftVal = leftInd < this.array.length 
-                          ? this.array[leftInd]
-                          : Infinity;
-      const rightVal = rightInd < this.array.length
-                          ? this.array[rightInd]
-                          : Infinity;
-      const m = Math.min(leftVal,rightVal);
-      const mi = m === rightVal ? rightInd : leftInd;
-      console.log(this.array)
-      console.log({leftInd,leftVal,rightInd,rightVal,m,mi},this.array[i])
-      if (this.array[i] > m){
-        [ this.array[i], this.array[mi] ] = [ this.array[mi], this.array[i] ]
-        i = mi;
-      }else break;
-      console.log(this.array[i], "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxend of loop")
+      const val = this.array[i];
+      const lci = i * 2 + 1;
+      const rci = i * 2 + 2;
+      const lcv = lci < this.array.length ? this.array[lci] : Infinity;
+      const rcv = rci < this.array.length ? this.array[rci] : Infinity;
+      const minVal = Math.min(lcv,rcv);
+      const mvi = minVal === lcv ? lci : rci;
+      if (val > minVal) this.swap(i,mvi);
+      i = mvi;
     }
-    return root;
+    return min;
   }
 }
 
