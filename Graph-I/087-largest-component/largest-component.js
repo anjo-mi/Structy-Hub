@@ -12,7 +12,10 @@ const largestComponent = (graph) => {
     }
     islands.push(isle);
   }
-  return islands.length ? Math.max(...islands.map(isle => isle.size)) : 0;
+
+  return islands.length 
+          ? Math.max(...islands.map(isle => isle.size))
+          : 0;
 };
 console.log(largestComponent({
   1: ['2'],
