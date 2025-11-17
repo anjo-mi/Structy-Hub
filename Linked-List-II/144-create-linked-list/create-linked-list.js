@@ -5,15 +5,18 @@ class Node {
   }
 }
 
-const createLinkedList = (vals) => {
-  if (!vals.length) return null;
-  const head = new Node(vals.shift())
-  let tail = head,
-      i = 0;
-  while (i < vals.length){
-    tail.next = new Node(vals[i]);
-    tail = tail.next;
-    i++;
+const createLinkedList = (array) => {
+  let head = null,
+      tail = null;
+  for (let i = 0 ; i < array.length ; i++){
+    const n = new Node(array[i]);
+    if (!head){
+      head = n;
+      tail = n;
+    }else{
+      tail.next = n;
+      tail = tail.next;
+    }
   }
   return head;
 };
