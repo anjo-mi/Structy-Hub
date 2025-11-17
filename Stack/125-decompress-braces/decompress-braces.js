@@ -8,7 +8,6 @@ const decompressBraces = (s) => {
         let seg = '';
         while (!nums.has(stack[stack.length-1])) seg = stack.pop() + seg;
         const num = +stack.pop();
-        console.log({stack,num,seg})
         stack.push(seg.repeat(+num));
       }else if (char !== '{') stack.push(char);
     }
