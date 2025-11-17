@@ -1,18 +1,18 @@
 const decompressBraces = (s) => {
+  const st = [];
   const nums = new Set('0123456789');
-  const stack = [];
   for (const char of s){
-    if (nums.has(char)) stack.push(char)
+    if (nums.has(char)) st.push(char);
     else{
       if (char === '}'){
         let seg = '';
-        while (!nums.has(stack[stack.length-1])) seg = stack.pop() + seg;
-        const num = +stack.pop();
-        stack.push(seg.repeat(+num));
-      }else if (char !== '{') stack.push(char);
+        while (!nums.has(st[st.length - 1])) seg = st.pop() + seg;
+        const num = +st.pop();
+        st.push(seg.repeat(num));
+      }else if (char !== '{') st.push(char);
     }
   }
-  return stack.join('');
+  return st.join('');
 };
 
 console.log(decompressBraces("2{q}3{tu}v"), 'qqtututuv');
