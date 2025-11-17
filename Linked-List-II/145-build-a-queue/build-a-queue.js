@@ -17,20 +17,19 @@ class Queue {
     if (!this.head){
       this.head = n;
       this.tail = n;
-    }else {
+    }else{
       this.tail.next = n;
-      this.tail = n;
+      this.tail = this.tail.next;
     }
     this.size++;
   }
 
   dequeue() {
     if (!this.head) return null;
-    const val = this.head.val;
-    if (this.head === this.tail) this.tail = null;
+    const h = this.head.val;
     this.head = this.head.next;
     this.size--;
-    return val;
+    return h;
   }
    
 }
