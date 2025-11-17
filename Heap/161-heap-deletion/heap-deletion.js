@@ -28,28 +28,33 @@ class MinHeap {
     }
   }
 
+  siftDown(i){
+    let ci = i;
+    while (ci < this.array.length - 1){
+      const cv = this.array[ci];
+      const lpi = ci * 2 + 1;
+      const rpi = ci * 2 + 2;
+      const lpv = this.array[lpi] ? this.array[lpi] : Infinity;
+      const rpv = this.array[rpi] ? this.array[rpi] : Infinity;
+      const min = Math.min(lpv,rpv);
+      const mi = min === lpv ? lpi : rpi;
+      if (cv > min) {
+        this.swap(ci,mi);
+        ci = mi;
+      }else break;
+    }
+  }
+
   insert(val) {
     this.array.push(val);
     this.siftUp(this.size() - 1);
   }
 
   extractMin() {
-    if (!this.array.length) return null;
+    if (!this.size) return null;
     const min = this.array[0];
-    this.array[0] = this.array[this.array.length - 1];
-    this.array.pop();
-    let i = 0;
-    while (i < this.array.length - 1){
-      const val = this.array[i];
-      const lci = i * 2 + 1;
-      const rci = i * 2 + 2;
-      const lcv = lci < this.array.length ? this.array[lci] : Infinity;
-      const rcv = rci < this.array.length ? this.array[rci] : Infinity;
-      const minVal = Math.min(lcv,rcv);
-      const mvi = minVal === lcv ? lci : rci;
-      if (val > minVal) this.swap(i,mvi);
-      i = mvi;
-    }
+    this.array[0] = this.array.pop();
+    this.siftDown(0);
     return min;
   }
 }
