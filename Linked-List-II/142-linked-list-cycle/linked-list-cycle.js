@@ -7,7 +7,6 @@ class Node {
 
 const linkedListCycle = (head) => {
   const set = new Set();
-
   let curr = head;
   while (curr){
     if (set.has(curr.val)) return true;
