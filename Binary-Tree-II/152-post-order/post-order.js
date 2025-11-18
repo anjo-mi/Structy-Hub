@@ -8,8 +8,8 @@ class Node {
 
 const postOrder = (r, arr = []) => {
   if (!r) return arr;
-  if (r.left) postOrder(r.left,arr);
-  if (r.right) postOrder(r.right,arr);
+  postOrder(r.left,arr);
+  postOrder(r.right,arr);
   arr.push(r.val);
   return arr;
 };
