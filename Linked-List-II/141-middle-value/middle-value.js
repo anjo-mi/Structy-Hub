@@ -12,8 +12,7 @@ const middleValue = (head) => {
     arr.push(curr.val);
     curr = curr.next;
   }
-  const m = Math.floor((arr.length / 2));
-  return arr[m];
+  return arr[Math.floor((arr.length) / 2)];
 };
 
 const a = new Node('a');
