@@ -1,14 +1,14 @@
 const decompressBraces = (s) => {
-  const st = [];
   const nums = new Set('0123456789');
+  const st = [];
   for (const char of s){
     if (nums.has(char)) st.push(char);
     else{
-      if (char === '}'){
+      if(char === '}'){
         let seg = '';
-        while (!nums.has(st[st.length - 1])) seg = st.pop() + seg;
+        while (!nums.has(st[st.length-1])) seg = st.pop() + seg;
         const num = +st.pop();
-        st.push(seg.repeat(num));
+        st.push(seg.repeat(num))
       }else if (char !== '{') st.push(char);
     }
   }
