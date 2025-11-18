@@ -1,9 +1,9 @@
-const getSems = (cls, crlm, sems) => {
+const getSems = (cls,crlm,sems) => {
   if (cls in sems) return sems[cls];
   if (!crlm[cls].length) return 1;
 
   const allSems = crlm[cls].map(cl => getSems(cl,crlm,sems) + 1);
-  return sems[cls] = Math.max(...allSems);
+  return sems[cls] = Math.max(...allSems); 
 }
 
 const semestersRequired = (numCourses, prereqs) => {
@@ -16,9 +16,7 @@ const semestersRequired = (numCourses, prereqs) => {
   }
 
   const sems = {};
-  for (const cls in crlm){
-    getSems(cls,crlm,sems);
-  }
+  for (const cls in crlm) getSems(cls,crlm,sems);
 
   return Math.max(...Object.values(sems));
 };
