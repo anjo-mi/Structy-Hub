@@ -1,13 +1,13 @@
 const countingChange = (amt, coins, i = 0, memo = {}) => {
   if (!amt) return 1;
   if (amt < 0) return 0;
-  const k = amt+';'+i;
+  const k = amt +';'+ i;
   if (k in memo) return memo[k];
 
-  let total = 0;
   const coin = coins[i];
+  let total = 0;
   for (let q = 0 ; q * coin <= amt ; q++){
-    total += countingChange(amt - (q * coin), coins, i+1, memo);
+    total += countingChange(amt - (q * coin), coins,i+1,memo);
   }
   return memo[k] = total;
 };
