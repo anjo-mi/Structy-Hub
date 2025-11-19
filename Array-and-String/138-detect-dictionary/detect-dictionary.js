@@ -14,11 +14,11 @@ const lexicalOrder = (word1, word2, alphabet) => {
   return true;
 };
 
-const detectDictionary = (dict, alpha) => {
-  for (let i = 0 ; i < dict.length -1 ; i++){
-    if (!lexicalOrder(dict[i],dict[i+1],alpha)) return false;
+const detectDictionary = (d, a) => {
+  for (let i = 0 ; i < d.length - 1 ; i++){
+    if (!lexicalOrder(d[i], d[i+1],a)) return false;
   }
-  return true;
+  return true
 };
 const dictionar = ["zoo", "tick", "tack", "door"];
 const alphabe = "ghzstijbacdopnfklmeqrxyuvw";
