@@ -1,13 +1,7 @@
 const kthLargest = (numbers, k) => {
-  if (k >= numbers.length) return null;
-  numbers.sort((a,b) => b-a);
-  return numbers[k-1];
+  return numbers.sort((a,b) => b-a)[k-1];
 };
-/*
-sort array big to small
-pick k - 1 index ?
-O(nlogn?)
-*/
+
 console.log(kthLargest([9,2,6,6,1,5,8,7], 3), 7);
 console.log(kthLargest([9,2,6,6,1,5,8,7], 4), 6);
 
