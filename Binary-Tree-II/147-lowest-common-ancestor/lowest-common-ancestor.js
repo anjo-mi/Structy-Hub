@@ -6,30 +6,29 @@ class Node {
   }
 }
 
-const pathFinder = (r, v) => {
+const pathFinder = (r,val) => {
   if (!r) return null;
+
   const path = [r.val];
-  if (r.val === v) return path;
+  if (r.val === val) return path;
 
-  const left = pathFinder(r.left,v);
-  const right = pathFinder(r.right,v);
-
+  const left = pathFinder(r.left, val);
   if (left) return path.concat(left);
+  const right = pathFinder(r.right, val);
   if (right) return path.concat(right);
 
   return null;
 }
-
+ 
 const lowestCommonAncestor = (root, val1, val2) => {
   const p1 = pathFinder(root,val1);
   const p2 = pathFinder(root,val2);
-  if (!p1 || !p2) return null;
-  let shared = p1[0];
-  for (let i = 0 ; i < Math.min(p1.length, p2.length) ; i++){
-    if (p1[i] !== p2[i]) return shared;
-    shared = p1[i];
+  let lowest = p1[0] || null;
+  for (let i = 0 ; i < Math.min((p1.length || 0),(p2.length || 0)) ; i++){
+    if (p1[i] === p2[i]) lowest = p1[i];
+    else break;
   }
-  return shared;
+  return lowest;
 };
 
 const a = new Node('a');
