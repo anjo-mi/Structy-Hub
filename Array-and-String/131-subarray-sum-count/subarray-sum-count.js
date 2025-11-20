@@ -1,10 +1,10 @@
 const subarraySumCount = (nums,targ) => {
   const sums = [0];
   let total = 0;
-  for (const num of nums) sums.push(total +=  num);
+  for (const num of nums) sums.push(total += num);
 
+  let count = 0;
   const seen = {};
-  let count= 0;
   for (const sum of sums){
     const comp = sum - targ;
     if (comp in seen) count += seen[comp];
