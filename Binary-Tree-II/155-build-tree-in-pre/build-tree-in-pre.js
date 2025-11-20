@@ -15,8 +15,8 @@ const buildTreeInPre = (inn, pre) => {
   const leftPre = pre.slice(0,leftInn.length);
   const rightPre = pre.slice(leftInn.length);
   const root = new Node(r);
-  root.left = buildTreeInPre(leftInn,leftPre);
-  root.right = buildTreeInPre(rightInn,rightPre);
+  root.left = buildTreeInPre(leftInn, leftPre);
+  root.right = buildTreeInPre(rightInn, rightPre);
   return root;
 };
 
