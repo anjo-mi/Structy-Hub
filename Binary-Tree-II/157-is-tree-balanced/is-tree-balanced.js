@@ -6,20 +6,20 @@ class Node {
   }
 }
 
-const getBalanceDiff = (r) => {
+const checkBalance = (r) => {
   if (!r) return 0;
 
-  const left = getBalanceDiff(r.left);
-  if (left < 0) return -1;
-  const right = getBalanceDiff(r.right);
-  if (right < 0) return -1;
+  const left = checkBalance(r.left);
+  const right = checkBalance(r.right);
+  if (left < 0 || right < 0) return -1;
 
-  if (Math.abs(right - left) > 1) return -1;
-  return Math.max(right,left) + 1;
+  if (Math.abs(right-left) > 1) return -1;
+
+  return 1 + Math.max(right,left);
 }
 
 const isTreeBalanced = (r) => {
-  return getBalanceDiff(r) > -1;
+  return checkBalance(r) > -1;
 };
 
 const s = new Node("s");
