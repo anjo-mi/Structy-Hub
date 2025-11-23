@@ -15,6 +15,7 @@ const linkedListCycle = (head) => {
   }
   return false;
 };
+
 // q -> r -> s -> t -> u -> v -> w -> x -> y -> s
 // 12
 //      1    2
