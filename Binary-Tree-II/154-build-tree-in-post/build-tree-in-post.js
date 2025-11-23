@@ -19,6 +19,7 @@ const buildTreeInPost = (inn, post) => {
   r.right = buildTreeInPost(rightInn,rightPost);
   return r;
 };
+
 console.log(buildTreeInPost(
   [ 'd', 'b', 'e', 'a', 'f', 'c', 'g' ],
   [ 'd', 'e', 'b', 'f', 'g', 'c', 'a' ] 
