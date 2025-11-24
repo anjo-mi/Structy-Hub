@@ -12,6 +12,7 @@ const binarySearchTreeIncludes = (root, target) => {
   if (root.val > target) return binarySearchTreeIncludes(root.left,target);
   if (root.val < target) return binarySearchTreeIncludes(root.right,target);
 };
+
 const q = new Node(54);
 const r = new Node(42);
 const s = new Node(70);
