@@ -15,7 +15,6 @@ const flipTree = (r) => {
   return r;
 };
 
-
 const l = new Node("l");
 const m = new Node("m");
 const n = new Node("n");
