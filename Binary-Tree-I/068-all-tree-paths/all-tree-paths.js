@@ -7,7 +7,16 @@ class Node {
 }
 
 const allTreePaths = root => {
-  return _allTreePaths(root).map(p => p.reverse());
+  const paths = [];
+  if (!root) return paths;
+  const s = [{n:root, path:[root.val]}];
+  while (s.length){
+    const {n,path} = s.pop();
+    if (!n.left && !n.right) paths.push(path);
+    if (n.right) s.push({n:n.right,path:path.concat(n.right.val)});
+    if (n.left) s.push({n:n.left,path:path.concat(n.left.val)});
+  }
+  return paths;
 }
 
 const _allTreePaths = r =>{
