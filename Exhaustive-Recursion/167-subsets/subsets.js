@@ -1,25 +1,12 @@
 const subsets = (elms) => {
   if (!elms.length) return [[]];
-  const init = elms[0];
-  const wo = subsets(elms.slice(1));
-  const w = wo.map(sub => [init,...sub]);
-  return [...w,...wo];
+  const first = elms[0];
+  const remainsWithout = subsets(elms.slice(1));
+  const remainsWith = remainsWithout.map(sub => [first,...sub]);
+  return [...remainsWith, ...remainsWithout];
 };
-/*
 
-test_03
-  if elms doesnt have a length return [[]]
-    - this handles the 'last' case
 
-since we know if it gets this far, there is an element, extract the first element
-get all values of remaining elements (elms.slice(1)) from subset call;
-BASE CASE:  - this goes all the way to the end until it returns [[]];
-concat those to the first element
-  - thinking thru this, at each element, were still including the first element?
-      - will it matter since were calling the same function on the same array minus the element?
-        hcaswdtkdtktlfo
-
-*/
 console.log(subsets([]), [[]]);
 console.log(subsets(['x']),
 [ 
