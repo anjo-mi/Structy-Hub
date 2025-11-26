@@ -16,6 +16,7 @@ const largestComponent = (graph) => {
           ? Math.max(...islands.map(isle => isle.size))
           : 0;
 };
+
 console.log(largestComponent({
   1: ['2'],
   2: ['1','8'],
