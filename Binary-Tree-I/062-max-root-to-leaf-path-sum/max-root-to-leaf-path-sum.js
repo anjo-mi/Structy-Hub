@@ -18,9 +18,7 @@ const maxPathSum = (root) => {
 
   return total + Math.max(left,right);
 };
-/*
 
-*/
 const a = new Node(-1);
 const b = new Node(-6);
 const c = new Node(-5);
