@@ -1,9 +1,10 @@
 const subsets = (elms) => {
   if (!elms.length) return [[]];
   const first = elms[0];
-  const remainsWithout = subsets(elms.slice(1));
-  const remainsWith = remainsWithout.map(sub => [first,...sub]);
-  return [...remainsWith, ...remainsWithout];
+
+  const subsWithout = subsets(elms.slice(1));
+  const subsWith = subsWithout.map(s => [first,...s]);
+  return [...subsWith,...subsWithout];
 };
 
 
