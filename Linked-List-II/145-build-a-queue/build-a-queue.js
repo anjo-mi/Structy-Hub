@@ -30,14 +30,8 @@ class Queue {
     this.head = this.head.next;
     this.size--;
     return h;
-  }
-   
+  }  
 }
-
-
-
-
-
 
 
 module.exports = {
