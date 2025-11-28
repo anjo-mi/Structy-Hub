@@ -14,7 +14,6 @@ const postOrder = (r, arr = []) => {
   return arr;
 };
 
-
 const a = new Node('a');
 const b = new Node('b');
 const c = new Node('c');
