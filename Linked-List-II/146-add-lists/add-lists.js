@@ -9,22 +9,23 @@ const addLists = (h1, h2) => {
   let head = null,
       tail = null,
       carry = 0;
-  while (h1 || h2){
-    const total = (h1 ? h1.val : 0) + (h2 ? h2.val : 0) + (carry || 0);
+  while (h1 || h2 || carry){
+    let v1 = h1 ? h1.val : 0;
+    let v2 = h2 ? h2.val : 0;
+    const total = v1 + v2 + (carry || 0);
+    const dig = total % 10;
     carry = Math.floor(total / 10);
-    const dig = new Node(total % 10);
-    if (!head) {
-      head = dig;
-      tail = dig;
-    }
-    else{
-      tail.next = dig;
+    const n = new Node(dig);
+    if (!head){
+      head = n;
+      tail = n;
+    }else{
+      tail.next = n;
       tail = tail.next;
     }
     if (h1) h1 = h1.next;
     if (h2) h2 = h2.next;
   }
-  if (carry) tail.next = new Node(carry);
   return head;
 };
 
