@@ -6,11 +6,11 @@ class Node {
   }
 }
 
-const binarySearchTreeIncludes = (root, target) => {
-  if (!root) return false;
-  if (root.val === target) return true;
-  if (root.val > target) return binarySearchTreeIncludes(root.left,target);
-  if (root.val < target) return binarySearchTreeIncludes(root.right,target);
+const binarySearchTreeIncludes = (r, target) => {
+  if (!r) return false;
+  if (r.val === target) return true;
+  if (r.val > target) return binarySearchTreeIncludes(r.left,target);
+  if (r.val < target) return binarySearchTreeIncludes(r.right,target);
 };
 
 const q = new Node(54);
