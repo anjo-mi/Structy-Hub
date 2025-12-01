@@ -8,9 +8,6 @@ const summingSquares = (n, memo = {}) => {
   return memo[n] = Math.min(...sqs.map(sq => summingSquares(n-sq,memo) + 1));
 };
 
-/*
-
-*/
 console.log(summingSquares(12), 3);
 console.log(summingSquares(8), 2);
 console.log(summingSquares(31), 4);
