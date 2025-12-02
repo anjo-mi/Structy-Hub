@@ -9,7 +9,8 @@ class Node {
 const isBinarySearchTree = (root,h=Infinity,l=-Infinity) => {
   if (!root) return true;
   if (root.val > h || root.val < l) return false;
-  return isBinarySearchTree(root.left,root.val,l) && isBinarySearchTree(root.right,h,root.val);
+  return isBinarySearchTree(root.left,root.val,l)
+      && isBinarySearchTree(root.right,h,root.val);
 };
 
 const a = new Node(12);
