@@ -32,7 +32,6 @@ class MinHeap {
 
 
 
-
 const heap = new MinHeap();
 heap.insert(12);
 heap.insert(93);
