@@ -1,6 +1,6 @@
 const runningSum = (nums) => {
-  let sum = 0;
-  return nums.map(n => sum += n);
+  let t = 0;
+  return nums.map(n => t += n);
 };
 
 console.log(runningSum([4, 2, 1, 6, 3, 6]), [ 4, 6, 7, 13, 16, 22 ]);
