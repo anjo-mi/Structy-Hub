@@ -4,7 +4,7 @@ const tribonacci = (n,memo = {}) => {
   if (n in memo) return memo[n];
 
   return memo[n] = tribonacci(n-1,memo) + tribonacci(n-2,memo) + tribonacci(n-3,memo);
-}
+};
 
 /*
 
