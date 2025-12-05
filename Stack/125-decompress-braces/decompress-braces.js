@@ -15,6 +15,7 @@ const decompressBraces = (s) => {
   return st.join('');
 };
 
+
 console.log(decompressBraces("2{q}3{tu}v"), 'qqtututuv');
 console.log(decompressBraces("2{y3{o}}s"), 'yoooyooos');
 console.log(decompressBraces("2{3{r4{e}r}io}"), 'reeeerreeeerreeeerioreeeerreeeerreeeerio');
