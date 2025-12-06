@@ -20,7 +20,6 @@ const semestersRequired = (numCourses, prereqs) => {
   return Math.max(...Object.values(sems));
 };
 
-
 const numCourses = 6;
 const prereq = [
   [1, 2],
