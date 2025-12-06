@@ -1,12 +1,19 @@
 const createCombinations = (arr, k) => {
-  if (arr.length < k) return [];
-  if (!arr.length) return [[]];
+  if (arr.length < k) return [[]];
+  if (!k) return [[]]
+
+  const res = [];
   const first = arr[0];
-  const combos = [];
-  const combosWith = createCombinations(arr.slice(1), k-1);
-  combosWith.forEach(c => combos.push([...c,first]));
-  const combosWithout = createCombinations(arr.slice(1),k);
-  return [...combos,...combosWithout].filter(c => c.length === k);
+  const rest = arr.slice(1);
+
+  for (const list of createCombinations(rest,k-1)){
+    list.push(first);
+    res.push(list);
+  }
+  
+  for (const list of createCombinations(rest,k)) res.push(list);
+
+  return res.filter(el => el.length === k);
 };
 
 /*
