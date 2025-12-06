@@ -11,7 +11,6 @@ const countCompounds = (comp, elms, i = 0 , memo = {}) => {
   }, 0)
 };
 
-
 console.log(countCompounds("neco", [
   "Ne",
   "O",
