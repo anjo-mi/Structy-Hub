@@ -1,43 +1,22 @@
-const liningUp = (ppl, cap) => {
-  if (!cap) return [[]];
-  if (ppl.length < cap) return [[]];
+const liningUp = (arr, k) => {
+  if (arr.length < k) return [[]];
+  if (!k) return [[]]
 
-  const person = ppl[0];
-  const rest = ppl.slice(1);
-  const lines = [];
+  const res = [];
+  const first = arr[0];
+  const rest = arr.slice(1);
+  const slc = liningUp(rest,k-1);
 
-  const linesWithPerson = liningUp(rest,cap-1);
-  for (const line of linesWithPerson){
-    for (let i = 0 ; i <= line.length ; i++){
-      lines.push([...line.slice(0,i), person, ...line.slice(i)]);
+  for (const list of slc){
+    for (let i = 0 ; i <= list.length ; i++){
+      res.push([...list.slice(0,i), first, ...list.slice(i)])
     }
   }
-  liningUp(rest,cap).forEach(line => lines.push(line));
+  
+  for (const list of liningUp(rest,k)) res.push(list);
 
-  return lines.filter(line => line.length === cap);
+  return res.filter(el => el.length === k);
 };
-
-/*
-if ppl.length < cap return null || [] || ????
-if (!ppl.length) return [[]];
-
-extract first
-assign rest
-make empty array
-
-call liningUp on rest twice
-  - once with cap - 1
-  - once with cap
-
-for every result in the array of cap-1 call
-  - insert first at every position
-    - push to array
-
-for every result in the array of cap call
-  - push to array
-
-return array
-*/
 
 console.log(liningUp(["anj", "aud"], 1), [   [ 'anj' ],   [ 'aud' ] ]);
 
