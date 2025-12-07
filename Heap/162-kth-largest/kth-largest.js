@@ -1,5 +1,5 @@
-const kthLargest = (numbers, k) => {
-  return numbers.slice(0).sort((a,b) => b-a)[k-1];
+const kthLargest = (nums, k) => {
+  return nums.sort((a,b) => b-a)[k-1];
 };
 
 console.log(kthLargest([9,2,6,6,1,5,8,7], 3), 7);
