@@ -30,36 +30,6 @@ class MinHeap {
   }
 }
 
-
-
-const heap = new MinHeap();
-heap.insert(12);
-heap.insert(93);
-heap.insert(63);
-heap.insert(16);
-heap.insert(-500);
-heap.insert(21);
-heap.insert(11);
-heap.insert(43);
-heap.insert(-6);
-heap.insert(35);
-heap.insert(15);
-heap.insert(37);
-heap.insert(29);
-heap.insert(-501);
-heap.insert(80);
-console.log({heap});
-//                              -501
-//                      /                \
-//                    -6                -500
-//                 /     \            /       \
-//               12      15          29        11
-//             /  \     /  \       /  \       /  \
-//            93  43   35  16    63   37     21  80
-
-
-// [ -501, -6, -500, 12, 15, 29, 11, 93, 43, 35, 16, 63, 37, 21, 80 ]
-
 module.exports = {
   MinHeap,
 };
