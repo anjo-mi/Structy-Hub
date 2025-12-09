@@ -1,15 +1,14 @@
 const permutations = (arr) => {
   if (!arr.length) return [[]];
-
+  const perms = [];
   const first = arr[0];
-  const final = [];
-  const perms = permutations(arr.slice(1));
-  for (const perm of perms){
-    for (let i = 0 ; i <= perm.length ; i++){
-      final.push([...perm.slice(0,i), first, ...perm.slice(i)]);
+  const remains = permutations(arr.slice(1));
+  for (const perm of remains){
+    for (let i = 0 ; i<= perm.length ; i++){
+      perms.push([...perm.slice(0,i), first,...perm.slice(i)]);
     }
   }
-  return final;
+  return perms;
 };
 
 console.log(permutations(['a', 'b', 'c']));
