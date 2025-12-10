@@ -1,5 +1,5 @@
 const liningUp = (arr, k) => {
-  if (arr.length < k) return [[]];
+  if (arr.length < k) return [];
   if (!k) return [[]]
 
   const res = [];
@@ -15,7 +15,7 @@ const liningUp = (arr, k) => {
   
   for (const list of liningUp(rest,k)) res.push(list);
 
-  return res.filter(el => el.length === k);
+  return res;
 };
 
 console.log(liningUp(["anj", "aud"], 1), [   [ 'anj' ],   [ 'aud' ] ]);
