@@ -1,5 +1,5 @@
 const createCombinations = (arr, k) => {
-  if (arr.length < k) return [[]];
+  if (arr.length < k) return [];
   if (!k) return [[]]
 
   const res = [];
@@ -13,9 +13,8 @@ const createCombinations = (arr, k) => {
   
   for (const list of createCombinations(rest,k)) res.push(list);
 
-  return res.filter(el => el.length === k);
+  return res;
 };
-
 /*
 if !items or k <= 0 return [[]];
 
