@@ -32,7 +32,6 @@ class Queue {
     return h;
   }  
 }
-
 module.exports = {
   Queue,
 };
