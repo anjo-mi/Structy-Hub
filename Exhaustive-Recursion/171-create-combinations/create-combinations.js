@@ -1,19 +1,13 @@
 const createCombinations = (arr, k) => {
   if (arr.length < k) return [];
-  if (!k) return [[]]
-
-  const res = [];
+  if (!k) return [[]];
+  const combos = [];
   const first = arr[0];
-  const rest = arr.slice(1);
 
-  for (const list of createCombinations(rest,k-1)){
-    list.push(first);
-    res.push(list);
-  }
-  
-  for (const list of createCombinations(rest,k)) res.push(list);
-
-  return res;
+  const remsWith = createCombinations(arr.slice(1), k-1);
+  const remsWithout = createCombinations(arr.slice(1), k);
+  for (const c of remsWith) combos.push([first,...c]);
+  return [...combos,...remsWithout];
 };
 /*
 if !items or k <= 0 return [[]];
