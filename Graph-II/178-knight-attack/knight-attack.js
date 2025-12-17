@@ -15,7 +15,8 @@ const knightAttack = (n, kr, kc, pr, pc) => {
     if (!inBounds(r,c,n) || seen.has(l)) continue;
     if (r === pr && c === pc) return moves;
     seen.add(l);
-    const dirs = [ [1,2] , [2,1] , [-2,1] , [-1,2] , [2,-1] , [1,-2] , [-2,-1] , [-1,-2] ];
+    const dirs = [ [1,2] , [2,1] , [-2,1] , [-1,2] ,
+                   [2,-1] , [1,-2] , [-2,-1] , [-1,-2] ];
     for (const [dr,dc] of dirs){
       q.push({l: loc(r+dr,c+dc), moves: moves+1});
     }
@@ -23,18 +24,6 @@ const knightAttack = (n, kr, kc, pr, pc) => {
   return null;
 };
 
-/*
-create an array of loc and count
-while that array has a length
-  - shift {loc , count}
-  - split loc -> r,c
-    - make sure in-bounds and not already seen
-  - if r === pr && c === pc return count
-  - otherwise, for every direction [2,1] (alts and negs)
-      - push to q
-
-return null;
-*/
 
 console.log(knightAttack(8, 1, 1, 2, 2), 2);
 console.log(knightAttack(24, 4, 7, 19, 20), 10);
