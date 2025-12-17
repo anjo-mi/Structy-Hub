@@ -8,7 +8,7 @@ const permutations = (arr) => {
       perms.push([...perm.slice(0,i), first,...perm.slice(i)]);
     }
   }
-  return perms;
+  return perms;  
 };
 
 console.log(permutations(['a', 'b', 'c']));
