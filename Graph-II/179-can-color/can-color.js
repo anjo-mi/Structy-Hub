@@ -19,18 +19,6 @@ const canColor = (graph) => {
   return true;
 };
 
-/*
-make an object
-iterate thru the graph
-start with true
-if object has node, and its not true/false -> return false
-if object doesnt have node
-  - set obj[node] to current
-  - for every graph[node] set to opposite
-
-return true
-*/
-
 console.log(canColor({
   x: ["y"],
   y: ["x","z"],
