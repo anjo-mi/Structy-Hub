@@ -17,7 +17,6 @@ const undupeSortedLinkedList = (head) => {
   return head;
 };
 
-
 const a = new Node(4);
 const b = new Node(4);
 const c = new Node(6);
