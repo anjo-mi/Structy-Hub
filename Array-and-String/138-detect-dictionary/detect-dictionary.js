@@ -22,6 +22,7 @@ const detectDictionary = (d, a) => {
 };
 
 
+
 const dictionar = ["zoo", "tick", "tack", "door"];
 const alphabe = "ghzstijbacdopnfklmeqrxyuvw";
 console.log(detectDictionary(dictionar, alphabe), true);
