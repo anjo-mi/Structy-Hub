@@ -16,7 +16,6 @@ const hasCycle = (graph) => {
   }
   return false;
 };
-
 console.log(hasCycle({
   a: ["b"],
   b: ["c"],
