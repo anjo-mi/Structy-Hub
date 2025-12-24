@@ -9,7 +9,6 @@ const quickestConcat = (s, words, i = 0 , memo = {}, d = 0) => {
   }
   return memo[i] = !isFinite(min) && !(d) ? -1 : min;
 };
-
 console.log(quickestConcat('simchacindy', ['sim', 'simcha', 'acindy']), -1);
 console.log(quickestConcat('caution', ['ca', 'ion', 'caut', 'ut']), 2);
 console.log(quickestConcat('respondorreact', ['re', 'or', 'spond', 'act', 'respond']), 4);
