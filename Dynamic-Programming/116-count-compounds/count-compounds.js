@@ -1,14 +1,14 @@
 const countCompounds = (comp, elms, i = 0 , memo = {}) => {
-  if (i === comp.length) return 1;
-  if (i > comp.length) return 0;
+  elms = elms.map(el => el.toLowerCase());
   if (i in memo) return memo[i];
+  if (i > comp.length) return 0;
+  if (i === comp.length) return 1;
 
-  elms = elms.map(e => e.toLowerCase());
-  return memo[i] = elms.reduce((a,el) => {
-    if (comp.startsWith(el,i)){
-      return a + countCompounds(comp,elms,i+el.length,memo);
-    }else return a;
-  }, 0)
+  let total = 0;
+  for (const el of elms){
+    if (comp.startsWith(el,i)) total += countCompounds(comp,elms, i+el.length,memo);
+  }
+  return memo[i] = total;
 };
 
 console.log(countCompounds("neco", [
