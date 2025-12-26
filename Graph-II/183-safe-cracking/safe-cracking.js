@@ -22,18 +22,9 @@ const safeCracking = (hints) => {
   for (const key in graph){
     getDists(key,graph,dists);
   }
-  console.log({dists})
   return Object.keys(dists).sort((a,b) => dists[a] - dists[b]).join('');
 };
 
-/*
-build the graph,
-only b gets a pushed to it (directed graph!)
-
-get distances from the 'end' for each node (call helper function with node,graph,and dists)
-  - make a string going in order based on distance values
-
-*/
 
 console.log(safeCracking([
   [3, 1],
