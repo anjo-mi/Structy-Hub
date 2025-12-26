@@ -51,38 +51,27 @@ class MinHeap {
   }
 
   extractMin() {
-    if (!this.size) return null;
-    const min = this.array[0];
+    if (!this.array.length) return null;
+    const first = this.array[0];
     this.array[0] = this.array.pop();
     this.siftDown(0);
-    return min;
+    return first;
   }
 }
 
 const heap = new MinHeap();
 heap.insert(12);
-heap.insert(93);
-heap.insert(63);
-heap.insert(16);
-heap.extractMin(); // -> 12
-heap.extractMin(); // -> 16
-heap.insert(-500);
-heap.insert(21);
+heap.insert(13);
 heap.insert(11);
-heap.insert(43);
-heap.insert(-6);
-heap.insert(35);
-heap.insert(15);
-heap.extractMin(); //-> -500
-heap.extractMin(); //-> -6
-heap.extractMin(); // -> 11
-heap.extractMin(); // -> 15
-heap.extractMin(); // -> 21
-heap.extractMin(); // -> 35
-heap.extractMin(); // -> 43
-heap.extractMin(); // -> 63
-heap.extractMin(); // -> 93
-console.log({heap});
+heap.insert(4);
+heap.insert(20);
+heap.insert(9);
+heap.insert(22);
+heap.insert(14);
+console.log(heap.extractMin(), 4);
+console.log(heap.extractMin(), 9);
+console.log(heap.extractMin(), 11);
+
 module.exports = {
   MinHeap,
 };
