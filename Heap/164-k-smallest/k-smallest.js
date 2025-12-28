@@ -1,5 +1,6 @@
 const kSmallest = (nums, k) => nums.slice(0).sort((a,b) => a - b).slice(0,k);
 
+
 console.log(kSmallest([
   43, 35, 62, 31, 86, 81, 58, 80, 91, 13, 54, 78, 
   75, 69, 60, 8, 22, 12, 30, 79, 100, 2, 64, 57, 
