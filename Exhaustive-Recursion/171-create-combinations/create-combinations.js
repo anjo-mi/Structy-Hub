@@ -21,11 +21,7 @@ make a resultsWithoutFirst = fn(.slice(1), k NOT MINUS 1)
 return [...,...]
 */
 
-
-console.log(createCombinations(["a", "b", "c"], 2));
-console.log(createCombinations(["q", "r", "s", "t"], 2));
 console.log(createCombinations(['q', 'r', 's', 't'], 3));
-console.log(createCombinations([1, 28, 94], 3));
 
 module.exports = {
   createCombinations,
