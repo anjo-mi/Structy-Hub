@@ -17,6 +17,7 @@ const liningUp = (arr, k) => {
 
   return res;
 };
+
 console.log(liningUp(["anj", "aud"], 1), [   [ 'anj' ],   [ 'aud' ] ]);
 
 
