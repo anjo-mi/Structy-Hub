@@ -26,6 +26,7 @@ const safeCracking = (hints) => {
 };
 
 
+
 console.log(safeCracking([
   [3, 1],
   [4, 7],
