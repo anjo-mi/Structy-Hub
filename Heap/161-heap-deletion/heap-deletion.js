@@ -59,19 +59,6 @@ class MinHeap {
   }
 }
 
-const heap = new MinHeap();
-heap.insert(12);
-heap.insert(13);
-heap.insert(11);
-heap.insert(4);
-heap.insert(20);
-heap.insert(9);
-heap.insert(22);
-heap.insert(14);
-console.log(heap.extractMin(), 4);
-console.log(heap.extractMin(), 9);
-console.log(heap.extractMin(), 11);
-
 module.exports = {
   MinHeap,
 };
