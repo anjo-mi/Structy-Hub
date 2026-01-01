@@ -28,10 +28,8 @@ const snake = (r,c,i,v,grid,s) =>{
   for (const [dr,dc] of dirs){
     if (snake(r+dr,c+dc,i+1,v,grid,s)) return true;
   }
-  // v.delete(l);
   return false;
 }
-
 
 const grid = [
   ['a', 'o', 'o', 'o', 'o'],
