@@ -15,6 +15,7 @@ const middleValue = (head) => {
   return arr[Math.floor((arr.length) / 2)];
 };
 
+
 const a = new Node('a');
 const b = new Node('b');
 const c = new Node('c');
