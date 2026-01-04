@@ -5,7 +5,7 @@ class Node {
     this.right = null;
   }
 }
-
+ 
 const pathFinder = (r,val) => {
   if (!r) return null;
 
