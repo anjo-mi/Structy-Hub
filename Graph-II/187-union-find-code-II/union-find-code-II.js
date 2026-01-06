@@ -1,15 +1,28 @@
-const countComponents = (n, edges) => {
-  const arr = Array(n).fill(null).map((el,i) => i);
-  const size = Array(n).fill(null).map(el => 1);
-  for (let [a,b] of edges){
-    while (arr[b] !== b) b = arr[b];
-    while (arr[a] !== a) a = arr[a];
-    const max = size[Math.max(a,b)];
-    const min = a === max ? b : a;
-    arr[min] = max;
-    size[max] += size[min];
+const find = (node, roots) => {
+  while (node !== roots[node]) node = find(roots[node],roots);
+  return node;
+}
+
+const union = (a,b,roots,sizes) => {
+  const ra = find(a,roots);
+  const rb = find(b,roots);
+  if (ra === rb) return;
+  if (ra > rb){
+    roots[rb] = ra;
+    sizes[ra] += sizes[rb];
+  }else{
+    roots[ra] = rb;
+    sizes[rb] += sizes[ra];
   }
-  return arr.reduce((a,el,i) => a += el === i ? 1 : 0, 0);
+}
+
+const countComponents = (n, edges) => {
+  const roots = Array(n).fill(null).map((el,i) => i);
+  const sizes = Array(n).fill(null).map(() => 1);
+  for (const [a,b] of edges){
+    union(a,b,roots,sizes);
+  }
+  return roots.reduce((a,el,i) => a += el === i ? 1 : 0 , 0);
 };
 
 console.log(countComponents(10, [
