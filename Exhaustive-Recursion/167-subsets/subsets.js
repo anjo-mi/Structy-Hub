@@ -7,7 +7,6 @@ const subsets = (elms) => {
 };
 
 
-
 console.log(subsets([]), [[]]);
 console.log(subsets(['x']),
 [ 
