@@ -31,9 +31,6 @@ const snake = (r,c,i,v,grid,s) =>{
   return false;
 }
 
-
-
-
 const grid = [
   ['a', 'o', 'o', 'o', 'o'],
   ['b', 'c', 'd', 'o', 'o'],
