@@ -37,16 +37,6 @@ console.log(extraCable(6, [
   [1, 3],
   [2, 4],
 ]), [4, 3]);
-/*
-use the union find methods
-
-iterate thru all cables using those methods ^^
-
-if union returns false
-  it means weve encountered this node, and it points to a different endpoint
-    - this node has been encountered,
-        and has an extra 'edge' pointing to the same node
-*/
 
 // console.log(extraCable(5, [
 //   [3, 2],
