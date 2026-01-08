@@ -6,16 +6,17 @@ Write a function _greet_ that takes in a string argument, _s_, and returns the s
 tricks here. Run the tests to check your work.
 
 #### test_00:
-```python
-greet("alvin") # -> "hey alvin"
+
+```java
+Source.greet("alvin"); // -> "hey alvin"
 ```
 
 #### test_01:
-```python
-greet("jason") # -> "hey jason"
+```java
+Source.greet("jason"); // -> "hey jason"
 ```
 
 #### test_02:
-```python
-greet("how now brown cow") # -> 'hey how now brown cow'
+```java
+Source.greet("how now brown cow"); // -> "hey how now brown cow"
 ```
