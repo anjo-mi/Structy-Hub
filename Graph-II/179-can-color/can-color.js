@@ -18,6 +18,7 @@ const canColor = (graph) => {
   }
   return true;
 };
+
 console.log(canColor({
   x: ["y"],
   y: ["x","z"],
