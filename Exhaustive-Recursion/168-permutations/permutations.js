@@ -10,7 +10,6 @@ const permutations = (arr) => {
   }
   return perms;  
 };
-
 console.log(permutations(['a', 'b', 'c']));
 console.log(permutations(['red', 'blue']));
 console.log(permutations([8, 2, 1, 4]));
