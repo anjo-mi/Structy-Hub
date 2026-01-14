@@ -5,7 +5,6 @@ const prefixProduct = (nums) => {
 
 /*
 start with one, push that *= el to new array
-  maybe get funky with it
 */
 
 console.log(prefixProduct([4, 2, 1, 6, 3, 6]), [ 4, 8, 8, 48, 144, 864 ] );
