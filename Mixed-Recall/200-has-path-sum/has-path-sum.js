@@ -6,43 +6,43 @@ class Node {
   }
 }
 
-const hasPathSum = (root, target,total = 0 ) => {
+const hasPathSum = (root, target, total = 0) => {
   if (!root) return false;
   total += root.val;
-  if (!root.right && !root.left) return target === total;
-  return hasPathSum(root.left,target,total) || hasPathSum(root.right,target,total);
+  if (!root.right && !root.left) return total === target;
+  return hasPathSum(root.right,target,total) || hasPathSum(root.left,target,total);
 };
-const a = new Node(5);
+
+//  must begin at the root and end at a leaf
+/*
+add a parameter to the function for total = 0
+if theres no root, it must be return false
+otherwise
+  total += root.val
+  if (!root.left && !root.right) [no more vals to add] check if the total === target
+  otherwise see if it recursively works for root.left OR root.light
+*/
+const a = new Node(3);
 const b = new Node(11);
-const c = new Node(54);
-const d = new Node(20);
-const e = new Node(15);
+const c = new Node(4);
+const d = new Node(4);
+const e = new Node(-2);
 const f = new Node(1);
-const g = new Node(3);
 
 a.left = b;
 a.right = c;
 b.left = d;
 b.right = e;
-e.left = f;
-e.right = g;
+c.right = f;
 
-//        5
-//     /    \
-//    11    54
-//  /   \
-// 20   15
-//      / \
-//     1  3
+//       3
+//    /    \
+//   11     4
+//  / \      \
+// 4   -2     1
 
-console.log(hasPathSum(a, 32), true);
+console.log(hasPathSum(a, 8), true);
 
-/*
-add a parameter for total
-if !root return total === target
-total += root.val;
-check if hasPathSum(root.left / right, target,total);
-*/
 
 module.exports = {
   hasPathSum,
