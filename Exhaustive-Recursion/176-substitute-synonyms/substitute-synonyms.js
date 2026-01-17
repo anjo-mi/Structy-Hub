@@ -17,25 +17,6 @@ const substituteSynonyms = (s, syns) => {
   return res.map(phrase => phrase.join(' '));
 };
 
-/*
-split s (' ')
-call a helper function that will return 2d array
-return that result mapped to join(' ')
-
-
-helper
-if !s.length return [[]];
-
-const first = s[0]
-const remains = helper(s.slice(1),syns);
-const alts = []
-if (first in syns){
-  for (const phrase of syns[first]) alts.push(...remains.map(el => [phrase,...el]))
-  return alts;
-else return alts.push(el => [first,...el])
-}
-*/
-
 const sentence = "palms sweaty knees weak arms heavy";
 const synonyms = {
   palms: ["hands", "fists"],
