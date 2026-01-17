@@ -7,7 +7,6 @@ const countComponents = (n, edges) => {
   }
   return arr.reduce((a,el,i) => a += el === i ? 1 : 0 , 0);
 };
-
 console.log(countComponents(6, [
   [0, 3],
   [5, 3],
