@@ -10,7 +10,6 @@ const nestingScore = (str) => {
   }
   return s.pop();
 };
-
 console.log(nestingScore("[][[][]][[]]"), 7);
 console.log(nestingScore("[]"), 1);
 console.log(nestingScore("[][][]"), 3);
