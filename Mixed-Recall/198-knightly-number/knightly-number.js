@@ -23,6 +23,7 @@ const knightlyNumber = (n, m, kr, kc, pr, pc,memo={}) => {
   }
   return memo[k] = count;
 };
+
 console.log(knightlyNumber(20, 12, 8, 3, 9, 14), 98410127);
 
 module.exports = {
