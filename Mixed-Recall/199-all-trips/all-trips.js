@@ -12,10 +12,8 @@ const allTrips = (rts, start, end) => {
   const trips = mapTrips(rts);
   const paths = [];
   const q = [{loc: start, prev: null, path:[start]}];
-  console.log({trips})
   while (q.length){
     const {loc,prev,path} = q.shift();
-    console.log( {loc,prev,path})
     if (loc === end) paths.push(path);
     if (loc === end || loc === prev) continue;
     for (const stop of trips[loc]){
