@@ -20,7 +20,6 @@ const flattenTree = (root) => {
     while (tail.right) tail = tail.right;
     tail.right = right;
   }
-
   return root;
 };
 
