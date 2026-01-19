@@ -2,7 +2,6 @@ const weightedGraphMinPath = (graph, src, dst, v = new Set()) => {
   if (src === dst) return 0;
   
   if (v.has(src)) return Infinity;
-  // disables children from traveling back on 'just' traversed edge
   v.add(src);
   let min = Infinity;
   for (const child in graph[src]){
@@ -12,7 +11,6 @@ const weightedGraphMinPath = (graph, src, dst, v = new Set()) => {
       weightedGraphMinPath(graph,child,dst,v) + edgeDist
     );
   }
-  // can go to an already visited node, so long as it wasnt traversed on this run
   v.delete(src);
   return min;
 };
