@@ -6,7 +6,6 @@ const subsets = (elms) => {
   return [...subsWith, ...subsWithout];
 };
 
-
 console.log(subsets([]), [[]]);
 console.log(subsets(['x']),
 [ 
