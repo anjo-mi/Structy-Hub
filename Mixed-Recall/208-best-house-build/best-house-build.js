@@ -41,6 +41,7 @@ const bestHouseBuild = (grid) => {
   }
   return isFinite(overallMin) ? overallMin : -1;
 };
+
 const grid = [
   [1,0,0,0,1],
   [0,0,0,0,0],
