@@ -20,6 +20,7 @@ const isTreeBalanced = (r) => {
   return checkDepth(r) > -1;
 };
 
+
 const s = new Node("s");
 const t = new Node("t");
 const u = new Node("u");
