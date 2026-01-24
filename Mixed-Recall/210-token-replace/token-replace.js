@@ -13,6 +13,7 @@ const tokenReplace = (s, tokens) => {
   }
   return str.join('');
 };
+
 const tokens = {
   $second$: "beta",
   $first$: "alpha",
