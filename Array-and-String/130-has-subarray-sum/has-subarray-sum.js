@@ -14,6 +14,7 @@ const hasSubarraySum = (nums,tar) => {
 
 
 
+
 console.log(hasSubarraySum([5], 5), true);
 console.log(hasSubarraySum([1, 3, 1, 4, 3], 8), true);
 console.log(hasSubarraySum([4, 2, 5, 1, 5, -2, 8], 9), true);
