@@ -6,13 +6,17 @@ class Node {
 }
 
 const linkedListCycle = (head) => {
-  const set = new Set();
-  let curr = head;
-  while (curr){
-    if (set.has(curr.val)) return true;
-    set.add(curr.val);
-    curr = curr.next;
+  let slow = head;
+  let fast = head;
+  let firstIteration = true;
+  while (fast !== null && fast.next !== null) {
+    if (slow === fast && !firstIteration) return true;
+   
+    slow = slow.next;
+    fast = fast.next.next;
+    firstIteration = false;
   }
+  
   return false;
 };
 
