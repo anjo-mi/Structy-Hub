@@ -15,6 +15,7 @@ const positioningPlants = (costs, i = 0 , prev = null, memo = {}) => {
   }
   return memo[k] = min;
 };
+
 console.log(positioningPlants([
   [12, 14, 5, 13],
   [6, 3, 20, 3],
