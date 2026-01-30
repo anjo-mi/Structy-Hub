@@ -17,6 +17,7 @@ const breakingBoundaries = (rs, cs, k, r, c,memo ={}) => {
   }
   return memo[key] = total;
 };
+
 console.log(breakingBoundaries(3, 4, 3, 0, 0), 11);
 
 module.exports = {
