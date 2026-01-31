@@ -26,6 +26,7 @@ const countComponents = (n, edges) => {
 };
 
 
+
 console.log(countComponents(10, [
   [3, 2],
   [5, 4],
