@@ -5,9 +5,6 @@ const tribonacci = (n,memo = {}) => {
 
   return memo[n] = tribonacci(n-1,memo) + tribonacci(n-2,memo) + tribonacci(n-3,memo);
 };
-/*
-
-*/
 
 console.log(tribonacci(37), 1132436852);
 console.log(tribonacci(7), 13);
