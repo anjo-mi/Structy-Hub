@@ -19,6 +19,7 @@ const tokenTransform = (s, tokens) => {
   while (s.includes('$')) s = tokenReplace(s,tokens);
   return s;
 };
+
 const tokens = {
   $ADJECTIVE_1$: "quick",
   $ADJECTIVE_2$: "eager",
