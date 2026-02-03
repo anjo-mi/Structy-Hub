@@ -1,10 +1,10 @@
-const buildRoutes = (highwayTolls) => {
+const buildRoutes = (tolls) => {
   const routes = {};
-  for (const [a,b,c] of highwayTolls){
-    routes[b] = routes[b] || {}
-    routes[a] = routes[a] || {}
-    routes[b][a] = c;
+  for (const [a,b,c] of tolls){
+    if (!(a in routes)) routes[a] = {};
+    if (!(b in routes)) routes[b] = {};
     routes[a][b] = c;
+    routes[b][a] = c;
   }
   return routes;
 }
