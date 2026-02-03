@@ -15,9 +15,6 @@ const knapsack = (vals, wts, limit, i = 0, totalVal = 0, totalWt = 0, memo = {})
   )
 };
 
-
-
-
 console.log(knapsack([5, 4, 9], [6, 1, 15], 20), 13);
 console.log(knapsack([89, 45, 12, 50], [40, 20, 10, 15], 50), 107);
 // console.log(knapsack(
