@@ -12,6 +12,7 @@ const hasPathSum = (root, target, total = 0) => {
   if (!root.right && !root.left) return total === target;
   return hasPathSum(root.right,target,total) || hasPathSum(root.left,target,total);
 };
+
 module.exports = {
   hasPathSum,
 };
