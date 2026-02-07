@@ -25,6 +25,7 @@ const knightlyNumber = (n, m, kr, kc, pr, pc,memo={}) => {
 };
 
 
+
 console.log(knightlyNumber(20, 12, 8, 3, 9, 14), 98410127);
 
 module.exports = {
