@@ -16,6 +16,7 @@ const maxIncreasingSubseq = (nums, i = 0, prev = -Infinity, memo = {}) => {
   return memo[k] = Math.max(...poss);
 };
 
+
 const nums = [4, 18, 20, 10, 12, 15, 19];
 console.log(maxIncreasingSubseq(nums), 5);
 
