@@ -25,7 +25,6 @@ const countComponents = (n, edges) => {
   return roots.reduce((a,el,i) => a += el === i ? 1 : 0 , 0);
 };
 
-
 console.log(countComponents(10, [
   [3, 2],
   [5, 4],
