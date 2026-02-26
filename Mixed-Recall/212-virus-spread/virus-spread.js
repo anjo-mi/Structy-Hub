@@ -37,20 +37,7 @@ const virusSpread = (grid, count = 0) => {
 };
 
 
-/**
-* @params 2d array
-* @return number
-* create dirs for lateral movement
-create newGrid []
-* iterate thru rows and columns of grid (make newRow[] at row loop)
-* if current location is 1 vvv (otherwise push current loc to newRow)
-* checkInfected = return boolean for inbounds check and r/c + dirs = 2
-* if ^^^ === true, push 2 to newRow / add to increment count
-* push newRow to newGrid
 
-if !incrementCount -> return newGrid.every(row => !row.includes(1)) ? count : -1;
-return virusSpread(newGrid,count+1)
-*/
 const grid = [
   [2,1,1,1,1,0,0],
   [0,0,0,0,0,0,0],
