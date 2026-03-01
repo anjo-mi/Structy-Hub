@@ -14,26 +14,6 @@ const weightedGraphMinPath = (graph, src, dst, v = new Set()) => {
   v.delete(src);
   return min;
 };
-/*
-add set to params
-
-still operate a breadth first search
-  but hit O(n!) time
-  because remove the previous element from the set
-    (more than one way to reach the same element)
-
-if (src === dst) return 0;
-if (set has src) return Infinity [child points back to parent]
-
-*ADD src to set* (disables children from traveling back on 'just' traversed edge)
-
-iterate thru every property of the src's value
-  total (value of src[child]) + call of function on [child] as src
-    min = lowest total
-
-*REMOVE src from set* (it can be traveled to again now that weve traveled another edge)
-return the min
-*/
 
 const graph = {
   a: { b: 2, d: 9, c: 5 },
