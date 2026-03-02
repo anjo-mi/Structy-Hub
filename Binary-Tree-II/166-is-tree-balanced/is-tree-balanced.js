@@ -21,7 +21,6 @@ const isTreeBalanced = (r) => {
 };
 
 
-
 const s = new Node("s");
 const t = new Node("t");
 const u = new Node("u");
