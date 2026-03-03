@@ -36,8 +36,6 @@ const virusSpread = (grid, count = 0) => {
   return virusSpread(newGrid,count+1);
 };
 
-
-
 const grid = [
   [2,1,1,1,1,0,0],
   [0,0,0,0,0,0,0],
