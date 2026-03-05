@@ -38,19 +38,6 @@ console.log(extraCable(6, [
   [2, 4],
 ]), [4, 3]);
 
-// console.log(extraCable(5, [
-//   [3, 2],
-//   [1, 2],
-//   [4, 2],
-//   [3, 1],
-//   [0, 1],
-// ]), [3, 1])
-
-// console.log(extraCable(3, [
-//   [0, 1],
-//   [1, 2],
-//   [2, 0],
-// ]), [2, 0]);
 
 
 module.exports = {
