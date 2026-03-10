@@ -23,7 +23,6 @@ const allTrips = (rts, start, end) => {
   return paths;
 };
 
-
 const routes = [
   ["brookdale", "denton junction"],
   ["astor place", "brookdale"],
