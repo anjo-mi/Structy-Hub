@@ -10,8 +10,6 @@ const createCombinations = (arr, k) => {
   return [...combos,...remsWithout];
 };
 
-
-
 console.log(createCombinations(['q', 'r', 's', 't'], 3));
 
 module.exports = {
