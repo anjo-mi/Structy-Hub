@@ -13,7 +13,6 @@ const topologicalOrder = (graph) => {
   return Object.keys(levels).sort((a,b) => levels[b] - levels[a]);
 };
 
-
 console.log(topologicalOrder({
   h: ["l", "m"],
   i: ["k"],
