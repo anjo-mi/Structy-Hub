@@ -1,9 +1,9 @@
-const find = (node, roots) => {
-  while (node !== roots[node]) node = find(roots[node],roots);
+const find = (node,roots) => {
+  while (roots[node] !== node) node = find(roots[node],roots);
   return node;
 }
 
-const union = (a,b,roots,sizes) => {
+const union = (roots,sizes,a,b) => {
   const ra = find(a,roots);
   const rb = find(b,roots);
   if (ra === rb) return;
@@ -18,9 +18,9 @@ const union = (a,b,roots,sizes) => {
 
 const countComponents = (n, edges) => {
   const roots = Array(n).fill(null).map((el,i) => i);
-  const sizes = Array(n).fill(null).map(() => 1);
+  const sizes = Array(n).fill(null).map(el => 1);
   for (const [a,b] of edges){
-    union(a,b,roots,sizes);
+    union(roots,sizes,a,b);
   }
   return roots.reduce((a,el,i) => a += el === i ? 1 : 0 , 0);
 };
