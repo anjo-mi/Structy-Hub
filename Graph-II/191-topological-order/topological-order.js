@@ -12,7 +12,6 @@ const topologicalOrder = (graph) => {
   for (const node in graph) getHeights(graph,node,levels);
   return Object.keys(levels).sort((a,b) => levels[b] - levels[a]);
 };
-
 console.log(topologicalOrder({
   h: ["l", "m"],
   i: ["k"],
