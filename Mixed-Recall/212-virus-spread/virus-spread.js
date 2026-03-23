@@ -36,18 +36,6 @@ const virusSpread = (grid, count = 0) => {
   return virusSpread(newGrid,count+1);
 };
 
-const grid = [
-  [2,1,1,1,1,0,0],
-  [0,0,0,0,0,0,0],
-  [0,0,0,0,1,0,0],
-  [0,0,0,1,1,0,1],
-  [0,0,0,2,2,0,1],
-  [0,0,0,0,0,0,1],
-  [2,1,1,1,1,1,1]
-];
-console.log(virusSpread(grid), 9);
-
-
 module.exports = {
   virusSpread,
 };
