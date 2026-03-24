@@ -19,14 +19,6 @@ const maxIncreasingSubseq = (nums, i = 0, prev = -Infinity, memo = {}) => {
 const nums = [4, 18, 20, 10, 12, 15, 19];
 console.log(maxIncreasingSubseq(nums), 5);
 
-const numbers = [
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-];
-console.log(maxIncreasingSubseq(numbers), 1);
-
-/*
-
-*/
 
 
 module.exports = {
