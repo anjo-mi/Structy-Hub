@@ -29,6 +29,7 @@ const extraCable = (comps, cables) => {
   return true;
 };
 
+
 console.log(extraCable(6, [
   [0, 4],
   [4, 5],
