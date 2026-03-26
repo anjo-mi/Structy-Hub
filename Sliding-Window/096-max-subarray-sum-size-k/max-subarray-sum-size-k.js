@@ -10,13 +10,6 @@ const maxSubarraySumSizeK = (nums, k) => {
 };
 
 console.log(maxSubarraySumSizeK([4, 2, 1, -9, 8, 4, 3], 3), 15);
-console.log(maxSubarraySumSizeK([1, 4, 1, 10, 25, 3, 1, 0, 20], 4), 40);
-const nums = [];
-for (let i = 0; i < 120000; i += 1) {
-  nums.push(1);
-}
-// console.log(maxSubarraySumSizeK(nums, 10000), 10000);
-
 
 module.exports = {
   maxSubarraySumSizeK,
