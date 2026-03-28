@@ -17,7 +17,6 @@ const substituteSynonyms = (s, syns) => {
   return res.map(phrase => phrase.join(' '));
 };
 
-
 module.exports = {
   substituteSynonyms,
 };
