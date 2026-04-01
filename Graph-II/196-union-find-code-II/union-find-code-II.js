@@ -26,17 +26,6 @@ const countComponents = (n, edges) => {
 };
 
 
-console.log(countComponents(10, [
-  [3, 2],
-  [5, 4],
-  [4, 3],
-  [2, 1],
-  [0, 1],
-  [8, 9],
-  [5, 6],
-  [7, 8]
-]), 2);
-
 
 module.exports = {
   countComponents,
