@@ -11,7 +11,6 @@ const permutations = (arr) => {
   return perms;
 };
 
-
 module.exports = {
   permutations,
 };
