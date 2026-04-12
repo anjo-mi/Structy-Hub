@@ -26,7 +26,6 @@ const countComponents = (n, edges) => {
 };
 
 
-
 module.exports = {
   countComponents,
 };
