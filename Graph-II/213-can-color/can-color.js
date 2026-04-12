@@ -10,7 +10,6 @@ const canColor = (graph) => {
       else if (node in colored) continue;
       colored[node] = color;
       for (const n of graph[node]) {
-        // colored[n] = !color;
         q.push({node:n, color: !color});
       }
     }
