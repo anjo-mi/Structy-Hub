@@ -14,11 +14,6 @@ const subarraySumCount = (nums,targ) => {
 };
 
 
-console.log(subarraySumCount([1, 3, 1, 4, 3], 2), 0);
-console.log(subarraySumCount([1, 3, 1, 4, -2, 3], 5), 3);
-console.log(subarraySumCount([-2, 1, 1, 1, -1, 1, 1, 1, 1], 3), 8);
-
-
 module.exports = {
   subarraySumCount,
 };
