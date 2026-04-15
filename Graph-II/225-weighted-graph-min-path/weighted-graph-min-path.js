@@ -15,16 +15,6 @@ const weightedGraphMinPath = (graph, src, dst, v = new Set()) => {
   return min;
 };
 
-const graph = {
-  a: { b: 2, d: 9, c: 5 },
-  b: { a: 2, d: 4, e: 6 },
-  c: { a: 5, e: 4 },
-  d: { a: 9, b: 4, e: 1 },
-  e: { b: 6, c: 4, d: 1 },   
-};
-console.log(weightedGraphMinPath(graph, 'a', 'e'), 7);
-
-
 module.exports = {
   weightedGraphMinPath,
 };
