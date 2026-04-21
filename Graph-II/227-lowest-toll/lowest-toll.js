@@ -30,17 +30,6 @@ const lowestToll = (tolls, start, end) => {
   return +findMin(routes,start,end).toFixed(1);
 };
 
-const highwayTolls = [
-  ["Hampton", "Fairfax", 7.50],
-  ["Roanoake", "Alexandria", 4.20],
-  ["Alexandria", "Hampton", 14.50],
-  ["Hampton", "Roanoake", 8.90],
-  ["Alexandria", "Fairfax", 5.90],
-  ["Hampton", "Manassas", 3.50],
-  ["Fairfax", "Manassas", 2.20],
-];
-console.log(lowestToll(highwayTolls, "Alexandria", "Hampton"), 11.60);
-
 module.exports = {
   lowestToll,
 };
