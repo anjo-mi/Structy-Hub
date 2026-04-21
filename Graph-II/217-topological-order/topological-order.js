@@ -13,20 +13,6 @@ const topologicalOrder = (graph) => {
   return Object.keys(levels).sort((a,b) => levels[b] - levels[a]);
 };
 
-console.log(topologicalOrder({
-  h: ["l", "m"],
-  i: ["k"],
-  j: ["k", "i"],
-  k: ["h", "m"],
-  l: ["m"],
-  m: [],
-}), ['j', 'i', 'k', 'h', 'l', 'm']);
-console.log(topologicalOrder({
-  q: [],
-  r: ["q"],
-  s: ["r"],
-  t: ["s"],
-}), ['t', 's', 'r', 'q']);
 module.exports = {
   topologicalOrder,
 };
