@@ -20,7 +20,6 @@ const isTreeBalanced = (r) => {
   return checkBalance(r) >= 0;
 };
 
-
 module.exports = {
   isTreeBalanced,
 };
