@@ -36,6 +36,7 @@ const virusSpread = (grid, count = 0) => {
   return virusSpread(newGrid,count+1);
 };
 
+
 module.exports = {
   virusSpread,
 };
