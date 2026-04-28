@@ -10,6 +10,7 @@ const nestingScore = (str) => {
   }
   return stack.pop();
 };
+
 module.exports = {
   nestingScore,
 };
