@@ -25,7 +25,6 @@ const countComponents = (n, edges) => {
   return roots.reduce((a,el,i) => a += el === i ? 1 : 0 , 0);
 };
 
-
 module.exports = {
   countComponents,
 };
