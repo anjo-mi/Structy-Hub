@@ -15,7 +15,6 @@ const positioningPlants = (costs, i = 0 , prev = null, memo = {}) => {
   }
   return memo[k] = min;
 };
-
 module.exports = {
   positioningPlants,
 };
