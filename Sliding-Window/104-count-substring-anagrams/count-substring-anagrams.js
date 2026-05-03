@@ -28,7 +28,6 @@ const countSubstringAnagrams = (s, anagram) => {
   return count;
 };
 
-console.log(countSubstringAnagrams("tacoctacabcatt", "cat"));
 
 module.exports = {
   countSubstringAnagrams,
