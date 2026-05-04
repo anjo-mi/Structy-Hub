@@ -28,6 +28,7 @@ const extraCable = (comps, cables) => {
   return true;
 };
 
+
 module.exports = {
   extraCable,
 };
