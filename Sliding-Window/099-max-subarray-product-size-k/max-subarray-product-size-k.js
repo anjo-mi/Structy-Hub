@@ -9,8 +9,6 @@ const maxSubarrayProductSizeK = (nums, k) => {
   return maxProd;
 };
 
-console.log(maxSubarrayProductSizeK([7, 4, -5, -7, 8, -10, -1], 2));
-
 
 module.exports = {
   maxSubarrayProductSizeK,
