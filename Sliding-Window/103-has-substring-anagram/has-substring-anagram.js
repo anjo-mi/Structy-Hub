@@ -21,9 +21,6 @@ const hasSubstringAnagram = (s, anagram) => {
   const currSet = new Set(curr);
   return isMatch(currSet,ana);
 };
-
-console.log(hasSubstringAnagram("breakdowns", "snow"))
-
 module.exports = {
   hasSubstringAnagram,
 };
